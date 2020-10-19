@@ -1,0 +1,28 @@
+.topnav {
+	background-color: #B2DFEE;
+	height: 50px;
+	overflow: hidden;
+}
+
+.topnav a {
+	float: left;
+	color: #FFFFFF;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+	font-size: 17px;
+}
+
+.topnav div {
+	float: right;
+	color: #000000;
+	text-align: center;
+	padding-right: 10px;
+	padding-top: 10px;
+	text-decoration: none;
+	font-size: 17px;
+}
+
+body{
+	margin: 0;
+}
