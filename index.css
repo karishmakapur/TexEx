@@ -8,14 +8,7 @@ body, html {
     margin: 0;
 }
 
-.Imagebackground{
-  background: url(Images/books4.jpg);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  height: 100%; 
-  position: relative;
-}
+
   
 .logoContainer {
     text-align: center;
@@ -25,10 +18,18 @@ body, html {
 	background-color: #B2DFEE;
 	margin: 0 auto;
 	position: relative;
-	top: 40px; left: 40px;;
+	top: 40px; 
 	width: 500px;
 	height: 550px;
 	border-radius: 25px;
+}
+.imagebackground{
+	background: url(Images/books4.jpg);
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 100%; 
+	position: relative;
 }
 
 .fieldsContainer{
