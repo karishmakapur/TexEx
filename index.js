@@ -3,6 +3,6 @@ function redirectToUserLogin(event){
 
 }
 function redirectToAdminLogin(event){
-	window.location.href="../admin/adminLogin.html";
+	window.location.href="admin/adminLogin.html";
 
 }
