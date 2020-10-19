@@ -1,7 +1,7 @@
 div.a{
  font-size: 40px;
  text-align: center;
- word-wrap: break-word;
+ margin-top: 25px;
 }
 body, html {
     height: 100%;
@@ -9,24 +9,23 @@ body, html {
 }
 
 .Imagebackground{
-    background: url(Images/books1.jpg);
-  /* Full height */
-  height: 100%; 
-
-  /* Center and scale the image nicely */
+  background: url(Images/books1.jpg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  height: 100%; 
+  position: relative;
 }
   
 .logoContainer {
     text-align: center;
     padding-top: 10px;
   }
-  .formBackground{
+.formBackground{
 	background-color: #B2DFEE;
 	margin: 0 auto;
-	margin-top: 50px;
+	position: relative;
+	top: 40px; left: 40px;;
 	width: 500px;
 	height: 550px;
 	border-radius: 25px;
@@ -34,7 +33,7 @@ body, html {
 
 .fieldsContainer{
 	margin: 0 auto;
-	margin-top: 25px;
+	margin-top: 18px;
 	width: 400px;
 	height: 100px;
 	padding-top: 30px;
