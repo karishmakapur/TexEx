@@ -2,11 +2,22 @@
   text-align: center;
   padding-top: 10px;
 }
+body, html {
+    height: 100%;
+    margin: 0;
+	background-image: url(Images/books4.jpg);
+	background-position: center;
+	background-repeat: repeat-y;
+	background-size: cover;
+	position: relative;
+	
+}
 
 .formBackground{
 	background-color: #B2DFEE;
 	margin: 0 auto;
-	margin-top: 50px;
+	position: relative;
+	top: 40px;
 	width: 500px;
 	height: 700px;
 	border-radius: 25px;
