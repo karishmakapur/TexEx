@@ -1,0 +1,92 @@
+div.a{
+ font-size: 40px;
+ text-align: center;
+ word-wrap: break-word;
+}
+body, html {
+    height: 100%;
+    margin: 0;
+}
+
+.Imagebackground{
+    background: url(Images/books1.jpg);
+  /* Full height */
+  height: 100%; 
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+  
+.logoContainer {
+    text-align: center;
+    padding-top: 10px;
+  }
+  .formBackground{
+	background-color: #B2DFEE;
+	margin: 0 auto;
+	margin-top: 50px;
+	width: 500px;
+	height: 550px;
+	border-radius: 25px;
+}
+
+.fieldsContainer{
+	margin: 0 auto;
+	margin-top: 25px;
+	width: 400px;
+	height: 100px;
+	padding-top: 30px;
+	border-radius: 25px;
+	text-align: center;
+}
+
+.enterFields {
+	margin-top: 10px;
+	width: 300px;
+	height: 40px;
+	border-style: solid;
+	border-width: 1px;
+	border-radius: 25px;
+	border-color: #46ABCC;
+	cursor: pointer;
+}
+
+.buttonFields{
+	margin-top: 10px;
+	width: 300px;
+	height: 40px;
+	border-style: solid;
+	border-width: 1px;
+	border-radius: 25px;
+	border-color: #46ABCC;
+	background-color: #46ABCC;
+	cursor: pointer;
+}
+.AdbttonFields{
+	margin-top: 15px;
+	width: 300px;
+	height: 40px;
+	border-style: solid;
+	border-width: 1px;
+	border-radius: 25px;
+	border-color: white;
+	background-color: white;
+	cursor: pointer;
+}
+
+
+.linkContainer{
+	padding-top: 15px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+a{
+	color: black;
+	text-decoration: none;
+}
+
+
+	
