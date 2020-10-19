@@ -16,7 +16,7 @@ body, html {
 	border-radius: 25px;
 }
 .imagebackground{
-	background: url(Images/books4.jpg);
+	background-image: url(Images/books4.jpg);
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
