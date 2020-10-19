@@ -2,14 +2,26 @@
   text-align: center;
   padding-top: 10px;
 }
-
+body, html {
+    height: 100%;
+    margin: 0;
+}
 .formBackground{
 	background-color: #B2DFEE;
 	margin: 0 auto;
-	margin-top: 50px;
+	position: relative;
+	top: 40px;
 	width: 500px;
 	height: 550px;
 	border-radius: 25px;
+}
+.imagebackground{
+	background: url(Images/books4.jpg);
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 100%; 
+	position: relative;  
 }
 
 .fieldsContainer{
