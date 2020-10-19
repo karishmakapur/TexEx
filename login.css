@@ -32,11 +32,11 @@
 	border-radius: 25px;
 	border-color: #46ABCC;
 	cursor: pointer;
-	background: url(images/emailIcon.svg) no-repeat 7px 13px;
+	background: url(Images/emailIcon.svg) no-repeat 7px 13px;
 	
 }
 
-input[type="email"]::placeholder{
+input[type="email"]{
 	padding-left: 40px
 }
 .PasswordField {
@@ -48,10 +48,10 @@ input[type="email"]::placeholder{
 	border-radius: 25px;
 	border-color: #46ABCC;
 	cursor: pointer;
-	background: url(images/passwordIcon.svg) no-repeat 7px 7px;
+	background: url(Images/passwordIcon.svg) no-repeat 7px 7px;
 }
 
-input[type="password"]::placeholder{
+input[type="password"]{
 	padding-left: 40px
 }
 
