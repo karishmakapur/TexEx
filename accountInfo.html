@@ -1,0 +1,66 @@
+<!-- accountInfo.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Account Information</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="accountInfo.css">
+	<script type="text/javascript" src="accountInfo.js"></script>
+</head>
+
+<body>
+	<!--Start of NAV -->
+	<div class="topnav">
+		<a href="search.html">Search&nbsp;&nbsp;<img src="Images/searchIcon.svg" alt="Search Icon" width="10" height="10"/></a>
+		<a href="sell.html">Sell&nbsp;&nbsp;<img src="Images/sellIcon.svg" alt="Sell Icon" width="10" height="10"/></a>
+		<a href="myPosts.html">My Posts&nbsp;&nbsp;<img src="Images/postsIcon.svg" alt="Sell Icon" width="10" height="10"/></a>
+		<a href="accountInformation.html">Account&nbsp;&nbsp;<img src="Images/accountIcon.svg" alt="Sell Icon" width="10" height="10"/></a>
+		<a href="login.html">Logout&nbsp;&nbsp;<img src="Images/logoutIcon.svg" alt="Sell Icon" width="10" height="10"/></a>
+		<div>
+			<img src="Images/Logo.svg" alt="TexEx Logo" width="30" height="30"/>
+		</div>
+	</div>
+	<!-- End of NAV -->
+
+    <!-- Start of container (holds and positions elements) -->
+    <div class="container">
+    
+        <!-- Start of account information form -->
+        <div class="formBackground">
+            <form id="accountForm">
+                <div class="accountHeader">
+                    <h3>My Account Information</h3>
+                </div>
+                <div class="fieldsContainer">
+                    <input type="text" placeholder="Name" class="NameField" id="nameField"/>
+                    <input type="email" placeholder="Email" class="EmailField" id="emailField"/>
+                    <input type="text" placeholder="School" class="SchoolField" id="schoolField"/>
+
+                    <input type="button" value="Update Password" class="buttonFields" id="updatePasswordButton"/>
+                    <input type="button" value="Update Account" class="buttonFields" id="updateAccountButton"/>
+                    <input type="button" value="Delete Account" class="buttonFields" id="deleteAccountButton"/>
+                </div>
+            </form>
+            <script type="text/javascript" src="accountInfor.js"></script>
+            <noscript>Your browser does not support JavaScript</noscript>
+        </div>
+        <!-- End of account information form -->
+
+        <!-- Start of saved search table -->
+        <div class="formBackground">
+            <div class="savedSearchHeader">
+                <h3>My Saved Searches</h3>
+             </div>
+            <div class="fieldsContainer">
+                <ol id="savedSearchList">
+                    <li>Saved Search</li>
+                </ol>
+            </div>
+        </div>
+        <!-- End of saved search table -->	
+        
+    </div>
+    <!-- End of container -->  
+</body>
+</html>
