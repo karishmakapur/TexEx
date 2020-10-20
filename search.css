@@ -95,44 +95,35 @@ body{
 	text-align:center;
 	margin-bottom: 0px;
 }
-/*javascript css*/
-.searchResult{
-	margin: 10px auto;
-	position: relative;
-	top: 20px;
-	padding-top: 10px;
-	padding-bottom: 10px;
-	background-color: #B2DFEE;
-	border-radius: 25px;
-	max-width: 900px;
-}
 
 
-.innerDiv{
-	display: inline-block;
-	vertical-align: middle;
-}
+/*javascript css for creating the search results*/
 .row1{
 	border: 0px solid black;
 	width: 175px;
 	height: 30px;
 	background-color: #FFFFFF;
 	border-radius: 25px;
+	text-align:center;
 	
 }
-.row2{
-	border: 0px solid black;
-	width: 600px;
-	height: 100px;
-	background-color: #FFFFFF;
-	border-radius: 25px;
-	
-}
-
 label.line{
 	display: inline-block;
 	width: 12em;
 	text-align: center;	
+}
+.row2{
+	border: 0px solid black;
+	max-width: 600px;
+	height: 100px;
+	background-color: #FFFFFF;
+	border-radius: 25px;
+	text-align:center;
+	
+}
+.innerDiv{
+	display: inline-block;
+	vertical-align: middle;
 }
 .line2{
 	margin: 0px;
@@ -147,12 +138,21 @@ label.line{
 	width: 200px;
 	height: 200px;
 }
-input{
-	text-align:center;
+.searchResult{
+	margin: 10px auto;
+	position: relative;
+	top: 20px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	background-color: #B2DFEE;
+	border-radius: 25px;
+	max-width: 900px;
 }
+
 .noresults{
 	text-align:center;
 	color: #FFFFFF;
 	font-weight: bold;
 	font-size: 20pt;
 }
+/*end of javascript css for creating search results */
