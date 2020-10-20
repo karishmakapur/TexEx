@@ -2,11 +2,23 @@
   text-align: center;
   padding-top: 10px;
 }
-body, html {
+
+body.loginPage{
+    height: 100%;
+    margin: 0;
+	background-image: url(../Images/books4.jpg);
+	background-position: center;
+	background-repeat: repeat;
+	background-size: cover;
+	position: relative;  
+}
+
+html {
     height: 100%;
     margin: 0;
 }
-.formBackground{
+
+.formBackgroundLogin{
 	background-color: #B2DFEE;
 	margin: 0 auto;
 	position: relative;
@@ -14,23 +26,15 @@ body, html {
 	width: 500px;
 	height: 550px;
 	border-radius: 25px;
-}
-.imagebackground{
-	background-image: url(../Images/books4.jpg);
-	background-position: center;
-	background-repeat: no-repeat;
-	background-size: cover;
-	height: 100%; 
-	position: relative;  
-}
+}	
 
-.fieldsContainer{
+.fieldsContainerAdminLogin{
 	margin: 0 auto;
-	margin-top: 30px;
+	margin-top: 10px;
 	background-color: #FFFFFF;	
 	width: 400px;
-	height: 200px;
-	padding-top: 30px;
+	height: 175px;
+	padding-top: 10px;
 	border-radius: 25px;
 	text-align: center;
 }
@@ -48,9 +52,7 @@ body, html {
 	
 }
 
-input[type="email"]{
-	padding-left: 40px
-}
+
 .PasswordField {
 	margin-top: 10px;
 	width: 300px;
@@ -64,6 +66,9 @@ input[type="email"]{
 }
 
 input[type="password"]{
+	padding-left: 40px
+}
+input[type="email"]{
 	padding-left: 40px
 }
 
@@ -80,16 +85,10 @@ input[type="password"]{
 	
 }
 .text{
-	padding-top: 20px;
 	text-align: center;
-	font-size: 16pt;
-	font-weight: bolder;
 }
-
-a{
-	color: black;
-	text-decoration: none;
-}
-
-
 	
+#Logo{
+	height: 208.46;
+	width: 204.53;
+}

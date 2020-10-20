@@ -7,29 +7,25 @@
 <head>
 	<title>TexEx Admin Login</title>
 	<meta charset="utf-8"/>
-	<link rel="stylesheet" type="text/css" href="adminLogin.css"/>
+	<link rel="stylesheet" type="text/css" href="adminPages.css"/>
 	<script type="text/javascript" src="adminLogin.js"></script>
 </head>
 
-<body>
-	<div class ="imagebackground">
-	<div class="formBackground">
-		<form id="loginForm">
-			<div class="logoContainer">
-				<img src="../Images/Logo.svg" alt="TexEx Logo" height="208.46" width="204.53">
-			</div>
-			<div class="text">Administrative Login</div>
-			<div class="fieldsContainer">
-				<input type="email" placeholder="Email" class="EmailField" id="emailField"/>
-				
-				<input type="password" placeholder="Password" class="PasswordField" id="passwordField"/>
-				
-				<input type="button" value="Login" class="buttonFields" id="loginButton"/>
-			</div>
-		</form>
-		<script type="text/javascript" src="adminLoginr.js"></script>
-		<noscript>Your browser does not support JavaScript</noscript>
-	</div>
-	</div>
+<body class="loginPage">
+<div class="formBackgroundLogin">
+	<form action="manageUsers.html" method="post" onsubmit="return validateLogin();" id="loginForm">
+		<div class="logoContainer">
+			<img id="Logo" src="../Images/Logo.svg" alt="TexEx Logo"/>
+		</div>
+		<h1 class="text">Administrative Login</h1>
+		<div class="fieldsContainerAdminLogin">
+			<input type="email" placeholder="Email" class="EmailField" aria-label="Admin Email" id="emailField" required/>
+			
+			<input type="password" placeholder="Password" class="PasswordField" aria-label="Admin Password" id="passwordField" required/>
+			
+			<input type="submit" value="Login" class="buttonFields" id="loginButton"/>
+		</div>
+	</form>
+</div>
 </body>
 </html>
