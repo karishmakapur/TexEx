@@ -26,7 +26,7 @@ body, html {
     margin: 0;
 	background-image: url(Images/books4.jpg);
 	background-position: center;
-	background-repeat: repeat-x repeat-y;
+	background-repeat: repeat;
 	background-size: cover;
 	position: relative;  
 }
