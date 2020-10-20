@@ -1,0 +1,188 @@
+.formBackgroundRegister{
+	background-color: #B2DFEE;
+	margin: 0 auto;
+	position: relative;
+	top: 40px;
+	width: 500px;
+	height: 700px;
+	border-radius: 25px;
+}
+
+.formBackground{
+	background-color: #B2DFEE;
+	border-radius: 25px;
+	height: 550px;
+	margin: 0 auto;
+	position: relative;
+	top: 40px;
+	width: 500px;
+}
+.logoContainer {
+  padding-top: 10px;
+  text-align: center;
+}
+body, html {
+    height: 100%;
+    margin: 0;
+	background-image: url(Images/books4.jpg);
+	background-position: center;
+	background-repeat: repeat-x repeat-y;
+	background-size: cover;
+	position: relative;  
+}
+
+.fieldsContainerNoColor{
+	margin: 0 auto;
+	margin-top: 50px;
+	width: 400px;
+	height: 200px;
+	padding-top: 30px;
+	border-radius: 25px;
+	text-align: center;
+}
+
+.fieldsContainerLogin{
+	margin: 0 auto;
+	margin-top: 10px;
+	background-color: #FFFFFF;	
+	width: 400px;
+	height: 175px;
+	padding-top: 10px;
+	border-radius: 25px;
+	text-align: center;
+}
+.fieldsContainerRegister{
+	margin: 0 auto;
+	margin-top: 10px;
+	background-color: #FFFFFF;	
+	width: 400px;
+	height: 350px;
+	padding-top: 10px;
+	border-radius: 25px;
+	text-align: center;
+}
+.EmailField {
+	margin-top: 10px;
+	width: 300px;
+	height: 40px;
+	border-style: solid;
+	border-width: 1px;
+	border-radius: 25px;
+	border-color: #46ABCC;
+	cursor: pointer;
+	background: url(Images/emailIcon.svg) no-repeat 7px 13px;
+	
+}
+
+.PasswordField {
+	margin-top: 10px;
+	width: 300px;
+	height: 40px;
+	border-style: solid;
+	border-width: 1px;
+	border-radius: 25px;
+	border-color: #46ABCC;
+	cursor: pointer;
+	background: url(Images/passwordIcon.svg) no-repeat 7px 7px;
+}
+.UnlockPasswordField {
+	margin-top: 10px;
+	width: 300px;
+	height: 40px;
+	border-style: solid;
+	border-width: 1px;
+	border-radius: 25px;
+	border-color: #46ABCC;
+	cursor: pointer;
+	background: url(Images/unlockPassword.svg) no-repeat -1px 5px;
+	background-size: 40px 40px;
+}
+.confirmPasswordField {
+	margin-top: 10px;
+	width: 300px;
+	height: 40px;
+	border-style: solid;
+	border-width: 1px;
+	border-radius: 25px;
+	border-color: #46ABCC;
+	cursor: pointer;
+	background: url(Images/passwordIcon.svg) no-repeat 7px 7px;
+}
+.NameField {
+	margin-top: 10px;
+	width: 300px;
+	height: 40px;
+	border-style: solid;
+	border-width: 1px;
+	border-radius: 25px;
+	border-color: #46ABCC;
+	cursor: pointer;
+	background: url(Images/nameIcon.svg) no-repeat 5px 7px;
+	background-size: 30px 25px;
+}
+.SchoolField {
+	margin-top: 10px;
+	width: 300px;
+	height: 40px;
+	border-style: solid;
+	border-width: 1px;
+	border-radius: 25px;
+	border-color: #46ABCC;
+	cursor: pointer;
+	background: url(Images/schoolName.svg) no-repeat -1px 2px;
+	background-size: 45px 45px;
+}
+input[type="email"]{
+	padding-left: 40px
+}
+input[type="password"]{
+	padding-left: 40px
+}
+input[type="text"]{
+	padding-left: 40px
+}
+
+
+.buttonFields{
+	margin-top: 10px;
+	width: 300px;
+	height: 40px;
+	border-style: solid;
+	border-width: 1px;
+	border-radius: 25px;
+	border-color: #46ABCC;
+	background-color: #46ABCC;
+	cursor: pointer;	
+	
+}
+
+
+.AdminbuttonFields{
+	margin-top: 15px;
+	width: 300px;
+	height: 40px;
+	border-style: solid;
+	border-width: 1px;
+	border-radius: 25px;
+	border-color: white;
+	background-color: white;
+	cursor: pointer;
+}
+
+
+.linkContainer{
+	padding-top: 10px;
+	margin: 0 auto;
+	text-align: center;
+}
+a.redirectLink{
+	color: black;
+	text-decoration: none;
+}
+.text{
+ text-align: center;
+}
+#Logo{
+	height: 208.46;
+	width: 204.53;
+}

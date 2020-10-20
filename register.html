@@ -1,37 +1,41 @@
 <!-- TexEx Register Page -->
 <!-- register.html -->
-
+<!--
+This has been validated.
+Do NOT make any more changes to this file without notifying the group.
+-->
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<title>TexEx Register</title>
 	<meta charset="utf-8"/>
-	<link rel="stylesheet" type="text/css" href="register.css"/>
+	<link rel="stylesheet" type="text/css" href="welcomeRegisterLogin.css"/>
 	<script type="text/javascript" src="register.js"></script>
 </head>
 
 <body>
-	<div class="formBackground">
-		<form id="loginForm">
+	<div class="formBackgroundRegister">
+		<form action="search.html" method="post" onsubmit="return validateCreateAccount();" id="loginForm">
 			<div class="logoContainer">
-				<img src="Images/Logo.svg" alt="TexEx Logo" height="208.46" width="204.53">
+				<img id="Logo" src="Images/Logo.svg" alt="TexEx Logo"/>
 			</div>
-			<div class="fieldsContainer">
-				<input type="text" placeholder="Name" class="NameField" id="nameField"/>
-				<input type="email" placeholder="Email" class="EmailField" id="emailField"/>
-				<input type="text" placeholder="School" class="SchoolField" id="schoolField"/>
-				<input type="password" placeholder="Password" class="PasswordField" id="passwordField"/>
-				<input type="password" placeholder="Confirm Password" class="confirmPasswordField" id="confirmpasswordField"/>
+			<h1 class="text">Register</h1>
+			<div class="fieldsContainerRegister">
+				<input type="text" placeholder="Name" class="NameField" id="nameField" aria-label="Your Name" pattern="^[A-Z]{1}[a-z]+( [A-Z]{1}[a-z]+)*$" required/>
+				<input type="email" placeholder="Email" class="EmailField" id="emailField" aria-label="Your Email" required/>
+				<input type="text" placeholder="School" class="SchoolField" id="schoolField" aria-label="Your School" pattern="^[A-Z]{1}[a-z]+( [A-Z]{1}[a-z]+)*$" required/>
+				<input type="password" placeholder="Password" class="UnlockPasswordField" id="passwordField" aria-label="Your Password" pattern="(?=^.{8,}$)(?=.*\d)(?=.*[!@#$%^&*]+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required/>
+				<input type="password" placeholder="Confirm Password" class="confirmPasswordField" aria-label="Confirm Your Password" id="confirmpasswordField" required/>
 
-				<input type="button" value="Create Account" class="buttonFields" id="createAccountButton"/>
+				<input type="submit" value="Create Account" class="buttonFields" id="createAccountButton"/>
 			</div>
 			<div class="linkContainer">
-				<a href="login.html">Already have an account? Login!</a>
+				<a class="redirectLink" href="login.html">Already have an account? Login!</a>
 			</div>
 		</form>
 		<script type="text/javascript" src="registerr.js"></script>
-		<noscript>Your browser does not support JavaScript</noscript>
+	<noscript>Your browser does not support JavaScript</noscript>
 	</div>
 </body>
 </html>

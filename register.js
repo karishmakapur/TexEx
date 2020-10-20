@@ -1,88 +1,67 @@
 //register.js
 
-function validateName(event){
-	var dom = event.currentTarget;
-	var input = event.currentTarget.value;
-	var pos = input.search(/^[A-Z]{1}[a-z]+( [A-Z]{1}[a-z]+)*$/);
-	if(pos != 0){
-		alert("Please enter a correct name!\nYour first name must start with a capital letter.\nIf you provide your last name, or any other names, they must also begin with a capital letter.");
-		document.getElementById("nameField").focus();
-		return false;
-	}
-	else{
-		alert("You entered a correct name!");
-		return true;
-	}
+function invalidName(event){
 	
+	event.currentTarget.setCustomValidity("Please enter a correct name! Your first name must start with a capital letter. If you provide your last name, or any other names, they must also begin with a capital letter."); 
 }
-function validateEmail(event){
-	var dom = event.currentTarget;
-	var input = event.currentTarget.value;
-	var pos = input.search(/^[a-z0-9]+@[a-z]+\.com$/);
-	if(pos != 0){
-		alert("Please enter a correct email");
-		document.getElementById("emailField").focus();
-		return false;
-	}
-	else{
-		alert("You entered a correct email");
-		return true;
-	}
+function enteringName(event){
+	event.currentTarget.setCustomValidity(""); 
 }
-function validateSchool(event){
-	var dom = event.currentTarget;
-	var input = event.currentTarget.value;
-	var pos = input.search(/^[A-Z]{1}[a-z]+( [A-Z]{1}[a-z]+)*$/);
-	if(pos != 0){
-		alert("Please enter a correct school name!\nIt must be completely spelled out.");
-		document.getElementById("schoolField").focus();
-		return false;
-	}
-	else{
-		alert("You entered a correct school name!");
-		return true;
-	}
+function enteringSchool(event){
+	event.currentTarget.setCustomValidity(""); 
 }
-function validatePassword(event){
-	var dom = event.currentTarget;
-	var input = event.currentTarget.value;
-	var pos = input.search(/(?=^.{8,}$)(?=.*\d)(?=.*[!@#$%^&*]+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/);
-	if(pos != 0){
-		alert("Please enter a correct password!\nThe password length must be greater than or equal to 8.\nThe password must contain one or more uppercase characters.\nThe password must contain one or more lowercase characters.\nThe password must contain one or more numeric values.\nThe password must contain one or more special characters.");
-		document.getElementById("passwordField").focus();
-		return false;
-	}
-	else{
-		alert("You entered a correct password!");
-		return true;
-	}
+function enteringPass(event){
+	event.currentTarget.setCustomValidity(""); 
+}
+function invalidSchool(event){
+	event.currentTarget.setCustomValidity("Please enter a correct school name! It must be completely spelled out.");
+}
+
+function invalidPass(event){
+	event.currentTarget.setCustomValidity("Please enter a correct password! The password length must be greater than or equal to 8. The password must contain one or more uppercase characters. The password must contain one or more lowercase characters. The password must contain one or more numeric values. The password must contain one or more special characters.");
+}
+function validateEmail(el){
+	var dom = el;
+	var input = el.value;
 	
+	//TODO: false needs to be changed with function call to PHP
+	//to actually search in database and see if email already exists.
+	var exists = false; 
 	
-}
-function validateConfirmPassword(event){
-	var dom = event.currentTarget;
-	var input = event.currentTarget.value;
-	var pos = input.search(/(?=^.{8,}$)(?=.*\d)(?=.*[!@#$%^&*]+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/);
-	if(pos != 0){
-		alert("Please enter a correct password!\nThe password length must be greater than or equal to 8.\nThe password must contain one or more uppercase characters.\nThe password must contain one or more lowercase characters.\nThe password must contain one or more numeric values.\nThe password must contain one or more special characters.");
-		document.getElementById("confirmpasswordField").focus();
-		return false;
-	}
-	pos = document.getElementById("passwordField").search(input);
-	if(pos != 0){
-		alert("The passwords do not match");
-		document.getElementById("confirmpasswordField").focus();
+	if(exists === true){
+		alert("This email already has an account!");
+		dom.focus();
 		return false;
 	}
 	else{
-		alert("You entered a correct password!");
 		return true;
 	}
 }
-function validateCreateAccount(event){
-	//process the information entered
-	//maybe go through another set of checks
-	//send user to search.html
-	window.location.href="search.html";
-	return true;
+function validateConfirmPassword(entryTwo, original){
+	if(entryTwo.value !== original.value){
+		alert("The passwords do not match. Please reenter your password.");
+		entryTwo.focus();
+		return false;
+	}
+	else{
+		return true;
+	}
+}
+function validateCreateAccount(){
+	//get all form elements
+	var domNameField = document.getElementById("nameField");
+	var domEmailField = document.getElementById("emailField");
+	var domSchoolField = document.getElementById("schoolField");
+	var domPasswordField = document.getElementById("passwordField");
+	var domConfirmPasswordField = document.getElementById("confirmpasswordField");
+
+	var emailValidated = validateEmail(domEmailField);
+	var confirmPass = validateConfirmPassword(domConfirmPasswordField,domPasswordField);
+	var addedToDatabase = false;
+	if(emailValidated === true && confirmPass === true){
+		//TODO: replace true with a PHP function
+		//send all the fields to the database by calling a PHP function and passing the fields	
+		addedToDatabase = true;
+	}
+	return addedToDatabase;
 }

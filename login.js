@@ -1,33 +1,20 @@
 //login.js
-
-function validateEmail(event){
-	var dom = event.currentTarget;
-	var input = event.currentTarget.value;
-	var pos = input.search(/^[a-z0-9]+@[a-z]+\.com$/);
-	if(pos != 0){
-		alert("Please enter a correct email");
-		document.getElementById("emailField").focus();
-		return false;
-	}
-	else{
-		alert("You entered a correct email");
-		return true;
-	}
+function validateLogin(){
 	
+	//getting the values of the email and password fields
+	var email = document.getElementById("emailField").value;
+	
+	//encryption algorithm. Script is defined in html.
+	var pass = CryptoJS.SHA256(document.getElementById("passwordField").value);
+	
+	console.log(email);
+	console.log(pass.toString());
+	
+	//TODO: this true value needs to be replaced with the call to php function
+	//Send the email and encrypted pass to the php
+	//php will check email against email and encrypted pass against stored pass
+	var validated = true;
+	return validated;
+
 }
 
-function validatePassword(event){
-	var dom = event.currentTarget;
-	var input = event.currentTarget.value;
-	//TODO: check password against username when database is created.
-	//For now, we will allow user through.
-	return true;
-}
-
-function validateLogin(event){
-	//process the information entered
-	//maybe go through another set of checks
-	//send user to search.html
-	window.location.href="search.html";
-	return true;
-}
