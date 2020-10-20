@@ -26,3 +26,82 @@
 body{
 	margin: 0;
 }
+
+
+.searchBarWrapper{
+	margin: 0 auto;
+	position: relative;
+	top: 20px;
+	text-align: center;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	background-color: #B2DFEE;
+	border-radius: 25px;
+	max-width: 900px;
+		
+}
+
+.selectWrapper{
+	display:inline;
+}
+.selectBox{
+  width: 85px;
+  height: 35px;
+  padding-left: 15px;
+  border-width: 0px;
+  background-color: #46ABCC;
+  border-radius: 25px;
+  color: #FFFFFF;
+}
+#searchBar{
+	height: 35px;
+	width: 500px;
+	border-radius: 25px;
+	border: 0px solid black;
+}
+.bar{
+	padding-left: 15px;
+	display:inline;	
+}
+#searchButton{
+	height: 35px;
+	width: 100px;
+	padding-left: 15px;
+	padding-right: 15px;
+	border-radius: 25px;
+	border: 0px solid black;
+	background-color: #46ABCC;
+	background-image: url(images/searchIcon.svg);
+    background-repeat: no-repeat;
+    background-position: 80% 50%;
+	background-size: 13px;
+	text-align:left;
+	color: #FFFFFF;
+}
+.saveSearch{
+	padding-left: 10px;
+	color: #FFFFFF;
+	border-radius: 50px;
+	display:inline;	
+}
+
+.bookPic{
+	position: relative;
+	top: 50%;
+	left: 5%;
+}
+
+.textarea{
+	background-color: #FFFFFF;
+	border-radius: 25px;
+}
+.searchResult{
+	margin: 0 auto;
+	position: relative;
+	top: 40px;
+	border: 0px;
+	border-radius: 25px;
+	background-color: #B2DFEE;
+	padding-bottom: 5px;
+	margin-top: 20px;
+}

@@ -7,9 +7,11 @@
 	<title>Search for a book</title>
 	<meta charset="utf-8"/>
 	<link rel="stylesheet" type="text/css" href="search.css"/>
+	<script type="text/javascript" src="search.js"></script>
 </head>
 
 <body>
+	<!--Start of NAV -->
 	<div class="topnav">
 		<a href="search.html">Search&nbsp;&nbsp;<img src="Images/searchIcon.svg" alt="Search Icon" width="10" height="10"/></a>
 		<a href="sell.html">Sell&nbsp;&nbsp;<img src="Images/sellIcon.svg" alt="Sell Icon" width="10" height="10"/></a>
@@ -20,5 +22,40 @@
 			<img src="Images/Logo.svg" alt="TexEx Logo" width="30" height="30"/>
 		</div>
 	</div>
+	<!-- End of NAV -->
+	
+	<!--Search bar -->
+	<form id="searchForm">
+		<div class="searchBarWrapper" id="searchWrapper">
+			<div class="selectWrapper">
+				<select name="searchType" id="searchType" class="selectBox">
+					<option value="Choose a field" disabled>Any Field</option>
+					<option value="Author">Author</option>
+					<option value="ISBN">ISBN</option>
+					<option value="Title">Title</option>
+				</select>
+			</div>
+			
+			<div class="bar">
+				<input type="text" placeholder="Book, Author, ISBN" name="searchBar" id="searchBar"/>
+			</div>
+			
+			<div class="bar">
+				<input type="button" value="Search" name="searchButton" id="searchButton"/>
+			</div>
+			
+			<div class="saveSearch">
+				<label>Save Search?
+				<input type="checkbox" name="saveSearch" id="saveSearch"/>
+				</label>
+			</div>
+		</div>
+	<form>
+	<!-- end of search bar -->
+	<script type="text/javascript" src="searchr.js"></script>
+	<noscript>Your browser does not support Javascript</noscript>
+	
+	
+	
 </body>
 </html>
