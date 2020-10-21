@@ -1,7 +1,6 @@
 //register.js
 
 function invalidName(event){
-	
 	event.currentTarget.setCustomValidity("Please enter a correct name! Your first name must start with a capital letter. If you provide your last name, or any other names, they must also begin with a capital letter."); 
 }
 function enteringName(event){
@@ -58,6 +57,8 @@ function validateCreateAccount(){
 	var emailValidated = validateEmail(domEmailField);
 	var confirmPass = validateConfirmPassword(domConfirmPasswordField,domPasswordField);
 	var addedToDatabase = false;
+	var pass = CryptoJS.SHA256(domPasswordField.value);
+	console.log(pass);
 	if(emailValidated === true && confirmPass === true){
 		//TODO: replace true with a PHP function
 		//send all the fields to the database by calling a PHP function and passing the fields	
