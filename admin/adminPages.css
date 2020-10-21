@@ -1,15 +1,16 @@
 .logoContainer {
-  text-align: center;
-  padding-top: 10px;
+	padding-top: 10px;
+	text-align: center;
+  
 }
 
-body.loginPage{
-    height: 100%;
-    margin: 0;
+.loginPage{
 	background-image: url(../Images/books4.jpg);
 	background-position: center;
 	background-repeat: repeat;
 	background-size: cover;
+    height: 100%;
+    margin: 0;
 	position: relative;  
 }
 
@@ -20,49 +21,46 @@ html {
 
 .formBackgroundLogin{
 	background-color: #B2DFEE;
+	border-radius: 25px;
+	height: 550px;
 	margin: 0 auto;
 	position: relative;
 	top: 40px;
 	width: 500px;
-	height: 550px;
-	border-radius: 25px;
 }	
 
 .fieldsContainerAdminLogin{
+	background-color: #FFFFFF;	
+	border-radius: 25px;
+	height: 175px;
 	margin: 0 auto;
 	margin-top: 10px;
-	background-color: #FFFFFF;	
-	width: 400px;
-	height: 175px;
-	padding-top: 10px;
-	border-radius: 25px;
 	text-align: center;
+	width: 400px;
 }
 
 .EmailField {
-	margin-top: 10px;
-	width: 300px;
-	height: 40px;
+	background: url(../Images/emailIcon.svg) no-repeat 7px 13px;
+	border-color: #46ABCC;
+	border-radius: 25px;
 	border-style: solid;
 	border-width: 1px;
-	border-radius: 25px;
-	border-color: #46ABCC;
 	cursor: pointer;
-	background: url(../Images/emailIcon.svg) no-repeat 7px 13px;
-	
+	height: 40px;
+	margin-top: 10px;
+	width: 300px;
 }
 
-
 .PasswordField {
-	margin-top: 10px;
-	width: 300px;
-	height: 40px;
+	background: url(../Images/passwordIcon.svg) no-repeat 7px 7px;
+	border-color: #46ABCC;
+	border-radius: 25px;
 	border-style: solid;
 	border-width: 1px;
-	border-radius: 25px;
-	border-color: #46ABCC;
 	cursor: pointer;
-	background: url(../Images/passwordIcon.svg) no-repeat 7px 7px;
+	height: 40px;
+	margin-top: 10px;
+	width: 300px;
 }
 
 input[type="password"]{
@@ -73,22 +71,22 @@ input[type="email"]{
 }
 
 .buttonFields{
-	margin-top: 10px;
-	width: 300px;
-	height: 40px;
+	background-color: #46ABCC;
+	border-color: #46ABCC;
+	border-radius: 25px;
 	border-style: solid;
 	border-width: 1px;
-	border-radius: 25px;
-	border-color: #46ABCC;
-	background-color: #46ABCC;
-	cursor: pointer;	
+	cursor: pointer;
+	height: 40px;
+	margin-top: 10px;
+	width: 300px;
 	
 }
 .text{
 	text-align: center;
 }
 	
-#Logo{
+.Logo{
 	height: 208.46;
 	width: 204.53;
 }
