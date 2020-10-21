@@ -41,10 +41,14 @@ function searchBook(event){
 function saveSearch(event){
 	//TODO: swap out true for a PHP function call to save the search
 	//the PHP function will return a boolean - true if successful; false if not.
-	var saved = true;
 	
-	if(saved === false){
-		alert("Error saving your search. Please try again);
+	if(event.currentTarget.checked){
+		console.log(event.currentTarget.checked);
+		var saved = true;
+		
+		if(saved === false){
+			alert("Error saving your search. Please try again");
+		}
 	}
 }
 
