@@ -90,3 +90,112 @@ input[type="email"]{
 	height: 208.46;
 	width: 204.53;
 }
+
+.tableContainer {
+	color: #B2DFEE;
+	height: 700px;
+	margin: 0 auto;	
+}
+
+.welcomeMssg {
+	color: #B2DFEE;
+	font-size: 20px;
+	padding-right: 50px;
+	text-align: right;	
+}
+
+caption {
+	font-size: 18px;
+	font-weight: bold;
+	padding-bottom: 10px;
+	padding-left: 15px;
+	text-align: left;
+}
+
+/* table needs to be rounded */ 
+table {
+	/*border: 2px solid #46ABCC;*/
+	border-collapse: collapse;
+	border-radius: 25px;
+	height: 500px;
+	margin: 0 auto;	
+	overflow: hidden;
+	text-align: center;
+	width: 80%;	
+}
+
+
+/*issues with top left and right for rounding table*/
+thead tr:first-child th:first-child {
+	border-top-left-radius: 25px;
+}
+
+thead tr:first-child th:last-child {
+	border-top-right-radius: 25px;
+}
+
+/* bottom-left border-radius */
+tbody tr:last-child td:first-child {
+	border-bottom-left-radius: 25px;
+}
+
+/* bottom-right border-radius */
+tbody tr:last-child td:last-child {
+	border-bottom-right-radius: 25px;
+}
+
+th {
+  background-color: white;
+  color: #B2DFEE;
+}
+
+td {
+	background-color: #B2DFEE;
+	color: white;
+	overflow: hidden;
+}
+
+tr {
+ border: 1px solid #46ABCC;
+}
+
+.topNav {
+	background-color: #B2DFEE;
+	height: 50px;
+	overflow: hidden;
+}
+
+.topNav a {
+	color: #FFFFFF;
+	float: left;
+	font-size: 17px;
+	padding: 14px 16px;
+	text-align: center;
+	text-decoration: none;
+}
+
+.topNav div {
+	color: #000000;
+	float: right;
+	font-size: 17px;
+	padding-right: 10px;
+	padding-top: 10px;
+	text-align: center;
+	text-decoration: none;
+}
+
+.deleteButton {
+	background-color: #46ABCC;
+	border: none;
+	border-radius: 25px;
+	color: white;
+	height: 20px;
+	margin: 0 auto;
+	text-align: center;
+	width: 100px;
+}
+
+.documentBody{
+	margin: 0;
+}
+   

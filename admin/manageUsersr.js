@@ -1,3 +1,3 @@
-var domDeleteRow = document.getElementById("deleteButton");
+var domBody = document.getElementById("documentBody");
 
-domDeleteRow.addEventListener("click", deleteRow, false);
+domBody.addEventListener("load", changeHeading, false);
