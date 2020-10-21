@@ -48,6 +48,18 @@ body{
     vertical-align: top;
 }
 
+.tableBackground{
+	background-color: #B2DFEE;
+	margin: auto;
+	position: relative;
+	top: 40px;
+	width: 500px;
+	height: 600px;
+	border-radius: 25px;
+	display: inline-block;
+    vertical-align: top;
+}
+
 .fieldsContainer{
 	margin: 0 auto;
 	margin-top: 50px;
@@ -110,6 +122,7 @@ input[type="email"]{
 	border-style: solid;
 	border-width: 1px;
 	border-radius: 25px;
+	color: #FFFFFF;
 	border-color: #46ABCC;
 	background-color: #46ABCC;
 	cursor: pointer;
