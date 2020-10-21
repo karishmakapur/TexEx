@@ -1,11 +1,11 @@
 .formBackgroundRegister{
 	background-color: #B2DFEE;
+	border-radius: 25px;
+	height: 700px;
 	margin: 0 auto;
 	position: relative;
 	top: 40px;
 	width: 500px;
-	height: 700px;
-	border-radius: 25px;
 }
 
 .formBackground{
@@ -17,172 +17,168 @@
 	top: 40px;
 	width: 500px;
 }
+
 .logoContainer {
-  padding-top: 10px;
-  text-align: center;
+	padding-top: 10px;
+	text-align: center;
 }
+
 body, html {
-    height: 100%;
-    margin: 0;
 	background-image: url(Images/books4.jpg);
 	background-position: center;
 	background-repeat: repeat;
 	background-size: cover;
+    height: 100%;
+    margin: 0;
 	position: relative;  
 }
 
 .fieldsContainerNoColor{
+	border-radius: 25px;
+	height: 200px;
 	margin: 0 auto;
 	margin-top: 50px;
-	width: 400px;
-	height: 200px;
-	padding-top: 30px;
-	border-radius: 25px;
 	text-align: center;
+	width: 400px;
 }
 
 .fieldsContainerLogin{
-	margin: 0 auto;
-	margin-top: 10px;
 	background-color: #FFFFFF;	
-	width: 400px;
+	border-radius: 25px;
 	height: 175px;
-	padding-top: 10px;
-	border-radius: 25px;
-	text-align: center;
-}
-.fieldsContainerRegister{
 	margin: 0 auto;
 	margin-top: 10px;
-	background-color: #FFFFFF;	
-	width: 400px;
-	height: 350px;
-	padding-top: 10px;
-	border-radius: 25px;
 	text-align: center;
+	width: 400px;
 }
-.EmailField {
+
+.fieldsContainerRegister{
+	background-color: #FFFFFF;
+	border-radius: 25px;
+	height: 350px;
+	margin: 0 auto;
 	margin-top: 10px;
-	width: 300px;
-	height: 40px;
+	text-align: center;
+	width: 400px;	
+}
+
+.EmailField {
+	background: url(Images/emailIcon.svg) no-repeat 7px 13px;
+	border-color: #46ABCC;
+	border-radius: 25px;
 	border-style: solid;
 	border-width: 1px;
-	border-radius: 25px;
-	border-color: #46ABCC;
 	cursor: pointer;
-	background: url(Images/emailIcon.svg) no-repeat 7px 13px;
-	
+	height: 40px;
+	margin-top: 10px;
+	width: 300px;	
 }
 
 .PasswordField {
-	margin-top: 10px;
-	width: 300px;
-	height: 40px;
-	border-style: solid;
-	border-width: 1px;
-	border-radius: 25px;
-	border-color: #46ABCC;
-	cursor: pointer;
 	background: url(Images/passwordIcon.svg) no-repeat 7px 7px;
-}
-.UnlockPasswordField {
-	margin-top: 10px;
-	width: 300px;
-	height: 40px;
+	border-color: #46ABCC;
+	border-radius: 25px;
 	border-style: solid;
 	border-width: 1px;
-	border-radius: 25px;
-	border-color: #46ABCC;
 	cursor: pointer;
+	height: 40px;
+	margin-top: 10px;
+	width: 300px;	
+}
+
+.UnlockPasswordField {
 	background: url(Images/unlockPassword.svg) no-repeat -1px 5px;
 	background-size: 40px 40px;
-}
-.confirmPasswordField {
-	margin-top: 10px;
-	width: 300px;
-	height: 40px;
+	border-color: #46ABCC;
+	border-radius: 25px;
 	border-style: solid;
 	border-width: 1px;
-	border-radius: 25px;
-	border-color: #46ABCC;
 	cursor: pointer;
-	background: url(Images/passwordIcon.svg) no-repeat 7px 7px;
+	height: 40px;
+	margin-top: 10px;
+	width: 300px;
+	
 }
+
+
 .NameField {
-	margin-top: 10px;
-	width: 300px;
-	height: 40px;
-	border-style: solid;
-	border-width: 1px;
-	border-radius: 25px;
-	border-color: #46ABCC;
-	cursor: pointer;
 	background: url(Images/nameIcon.svg) no-repeat 5px 7px;
 	background-size: 30px 25px;
-}
-.SchoolField {
-	margin-top: 10px;
-	width: 300px;
-	height: 40px;
+	border-color: #46ABCC;
+	border-radius: 25px;
 	border-style: solid;
 	border-width: 1px;
-	border-radius: 25px;
-	border-color: #46ABCC;
 	cursor: pointer;
+	height: 40px;
+	margin-top: 10px;
+	width: 300px;
+}
+
+.SchoolField {
 	background: url(Images/schoolName.svg) no-repeat -1px 2px;
 	background-size: 45px 45px;
+	border-color: #46ABCC;
+	border-radius: 25px;
+	border-style: solid;
+	border-width: 1px;
+	cursor: pointer;
+	height: 40px;
+	margin-top: 10px;
+	width: 300px;
 }
+
 input[type="email"]{
 	padding-left: 40px
 }
+
 input[type="password"]{
 	padding-left: 40px
 }
+
 input[type="text"]{
 	padding-left: 40px
 }
 
-
 .buttonFields{
+	background-color: #46ABCC;
+	border-color: #46ABCC;
+	border-radius: 25px;
+	border-style: solid;
+	border-width: 1px;
+	cursor: pointer;
+	height: 40px;
 	margin-top: 10px;
 	width: 300px;
-	height: 40px;
-	border-style: solid;
-	border-width: 1px;
-	border-radius: 25px;
-	border-color: #46ABCC;
-	background-color: #46ABCC;
-	cursor: pointer;	
-	
 }
-
 
 .AdminbuttonFields{
-	margin-top: 15px;
-	width: 300px;
-	height: 40px;
+	background-color: white;
+	border-color: white;
+	border-radius: 25px;
 	border-style: solid;
 	border-width: 1px;
-	border-radius: 25px;
-	border-color: white;
-	background-color: white;
 	cursor: pointer;
+	height: 40px;
+	margin-top: 15px;
+	width: 300px;
 }
-
 
 .linkContainer{
-	padding-top: 10px;
 	margin: 0 auto;
+	padding-top: 10px;
 	text-align: center;
 }
-a.redirectLink{
+
+.redirectLink{
 	color: black;
 	text-decoration: none;
 }
+
 .text{
  text-align: center;
 }
-#Logo{
+
+.Logo{
 	height: 208.46;
 	width: 204.53;
 }

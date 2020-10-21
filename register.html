@@ -18,7 +18,7 @@ Do NOT make any more changes to this file without notifying the group.
 	<div class="formBackgroundRegister">
 		<form action="search.html" method="post" onsubmit="return validateCreateAccount();" id="loginForm">
 			<div class="logoContainer">
-				<img id="Logo" src="Images/Logo.svg" alt="TexEx Logo"/>
+				<img id="Logo" class="Logo" src="Images/Logo.svg" alt="TexEx Logo"/>
 			</div>
 			<h1 class="text">Register</h1>
 			<div class="fieldsContainerRegister">
@@ -26,7 +26,7 @@ Do NOT make any more changes to this file without notifying the group.
 				<input type="email" placeholder="Email" class="EmailField" id="emailField" aria-label="Your Email" required/>
 				<input type="text" placeholder="School" class="SchoolField" id="schoolField" aria-label="Your School" pattern="^[A-Z]{1}[a-z]+( [A-Z]{1}[a-z]+)*$" required/>
 				<input type="password" placeholder="Password" class="UnlockPasswordField" id="passwordField" aria-label="Your Password" pattern="(?=^.{8,}$)(?=.*\d)(?=.*[!@#$%^&*]+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required/>
-				<input type="password" placeholder="Confirm Password" class="confirmPasswordField" aria-label="Confirm Your Password" id="confirmpasswordField" required/>
+				<input type="password" placeholder="Confirm Password" class="PasswordField" aria-label="Confirm Your Password" id="confirmpasswordField" required/>
 
 				<input type="submit" value="Create Account" class="buttonFields" id="createAccountButton"/>
 			</div>
