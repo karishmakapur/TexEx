@@ -5,22 +5,22 @@
 }
 
 .topnav a {
-	float: left;
 	color: #FFFFFF;
-	text-align: center;
-	padding: 14px 16px;
-	text-decoration: none;
+	float: left;
 	font-size: 17px;
+	padding: 14px 16px;
+	text-align: center;
+	text-decoration: none;
 }
 
 .topnav div {
-	float: right;
 	color: #000000;
-	text-align: center;
+	float: right;
+	font-size: 17px;
 	padding-right: 10px;
 	padding-top: 10px;
+	text-align: center;
 	text-decoration: none;
-	font-size: 17px;
 }
 
 body{
@@ -29,60 +29,63 @@ body{
 
 
 .searchBarWrapper{
-	margin: 0 auto;
-	position: relative;
-	top: 20px;
-	text-align: center;
-	padding-top: 10px;
-	padding-bottom: 10px;
 	background-color: #B2DFEE;
 	border-radius: 25px;
+	margin: 0 auto;
 	max-width: 900px;
-		
+	padding-bottom: 10px;
+	padding-top: 10px;
+	position: relative;
+	text-align: center;
+	top: 20px;
 }
 
 .selectWrapper{
 	display:inline;
 }
+
 .selectBox{
-  width: 85px;
-  height: 35px;
-  padding-left: 15px;
-  border-width: 0px;
-  background-color: #46ABCC;
-  border-radius: 25px;
-  color: #FFFFFF;
+	background-color: #46ABCC;
+	border: none;
+	border-radius: 25px;
+	color: #FFFFFF;
+	/*height: 35px;*/
+	padding: 10px;
+	/*width: 85px;*/
 }
-#searchBar{
+
+.searchBar{
+	border: none;
+	border-radius: 25px;
 	height: 35px;
 	width: 500px;
-	border-radius: 25px;
-	border: 0px solid black;
 }
+
 .bar{
-	padding-left: 15px;
 	display:inline;	
-}
-#searchButton{
-	height: 35px;
-	width: 100px;
 	padding-left: 15px;
-	padding-right: 15px;
-	border-radius: 25px;
-	border: 0px solid black;
+}
+
+.searchButton{
 	background-color: #46ABCC;
 	background-image: url(images/searchIcon.svg);
+	background-position: 80% 50%;
     background-repeat: no-repeat;
-    background-position: 80% 50%;
 	background-size: 13px;
-	text-align:left;
+	border: none;
+	border-radius: 25px;
 	color: #FFFFFF;
+	height: 35px;
+	text-align: left;
+	text-indent: 10px;
+	width: 100px;
 }
+
 .saveSearch{
-	padding-left: 10px;
-	color: #FFFFFF;
 	border-radius: 50px;
+	color: #FFFFFF;
 	display:inline;	
+	padding-left: 10px;
 }
 
 
@@ -93,66 +96,68 @@ body{
 
 .text{
 	text-align:center;
-	margin-bottom: 0px;
 }
 
 
 /*javascript css for creating the search results*/
 .row1{
-	border: 0px solid black;
-	width: 175px;
-	height: 30px;
 	background-color: #FFFFFF;
+	border: none;
 	border-radius: 25px;
+	height: 30px;	
 	text-align:center;
-	
+	width: 175px;
 }
-label.line{
+
+.line{
 	display: inline-block;
-	width: 12em;
 	text-align: center;	
+	width: 12em;
+	
 }
 .row2{
-	border: 0px solid black;
-	max-width: 600px;
-	height: 100px;
 	background-color: #FFFFFF;
+	border: none;
 	border-radius: 25px;
+	height: 100px;
+	max-width: 600px;
 	text-align:center;
-	
 }
+
 .innerDiv{
 	display: inline-block;
 	vertical-align: middle;
 }
+
 .line2{
-	margin: 0px;
+	margin: 1px;
 	text-align: center;
 }
 
 .bookPic{
-	position: relative; 
+	height: 200px;
 	left: 2%; 
+	position: relative; 
 	top: 50%; 
 	vertical-align:middle;
 	width: 200px;
-	height: 200px;
+	
 }
 .searchResult{
-	margin: 10px auto;
-	position: relative;
-	top: 20px;
-	padding-top: 10px;
-	padding-bottom: 10px;
 	background-color: #B2DFEE;
 	border-radius: 25px;
+	margin: 10px auto;
 	max-width: 900px;
+	padding-bottom: 10px;
+	padding-top: 10px;
+	position: relative;
+	top: 20px;
 }
 
 .noresults{
-	text-align:center;
 	color: #FFFFFF;
-	font-weight: bold;
 	font-size: 20pt;
+	font-weight: bold;
+	text-align:center;
 }
 /*end of javascript css for creating search results */
