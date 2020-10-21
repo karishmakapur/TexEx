@@ -1,44 +1,36 @@
 <!-- TextEx Manage Posts Page -->
 <!-- managePosts.html -->
+<!--
+This has been validated.
+Do NOT make any more changes to this file without notifying the group.
+-->
+
 <!DOCTYPE html>
 <html lang = "en">
   <head>
     <meta charset = "utf-8">
-    <title> Manage Posts </title>
-    <link href = "managePosts.css" rel = "stylesheet" type = "text/css" />
-    <script src = "managePosts.js"> </script>
+    <title>Admin Manage Posts</title>
+    <link rel = "stylesheet" type = "text/css" href = "adminPages.css"/>
+    <script type="text/javascript" src = "managePosts.js"> </script>
   </head>
  
-  <body>
+  <body  class="documentBody" id="documentBody" onload="changeHeading();">
     <!-- Start of NAV --> 
     <div class="topNav">
-      <a href="manageUsers.html">Manage Users&nbsp;&nbsp;<img src="Images/NameIcon.svg" alt="Account Icon" width="10" height="10"/></a>
-      <a href="managePosts.html">Manage Posts&nbsp;&nbsp;<img src="Images/postsIcon.svg" alt="Posts Icon" width="10" height="10"/></a>
-      <a class = "log" href="login.html"> Logout&nbsp;&nbsp;<img src="Images/logoutIcon.svg" alt="Logout Icon" width="10" height="10"/></a>
+      <a href="manageUsers.html">Manage Users&nbsp;&nbsp;<img src="../Images/NameIcon.svg" alt="Manage Users Icon" width="10" height="10"/></a>
+      <a href="managePosts.html">Manage Posts&nbsp;&nbsp;<img src="../Images/postsIcon.svg" alt="Manage Posts Icon" width="10" height="10"/></a>
+      <a href="adminLogin.html"> Logout&nbsp;&nbsp;<img src="../Images/logoutIcon.svg" alt="Logout Icon" width="10" height="10"/></a>
       <div class="logoContainer">
-        <img src="Images/Logo.svg" alt="TexEx Logo" height="30" width="30">
+        <img src="../Images/Logo.svg" alt="TexEx Logo" height="30" width="30">
       </div>
     </div>
     <!-- End of NAV -->
- 
-    <div class="tableContainer">
-      <!-- h1's adminUser be dynamic -->
-      <h1> Welcome back adminUser </h1>
-
-      <table id ="pTable">
-        <caption> Manage Posts </caption>
-        <thead>
-          <tr>
-            <th scope = "col"> </th>
-            <th scope = "col"> Title </th>
-            <th scope = "col"> Author </th>
-            <th scope = "col"> ISBN </th>
-            <th scope = "col"> Action </th>
-          </tr>
-        </thead>
-        <script> createTable(); </script>
-      </table>
+	<h1 class="welcomeMssg" id="welcomeMessage"> Welcome back adminUser!</h1>
+    <div class="tableContainer" id="tableCon">
+        <script type="text/javascript"> 
+		createTable(); 
+		</script>
+		<noscript>Your browser does not support JavaScript</noscript>
     </div>
-    <script type="text/javascript" src="managePostsr.js"></script> <noscript>Your browser does not support Javascript</noscript>
   </body>
 </html>
