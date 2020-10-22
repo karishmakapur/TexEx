@@ -86,8 +86,9 @@ function displayResults(results){
 		
 		var searchResultContainer = document.createElement("div");
 		var bookImage = document.createElement("img");
-		var subDiv = document.createElement("div");
 		var titleLabel = document.createElement("label");
+		var row1Div = document.createElement("div");
+		var innerDiv = document.createElement("div");
 		var titleInput = document.createElement("input");
 		var authorLabel = document.createElement("label");
 		var authorInput = document.createElement("input");
@@ -127,6 +128,12 @@ function displayResults(results){
 		authorLabel.appendChild(authorInput);
 		authorLabel.appendChild(document.createTextNode("Author"));
 		
+		//place labels inside div
+		row1Div.setAttribute("class", "rowOneDiv");
+		row1Div.appendChild(titleLabel);
+		row1Div.appendChild(authorLabel);
+		row1Div.appendChild(isbnLabel);
+		
 		
 		//other input field
 		descInput.setAttribute("disabled", "true");
@@ -138,14 +145,11 @@ function displayResults(results){
 		descLabel.setAttribute("class", "line2");
 		descLabel.textContent = "Description/Contact Information";
 		
-		//place labels and input field inside subDiv
-		subDiv.setAttribute("class", "innerDiv");
-		subDiv.appendChild(titleLabel);
-		subDiv.appendChild(authorLabel);
-		subDiv.appendChild(isbnLabel);
-		subDiv.appendChild(breakLine);
-		subDiv.appendChild(descInput);
-		subDiv.appendChild(descLabel);
+		innerDiv.setAttribute("class", "innerDiv");
+		innerDiv.appendChild(row1Div);
+		innerDiv.appendChild(breakLine);
+		innerDiv.appendChild(descInput);
+		innerDiv.appendChild(descLabel);
 		
 		//image
 		bookImage.setAttribute("class", "bookPic");
@@ -155,8 +159,11 @@ function displayResults(results){
 		//place subDiv and image inside searchResultContainer
 		searchResultContainer.setAttribute("id", "resultsOfSearch");
 		searchResultContainer.setAttribute("class", "searchResult");
+		
 		searchResultContainer.appendChild(bookImage);
-		searchResultContainer.appendChild(subDiv);
+		searchResultContainer.appendChild(innerDiv);
+		
+		
 		
 		//append searchResultContainer to end of document.
 		document.getElementById("searchWrapper").insertAdjacentElement('afterend', searchResultContainer);
