@@ -20,7 +20,7 @@ Do NOT make any more changes to this file without notifying the group.
 <head>
 	<title>Sell your book.</title>
 	<meta charset="utf-8"/>
-	<link rel="stylesheet" type="text/css" href="search.css"/>
+	<link rel="stylesheet" type="text/css" href="userPages.css"/>
 	<script type="text/javascript" src="sell.js"></script>
 </head>
 
@@ -38,31 +38,30 @@ Do NOT make any more changes to this file without notifying the group.
 	</div>
 	<!-- End of NAV -->
 	
-	<!--Search bar -->
+	<!--Post bar -->
 		<h1 class="text">Sell your books and earn some cash!</h1>
-		<div class="searchBarWrapper2" id="searchWrapper2">
-            <div class="bookTitle">
-				<input type="text" placeholder="Book Title" name="bookTitle" aria-label="User input of book title" id="bookTitle"/>
-            </div>
-            <div class="bookAuthor">
-				<input type="text" placeholder="Book Author" name="bookTitle" aria-label="User input of book author" id="bookAuthor"/>
-            </div>
-            <div class="bookISBN">
-				<input type="text" placeholder="Book ISBN" name="bookISBN" aria-label="User input of book's ISBN" id="bookISBN"/>
+		<div class="sellBarWrapper" id="sellBarWrapper">
+            <div class="bookBarRow1">
+				<input class="bookBar" type="text" placeholder="Book Title" name="bookTitle" aria-label="User input of book title" id="bookTitle"/>
+				<input class="bookBar" type="text" placeholder="Book Author" name="bookTitle" aria-label="User input of book author" id="bookAuthor"/>
+				<input class="bookBar" type="text" placeholder="Book ISBN" name="bookISBN" aria-label="User input of book's ISBN" id="bookISBN"/>
 			</div>
-            <div class="postBar">
-				<input type="text" placeholder="Description of TextBook and Contact Information" name="postArea" aria-label="User input of book description and contact information" id="postArea"/>
+			<div>
+				<textarea class="postBar" placeholder="Description of TextBook and Contact Information" name="postArea" aria-label="User input of book description and contact information" id="postArea"></textarea>
 			</div>
-            <div class="uploadImage">
-				<input type="file" accept="image/*" value="Upload Image" aria-label="Upload Image" name="uploadImageButton" id="uploadImageButton" onchange="loadFile(event)"/>
-            </div>
-			<div class="post">
-				<input type="button" value="Post" aria-label="Post Button" name="postButton" id="postButton"/>
+			<div class="postButtons">
+				<input class="uploadImage" input type="file" accept="image/*" value="Upload Image" aria-label="Upload Image" name="uploadImageButton" id="uploadImageButton" onchange="loadFile(event)"/>
+				<input class="post" type="button" value="Post" aria-label="Post Button" name="postButton" id="postButton"/>
 			</div>
 
 		</div>
-	<!-- end of search bar -->
-	<script type="text/javascript" src="searchr.js"></script>
+	<!-- end of Post bar -->
+	<script type="text/javascript" src="sell.js">
+	showPosts();
+	</script>
+    <noscript>Your browser does not support Javascript</noscript>
+	
+	<script type="text/javascript" src="sellr.js"></script>
     <noscript>Your browser does not support Javascript</noscript>
     
 </body>

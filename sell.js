@@ -1,5 +1,5 @@
 function sellBook(event){
-
+	console.log("here");
 }
 
 function loadFile(event){
@@ -7,8 +7,7 @@ function loadFile(event){
 	image.src = URL.createObjectURL(event.target.files[0]);
 }
 
-<<<<<<< Updated upstream
-function showPosts(event){
+function showPosts(){
   //var searchInfo = document.getElementById("searchBar").value;
 	//console.log(searchInfo);
 
@@ -106,16 +105,17 @@ function displayResults(results){
 		bookImage.setAttribute("alt", "Book Picture");
 
 		//place subDiv and image inside searchResultContainer
-		//searchResultContainer.setAttribute("id", "resultsOfSearch");
-		//searchResultContainer.setAttribute("class", "searchResult");
-		//searchResultContainer.appendChild(bookImage);
-		//searchResultContainer.appendChild(subDiv);
+		searchResultContainer.setAttribute("id", "resultsOfSearch");
+		searchResultContainer.setAttribute("class", "searchResult");
+		searchResultContainer.appendChild(bookImage);
+		searchResultContainer.appendChild(subDiv);
 
 		//append searchResultContainer to end of document.
-		//document.getElementById("searchWrapper").insertAdjacentElement('afterend', searchResultContainer);
+		document.getElementById("sellBarWrapper").insertAdjacentElement('afterend', searchResultContainer);
 
 	}
 }
-=======
-
->>>>>>> Stashed changes
+ 
+ function isEmpty(array) {
+  return Array.isArray(array) && (array.length == 0 || array.every(isEmpty));
+}
