@@ -234,3 +234,30 @@ body{
 	margin-bottom: 10px;
 }
 /*end of html css for creating sell page*/
+
+/*My Post Page Edit and Delete Button css*/
+.myPostButton{
+	text-align: center;
+	margin: 10px;
+	background-color: #46ABCC;
+	border: none;
+	border-radius: 25px;
+	color: #FFFFFF;
+	height: 35px;
+	width: 100px;
+}
+
+.divButton{
+	text-align: right;
+}
+
+.myPostBody{
+	background-image: url(Images/books4.jpg);
+	background-position: center;
+	background-repeat: repeat;
+	background-size: cover;
+	height: 100%;
+	margin: 0;
+	position: relative;
+}
+/*end of My posts page*/
