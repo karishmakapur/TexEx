@@ -7,11 +7,12 @@ function searchUser(event){
 		
 		//send the search term to the PHP function.
 		//PHP function should search regex for all posts that include letters provided.
-		var searched = [["1", "Marcos Lopez"], 
+		var searched = new Array(new Array());
+		/*searched = [["1", "Marcos Lopez"], 
 		["245", "Arianna Camino"], 
 		["2345", "Pascual Sebastian"], 
 		["5234", "Ben Gonzalez"], 
-		["9038", "Karishma Kapur"]];
+		["9038", "Karishma Kapur"]];*/
 		
 		if(!isEmpty(searched)){
 			showUsers(searched);

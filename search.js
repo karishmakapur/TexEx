@@ -1,13 +1,10 @@
-
 function searchBook(event){
 	
 	deleteResults(); //clearing search results, if there are any
 	
 	var searchOption = document.getElementById("searchType").value;
-	console.log(searchOption);
 	
 	var searchInfo = document.getElementById("searchBar").value;
-	console.log(searchInfo);
 	
 	//go to database for specified search criteria.
 	//use searchInfo against searchOption and return results.
@@ -21,12 +18,11 @@ function searchBook(event){
 	
 	//testing array for search with actual results. This will be changes to the return 2D array of a PHP function.
 	//to test with no results, comment out the below line and run it.
-	results = [
+	/*results = [
 	["Images/samplePic.svg","Book Number 1", "1234567890", "Karishma Kapur", "This is a book by Karishma Kapur. If you would like to purchase it, please contact me at (111)111-1111. Thank you."],
 	["Images/samplePic.svg","Book Number 2", "2345678901", "Peter Sharp", "This is a book by Peter Sharp. Contact me at (222)222-2222"],
 	["Images/samplePic.svg","Book Number 3", "3456789012", "Mike Trani", "Written by Mike Trani. Contact me for purchase! (333)-333-3333"]
-	];
-	console.log(isEmpty(results));
+	];*/
 	
 	//if there are no results
 	if(isEmpty(results)){
@@ -43,7 +39,6 @@ function saveSearch(event){
 	//the PHP function will return a boolean - true if successful; false if not.
 	
 	if(event.currentTarget.checked){
-		console.log(event.currentTarget.checked);
 		var saved = true;
 		
 		if(saved === false){
@@ -88,7 +83,6 @@ function displayResults(results){
 	for(var i = results.length-1; i >= 0; i--){
 			
 		var result = results[i];
-		console.log("result is", result);
 		
 		var searchResultContainer = document.createElement("div");
 		var bookImage = document.createElement("img");

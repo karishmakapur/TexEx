@@ -8,11 +8,11 @@ function searchPost(event){
 		//send the search term to the PHP function.
 		//PHP function should search regex for all posts that include letters provided.
 		var searched = new Array(new Array());
-		 searched = [["12345", "Title 1", "Author 1", "ISBN #", "This is the post content. Contact me here."],
+		/*searched = [["12345", "Title 1", "Author 1", "ISBN #", "This is the post content. Contact me here."],
 		["35633","Title 2", "Author 2", "ISBN #", "This is the post content"],
 		["37569","Title 3", "Author 3", "ISBN #", "This is the post content"],
-		["78909","Title 4", "Author 4", "ISBN #", "This is the post content"]];
-		
+		["78909","Title 4", "Author 4", "ISBN #", "This is the post content"]];*
+		*/
 		if(!isEmpty(searched)){
 			showPosts(searched);
 		}
