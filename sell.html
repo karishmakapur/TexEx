@@ -54,11 +54,11 @@ Do NOT make any more changes to this file without notifying the group.
 				<input type="text" placeholder="Description of TextBook and Contact Information" name="postArea" aria-label="User input of book description and contact information" id="postArea"/>
 			</div>
             <div class="uploadImage">
-				<input type="button" value="Upload Image" aria-label="Upload Image" name="uploadImageButton" id="uploadImageButton"/>
-			</div>
+				<input type="file" accept="image/*" value="Upload Image" aria-label="Upload Image" name="uploadImageButton" id="uploadImageButton" onchange="loadFile(event)"/>
+            </div>
 			<div class="post">
 				<input type="button" value="Post" aria-label="Post Button" name="postButton" id="postButton"/>
-            </div>
+			</div>
 
 		</div>
 	<!-- end of search bar -->

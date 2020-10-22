@@ -2,10 +2,12 @@ function sellBook(event){
 
 }
 
-function uploadImage(event){
-
+function loadFile(event){
+    var image = document.getElementById('output');
+	image.src = URL.createObjectURL(event.target.files[0]);
 }
 
+<<<<<<< Updated upstream
 function showPosts(event){
   //var searchInfo = document.getElementById("searchBar").value;
 	//console.log(searchInfo);
@@ -114,3 +116,6 @@ function displayResults(results){
 
 	}
 }
+=======
+
+>>>>>>> Stashed changes
