@@ -100,8 +100,10 @@ input[type="email"]{
 .welcomeMssg {
 	color: #B2DFEE;
 	font-size: 20px;
-	padding-right: 50px;
-	text-align: right;	
+	left: 75%;
+	margin-bottom: 10px;
+	position: absolute;
+	top: 60px;
 }
 
 caption {
@@ -113,7 +115,6 @@ caption {
 }
 
 table {
-	border: 2px solid #46ABCC;
 	border-collapse: collapse;
 	border-radius: 25px;
 	height: 500px;
@@ -186,4 +187,21 @@ tr {
 .documentBody{
 	margin: 0;
 }
-   
+
+.searchField{
+	left: 75%;
+	margin-bottom: 10px;
+	position: absolute;
+	top: 125px;	
+}
+
+input::placeholder{
+	color: #FFFFFF;
+}
+.adminSearchBox{
+	background-color: #46ABCC;
+	border: none;
+	border-radius: 25px;
+	color: #FFFFFF;
+	padding: 10px;
+}
