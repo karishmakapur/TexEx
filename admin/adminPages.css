@@ -112,9 +112,8 @@ caption {
 	text-align: left;
 }
 
-/* table needs to be rounded */ 
 table {
-	/*border: 2px solid #46ABCC;*/
+	border: 2px solid #46ABCC;
 	border-collapse: collapse;
 	border-radius: 25px;
 	height: 500px;
@@ -125,21 +124,10 @@ table {
 }
 
 
-/*issues with top left and right for rounding table*/
-thead tr:first-child th:first-child {
-	border-top-left-radius: 25px;
-}
-
-thead tr:first-child th:last-child {
-	border-top-right-radius: 25px;
-}
-
-/* bottom-left border-radius */
 tbody tr:last-child td:first-child {
 	border-bottom-left-radius: 25px;
 }
 
-/* bottom-right border-radius */
 tbody tr:last-child td:last-child {
 	border-bottom-right-radius: 25px;
 }
