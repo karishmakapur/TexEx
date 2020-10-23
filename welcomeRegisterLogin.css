@@ -35,11 +35,10 @@ body, html {
 
 .fieldsContainerNoColor{
 	border-radius: 25px;
-	height: 200px;
 	margin: 0 auto;
 	margin-top: 50px;
 	text-align: center;
-	width: 400px;
+	width: 100%;
 }
 
 .fieldsContainerLogin{
