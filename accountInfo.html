@@ -7,6 +7,7 @@
 	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="accountInfo.css">
 	<script type="text/javascript" src="accountInfo.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
 </head>
 
 <body>
@@ -27,19 +28,19 @@
     <div class="container">
         <h1 class="text">Account Information Page</h1>
         <!-- Start of account information form -->
-        <div class="formBackground">
+        <div class="formsContainer">
             <form id="accountForm">
                 <div class="accountHeader">
                     <h3>My Account Information</h3>
                 </div>
-                <div class="fieldsContainer">
-                    <input type="text" placeholder="Name" class="NameField" id="nameField"/>
+                <div class="fieldsContainer" id="fieldsContainer">
+                    <input type="text" placeholder="Name" class="NameField" id="nameField" pattern="^[A-Z]{1}[a-z]+( [A-Z]{1}[a-z]+)*$"/>
                     <input type="email" placeholder="Email" class="EmailField" id="emailField"/>
-                    <input type="text" placeholder="School" class="SchoolField" id="schoolField"/>
+                    <input type="text" placeholder="School" class="SchoolField" id="schoolField" pattern="^[A-Z]{1}[a-z]+( [A-Z]{1}[a-z]+)*$"/>
 
                     <input type="button" value="Update Password" class="buttonFields" id="updatePasswordButton"/>
                     <input type="button" value="Update Account" class="buttonFields" id="updateAccountButton"/>
-                    <input type="button" value="Delete Account" class="buttonFields" id="deleteAccountButton"/>
+                    <input type="button" value="Disable Account" class="buttonFields" id="disableAccountButton"/>
                 </div>
             </form>
             <script type="text/javascript" src="accountInfor.js"></script>
@@ -48,7 +49,7 @@
         <!-- End of account information form -->
 
         <!-- Start of saved search table -->
-        <div class="tableBackground">
+        <div class="formsContainer">
             <div class="savedSearchHeader">
                 <h3>My Saved Searches</h3>
              </div>
@@ -62,5 +63,7 @@
         
     </div>
     <!-- End of container -->  
+    <script type="text/javascript">displayAccount();</script>
+    <noscript>Your browser does not support JavaScript</noscript>
 </body>
 </html>

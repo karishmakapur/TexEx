@@ -32,39 +32,28 @@ body{
 
 .container{
     margin: 0 auto;
-    width: 1200px;
+    max-width: 900px;
     text-align: center;
 }
 
-.formBackground{
+.formsContainer{
 	background-color: #B2DFEE;
-	margin: auto;
+	margin: 15px;
 	position: relative;
 	top: 40px;
-	width: 500px;
+	width: 45%;
 	height: 600px;
 	border-radius: 25px;
 	display: inline-block;
     vertical-align: top;
-}
-
-.tableBackground{
-	background-color: #B2DFEE;
-	margin: auto;
-	position: relative;
-	top: 40px;
-	width: 500px;
-	height: 600px;
-	border-radius: 25px;
-	display: inline-block;
-    vertical-align: top;
+   
 }
 
 .fieldsContainer{
 	margin: 0 auto;
 	margin-top: 50px;
 	background-color: #FFFFFF;	
-	width: 400px;
+	width: 80%;
 	height: 350px;
 	padding-top: 30px;
 	border-radius: 25px;
@@ -73,7 +62,7 @@ body{
 
 .NameField {
 	margin-top: 10px;
-	width: 300px;
+	width: 75%;
 	height: 40px;
 	border-style: solid;
 	border-width: 1px;
@@ -88,7 +77,7 @@ input[type="text"]{
 
 .EmailField {
 	margin-top: 10px;
-	width: 300px;
+	width: 75%;
 	height: 40px;
 	border-style: solid;
 	border-width: 1px;
@@ -105,7 +94,7 @@ input[type="email"]{
 
 .SchoolField {
 	margin-top: 10px;
-	width: 300px;
+	width: 75%;
 	height: 40px;
 	border-style: solid;
 	border-width: 1px;
@@ -117,7 +106,7 @@ input[type="email"]{
 
 .buttonFields{
 	margin-top: 10px;
-	width: 340px;
+	width: 88%;
 	height: 40px;
 	border-style: solid;
 	border-width: 1px;
@@ -126,4 +115,66 @@ input[type="email"]{
 	border-color: #46ABCC;
 	background-color: #46ABCC;
 	cursor: pointer;
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  text-align: center;
+  border-radius: 25px;
+}
+
+.modalInput{
+	border-radius: 25px;
+    text-align: center;
+    margin: 5px 0px;
+    background: url(Images/passwordIcon.svg) no-repeat 4px 4px;
+    width: 50%;
+    height: 40px;
+}
+
+.closeButton {
+	color: #aaaaaa;
+/*  	text-align: left;*/
+	float: left;
+  	font-size: 23px;
+  	font-weight: bold;
+
+}
+
+.okButton {
+	border-radius: 25px;
+	text-align: center;
+	background-color: #46ABCC;
+	color: #ffffff;
+	margin-top: 10px;
+	width: 56%;
+    height: 40px;
+    border: none;
+
+}
+
+.closeButton:hover,
+.closeButton:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modalStyle{
+	display: none; /* Hidden by default */
+  	position: fixed; /* Stay in place */
+  	z-index: 1; /* Sit on top */
+  	padding-top: 100px; /* Location of the box */
+  	left: 0px;
+  	top: 0px;
+  	width: 100%; /* Full width */
+  	height: 100%; /* Full height */
+  	overflow: auto; /* Enable scroll if needed */
+  	background-color: rgb(0,0,0); /* Fallback color */
+  	background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
 }
