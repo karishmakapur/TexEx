@@ -1,10 +1,63 @@
 function makePost(event){
-	console.log("here");
+	var title = document.getElementById("bookTitle").value;
+	var author = document.getElementById("bookAuthor").value;
+	var isbn = document.getElementById("bookISBN").value;
+	var desc = document.getElementById("postArea").value;
+	var file;
+	var imageUploaded;
+	if(document.getElementById("uploadImageButton").files.length == 0){
+		file = "";
+	}
+	else{
+		file = document.getElementById("uploadImageButton").files[0]; // FileList object
+		imageUploaded = uploadImage(file);
+	}
+	
+	//send these fields to a php function which will add the post 
+	//to the database
+	var saved = true;
+	
+	if(!saved){
+		alert("Failed to upload post. Please try again.");
+		return false;
+	}
+	else{
+		//clear the fields
+		document.getElementById("bookTitle").value = "";
+		document.getElementById("bookAuthor").value = "";
+		document.getElementById("bookISBN").value = "";
+		document.getElementById("postArea").value = "";
+		document.getElementById("uploadImageButton").value = "";
+	}
+	return true;
+	
 }
 
-function uploadImage(event){
-    var image = document.getElementById('output');
-	image.src = URL.createObjectURL(event.target.files[0]);
+function uploadImage(file){
+
+	//send this path to the users database and save it.
+	var path = "userUploadedImages/" + file.name;
+	
+	var response = "200";
+	//use the fetch method to upload an image on the server.
+	/*var url = '/userUploadedImages/';
+	fetch(url, {
+		method: 'POST',
+		body: file,
+	  }).then((response) => {
+		console.log(response)
+	  });*/
+	  
+	//call to php function to save image path on server
+	var imageUploaded = true;
+	if(response != "200" && imageUploaded == true){
+		alert("Failed to upload image. Please try again.");
+		return false;
+	}
+	return true;
+	
+	
+	
 }
 
 function showPosts(){
@@ -15,9 +68,9 @@ function showPosts(){
 	//testing array for search with actual results. This will be changes to the return 2D array of a PHP function.
 	//to test with no results, comment out the below line and run it.
 	results = [
-	["Images/samplePic.svg","Book Number 1", "1234567890", "Karishma Kapur", "This is a book by Karishma Kapur. If you would like to purchase it, please contact me at (111)111-1111. Thank you."],
+	["","Book Number 1", "1234567890", "Karishma Kapur", "This is a book by Karishma Kapur. If you would like to purchase it, please contact me at (111)111-1111. Thank you."],
 	["Images/samplePic.svg","Book Number 2", "2345678901", "Peter Sharp", "This is a book by Peter Sharp. Contact me at (222)222-2222"],
-	["Images/samplePic.svg","Book Number 3", "3456789012", "Mike Trani", "Written by Mike Trani. Contact me for purchase! (333)-333-3333"]
+	["","Book Number 3", "3456789012", "Mike Trani", "Written by Mike Trani. Contact me for purchase! (333)-333-3333"]
 	];
 
 	if(isEmpty(results)){
@@ -35,7 +88,7 @@ function displayNoResults(){
 	
 	//set paragraph
 	noResultsPara.setAttribute("class", "noresults");
-	noResultsPara.textContent = "There are no posts!";
+	noResultsPara.textContent = "No one has made a post yet. Be the first!";
 	
 	//set div container
 	searchResultContainer.setAttribute("id", "resultsOfSearch");
@@ -122,6 +175,9 @@ function displayResults(results){
 		innerDiv.appendChild(descLabel);
 		
 		//image
+		if(result[0] == ""){
+			result[0] = "Images/no-image-icon.png";
+		}
 		bookImage.setAttribute("class", "bookPic");
 		bookImage.setAttribute("src", result[0]);
 		bookImage.setAttribute("alt", "Book Picture");

@@ -195,13 +195,16 @@ tr {
 	top: 125px;	
 }
 
-input::placeholder{
-	color: #FFFFFF;
-}
 .adminSearchBox{
 	background-color: #46ABCC;
 	border: none;
 	border-radius: 25px;
 	color: #FFFFFF;
 	padding: 10px;
+}
+.lockCheck{
+	border-radius: 25px;
+	box-shadow: 1px 4px 6px rgba(0, 0, 0, 0.15);
+	height: 20px;
+	width: 20px;
 }

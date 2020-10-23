@@ -32,24 +32,19 @@ function changeHeading(event){
 	var heading = document.getElementById("welcomeMessage");
 	heading.innerHTML="Welcome back " + username + "!";
 }
-function deleteRow (){
+function lockUser (){
 	var id = this.id;
 	var pos = id.search(/\d+/);
 	var primaryKey = id.substring(pos,);
 	
-	//TODO: send variables to database from PHP function and delete user from database
+	//TODO: send variables to database from PHP function and lock user from database
 	//PHP function will return true or false
-    var successfulDelete = true;
+    var successfulLock = true;
 	
-	if(successfulDelete){
-		//deleting the row from view
-		var row = this.parentNode.parentNode;
-		row.parentNode.removeChild(row);
-	}
-	else{
+	if(!successfulLock){
 		alert("Could not delete row. Please try again");
 	}
-  }
+}
 
 
 function createTable(){
@@ -57,11 +52,11 @@ function createTable(){
 	//key and their name. PHP will also be responsible for sorting the array on the primary key value
 	
 	var users = new Array(new Array());
-	/*users = [["1", "Marcos Lopez"], 
-	["245", "Arianna Camino"], 
-	["2345", "Pascual Sebastian"], 
-	["5234", "Ben Gonzalez"], 
-	["9038", "Karishma Kapur"]];*/
+	users = [["1", "Marcos Lopez", "unlocked"], 
+	["245", "Arianna Camino", "locked"], 
+	["2345", "Pascual Sebastian", "unlocked"], 
+	["5234", "Ben Gonzalez", "locked"], 
+	["9038", "Karishma Kapur", "unlocked"]];
 
 	if (!isEmpty(users)) {
 		showUsers(users);
@@ -90,7 +85,7 @@ function showUsers(users){
 
 	var heading3 = document.createElement("th");
 	heading3.setAttribute("scope", "col");
-	heading3.textContent = "Action";
+	heading3.textContent = "Locked?";
 
 	row1.appendChild(heading1);
 	row1.appendChild(heading2);
@@ -115,14 +110,19 @@ function showUsers(users){
 	var cell = document.createElement('td');
 	cell.textContent = user[1];
 	row.appendChild(cell);
-
-	var del = document.createElement("button");
-	del.setAttribute("class", "deleteButton");
+	
+	
+	var del = document.createElement("input");
+	del.setAttribute("type", "checkbox");
+	if(user[2] == "locked"){
+		del.setAttribute("checked", "true");
+	}
+	
+	del.setAttribute("class", "lockCheck");
 	del.setAttribute("id", "row"+user[0]);
-	del.textContent = "Delete";
 
 
-	del.addEventListener("click", deleteRow, false);
+	del.addEventListener("change", lockUser, false);
 
 
 	var buttonCell = document.createElement('td');

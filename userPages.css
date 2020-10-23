@@ -1,4 +1,13 @@
 /*start of nav*/
+body, html{
+	background-image: url(Images/books4.jpg);
+	background-position: center;
+	background-repeat: repeat;
+	background-size: cover;
+	height: 100%;
+	margin: 0;
+	position: relative;
+}
 .topnav {
 	background-color: #B2DFEE;
 	height: 50px;
@@ -24,9 +33,6 @@
 	text-decoration: none;
 }
 
-body{
-	margin: 0;
-}
 
 /*end of nav*/
 .searchBarWrapper{
@@ -49,8 +55,10 @@ body{
 	background-color: #46ABCC;
 	border: none;
 	border-radius: 25px;
+	box-shadow: 1px 4px 6px rgba(0, 0, 0, 0.15);
 	color: #FFFFFF;
 	padding: 10px;
+	
 }
 
 .searchBar{
@@ -73,11 +81,13 @@ body{
 	background-size: 13px;
 	border: none;
 	border-radius: 25px;
+	box-shadow: 1px 4px 6px rgba(0, 0, 0, 0.15);
 	color: #FFFFFF;
 	height: 35px;
 	text-align: left;
 	text-indent: 10px;
 	width: 100px;
+	
 }
 
 .saveSearch{
@@ -93,8 +103,17 @@ body{
 	border-radius: 25px;
 }
 
+h1{
+	text-align: center;
+	
+}
 .text{
-	text-align:center;
+	background-color: #46ABCC;
+	border-radius: 25px;
+	color: #FFFFFF;
+	margin: 0 auto;
+	padding: 15px 10px;
+	text-align: center;
 }
 
 
@@ -102,10 +121,7 @@ body{
 .searchResult{
 	background-color: #B2DFEE;
 	border-radius: 25px;
-	margin-bottom: 10px;
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: 10px;
+	margin: 10px auto;
 	max-width: 900px;
 	padding-bottom: 10px;
 	padding-top: 10px;
@@ -117,11 +133,9 @@ body{
 	background-color: #FFFFFF;
 	border: none;
 	border-radius: 25px;
-	display: inline;
 	height: 30px;	
 	text-align:center;
 	width: 90%;
-	
 }
 
 .rowOneDiv{
@@ -141,11 +155,14 @@ body{
 	height: 100px;
 	max-width: 600px;
 	text-align:center;
-	width: 100%;
+	text-indent: 8px;
+	width: 98%;
 }
 
 .innerDiv{
 	display: inline-block;
+	padding-left: 30px;
+	padding-top: 10px;
 	vertical-align: middle;
 }
 
@@ -154,12 +171,12 @@ body{
 }
 
 .bookPic{
-	height: 200px;
+	height: 50%;
 	left: 2%; 
 	position: relative; 
 	top: 50%; 
 	vertical-align:middle;
-	width: 200px;
+	width: 20%;
 	
 }
 
@@ -189,7 +206,6 @@ body{
 	border: none;
 	border-radius: 25px;
 	color: #D6D6D6;
-	display: inline;
 	height: 33px;
 	text-align: center;
 	top: 20px;
@@ -213,37 +229,40 @@ body{
 	background: #46ABCC;
 	border:none;
 	border-radius: 100px;
-	height: 20px;
-	box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.15);
-	
+	box-shadow: 1px 4px 6px rgba(0, 0, 0, 0.15);
+	color: white;
+	height: 20px;	
 }
 
 .post{
 	background: #46ABCC;
 	border:none;
 	border-radius: 100px;
+	box-shadow: 1px 4px 6px rgba(0, 0, 0, 0.15);
+	color: white;
 	height: 20px;
-	box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.15);
 	padding-left: 10px;
 	padding-right: 10px;
+	
 }
 .postButtons{
-	text-align: right;
+	margin-bottom: 10px;
 	margin-right: 50px;
 	margin-top: 10px;
-	margin-bottom: 10px;
+	text-align: right;
 }
 /*end of html css for creating sell page*/
 
 /*My Post Page Edit and Delete Button css*/
 .myPostButton{
-	text-align: center;
-	margin: 10px;
 	background-color: #46ABCC;
 	border: none;
 	border-radius: 25px;
+	box-shadow: 1px 4px 6px rgba(0, 0, 0, 0.15);
 	color: #FFFFFF;
-	height: 35px;
+	height: 25px;
+	margin-left: 10px;
+	text-align: center;
 	width: 100px;
 }
 
@@ -251,13 +270,4 @@ body{
 	text-align: right;
 }
 
-.myPostBody{
-	background-image: url(Images/books4.jpg);
-	background-position: center;
-	background-repeat: repeat;
-	background-size: cover;
-	height: 100%;
-	margin: 0;
-	position: relative;
-}
 /*end of My posts page*/
