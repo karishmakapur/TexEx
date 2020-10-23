@@ -11,8 +11,8 @@ function searchPost(event){
 		/*searched = [["12345", "Title 1", "Author 1", "ISBN #", "This is the post content. Contact me here."],
 		["35633","Title 2", "Author 2", "ISBN #", "This is the post content"],
 		["37569","Title 3", "Author 3", "ISBN #", "This is the post content"],
-		["78909","Title 4", "Author 4", "ISBN #", "This is the post content"]];*
-		*/
+		["78909","Title 4", "Author 4", "ISBN #", "This is the post content"]];*/
+		
 		if(!isEmpty(searched)){
 			showPosts(searched);
 		}
@@ -111,7 +111,7 @@ function editRow(){
 	saveButton.style.visibility = "visible";
 	
 	var row = this.parentNode.parentNode;
-	for(var i = 1; i < row.childNodes.length-1;i++){
+	for(var i = 2; i < row.childNodes.length-1;i++){
 		row.childNodes[i].childNodes[0].removeAttribute("disabled");
 	}
 }
@@ -120,10 +120,10 @@ function editRow(){
 function createTable(){
 	// the array is hardcoded for now. The PHP function will return a 2D array of all posts in the database.
 	var posts = new Array(new Array());
-	/*posts =[["12345", "Title 1", "Author 1", "ISBN #", "This is the post content. Contact me here."],
-	["35633","Title 2", "Author 2", "ISBN #", "This is the post content"],
-	["37569","Title 3", "Author 3", "ISBN #", "This is the post content"],
-	["78909","Title 4", "Author 4", "ISBN #", "This is the post content"]];*/
+	/*posts =[["12345", "", "Title 1", "Author 1", "ISBN #", "This is the post content. Contact me here."],
+	["35633", "../Images/samplePic.svg", "Title 2", "Author 2", "ISBN #", "This is the post content"],
+	["37569", "../Images/samplePic.svg","Title 3", "Author 3", "ISBN #", "This is the post content"],
+	["78909", "","Title 4", "Author 4", "ISBN #", "This is the post content"]];*/
 	
  
 	if (!isEmpty(posts)) {
@@ -153,27 +153,32 @@ function showPosts(posts){
 	var heading2 = document.createElement("th");
 	heading2.setAttribute("id", "titleHeading");
 	heading2.setAttribute("scope", "col");
-	heading2.textContent = "Title";
+	heading2.textContent = "Image";
 	
 	var heading3 = document.createElement("th");
-	heading3.setAttribute("id", "authorHeading");
+	heading3.setAttribute("id", "titleHeading");
 	heading3.setAttribute("scope", "col");
-	heading3.textContent = "Author";
+	heading3.textContent = "Title";
 	
 	var heading4 = document.createElement("th");
-	heading4.setAttribute("id", "isbnHeading");
+	heading4.setAttribute("id", "authorHeading");
 	heading4.setAttribute("scope", "col");
-	heading4.textContent = "ISBN";
+	heading4.textContent = "Author";
 	
 	var heading5 = document.createElement("th");
-	heading5.setAttribute("id", "descriptionHeading");
+	heading5.setAttribute("id", "isbnHeading");
 	heading5.setAttribute("scope", "col");
-	heading5.textContent = "Description";
+	heading5.textContent = "ISBN";
 	
 	var heading6 = document.createElement("th");
-	heading6.setAttribute("id", "actionHeading");
+	heading6.setAttribute("id", "descriptionHeading");
 	heading6.setAttribute("scope", "col");
-	heading6.textContent = "Action";
+	heading6.textContent = "Description";
+	
+	var heading7 = document.createElement("th");
+	heading7.setAttribute("id", "actionHeading");
+	heading7.setAttribute("scope", "col");
+	heading7.textContent = "Action";
 	
 	row1.appendChild(heading1);
 	row1.appendChild(heading2);
@@ -181,6 +186,7 @@ function showPosts(posts){
 	row1.appendChild(heading4);
 	row1.appendChild(heading5);
 	row1.appendChild(heading6);
+	row1.appendChild(heading7);
 	
 	head.appendChild(row1);
 	
@@ -194,11 +200,29 @@ function showPosts(posts){
 		row.setAttribute("id", "row"+post[0]);
 		var countCell = document.createElement('td');
 		countCell.textContent = j+1;
+		countCell.style.paddingLeft = "20px";
+		countCell.style.paddingRight = "20px";
 		row.appendChild(countCell); // append the counter to the start of the row
 
-		for (var k = 1; k < post.length-1; k++) {
-			var cell = document.createElement('td');
-			var inputField = document.createElement('input');
+		var cell = document.createElement('td');
+		var inputField = document.createElement('img');
+		if(post[1] == ""){
+			inputField.setAttribute("src", "../Images/no-image-icon.png");
+		}
+		else{
+			inputField.setAttribute("src", post[1]);
+		}
+		inputField.style.borderRadius = "10px";
+		inputField.style.border = "none";
+		inputField.style.height = "50%";
+		inputField.style.width="50%";
+		inputField.value = post[k];
+		cell.appendChild(inputField);
+		row.appendChild(cell);
+		
+		for (var k = 2; k < post.length-1; k++) {
+			cell = document.createElement('td');
+			inputField = document.createElement('input');
 			inputField.setAttribute("input", "text");
 			inputField.setAttribute("disabled", "true");
 			inputField.style.overflow = "auto";
@@ -211,8 +235,8 @@ function showPosts(posts){
 			row.appendChild(cell);
 		}
 		
-		var cell = document.createElement('td');
-		var inputField = document.createElement('textarea');
+		cell = document.createElement('td');
+		inputField = document.createElement('textarea');
 		inputField.setAttribute("disabled", "true");
 		inputField.style.overflow = "auto";
 		inputField.style.borderRadius = "10px";
