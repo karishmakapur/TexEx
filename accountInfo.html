@@ -1,18 +1,18 @@
 <!-- accountInfo.html -->
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 	<title>Account Information</title>
 	<meta charset="utf-8">
-	<link rel="stylesheet" type="text/css" href="accountInfo.css">
+	<link rel="stylesheet" type="text/css" href="userPages.css">
 	<script type="text/javascript" src="accountInfo.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
 </head>
 
 <body>
 	<!--Start of NAV -->
-	<div class="topnav">
+	<div id="nav" class="topnav">
 		<a href="search.html">Search&nbsp;&nbsp;<img src="Images/searchIcon.svg" alt="Search Icon" width="10" height="10"/></a>
 		<a href="sell.html">Sell&nbsp;&nbsp;<img src="Images/sellIcon.svg" alt="Sell Icon" width="10" height="10"/></a>
 		<a href="myPosts.html">My Posts&nbsp;&nbsp;<img src="Images/postsIcon.svg" alt="Post Icon" width="10" height="10"/></a>
@@ -29,20 +29,18 @@
         <h1 class="text">Account Information Page</h1>
         <!-- Start of account information form -->
         <div class="formsContainer">
-            <form id="accountForm">
-                <div class="accountHeader">
-                    <h3>My Account Information</h3>
-                </div>
-                <div class="fieldsContainer" id="fieldsContainer">
-                    <input type="text" placeholder="Name" class="NameField" id="nameField" pattern="^[A-Z]{1}[a-z]+( [A-Z]{1}[a-z]+)*$"/>
-                    <input type="email" placeholder="Email" class="EmailField" id="emailField"/>
-                    <input type="text" placeholder="School" class="SchoolField" id="schoolField" pattern="^[A-Z]{1}[a-z]+( [A-Z]{1}[a-z]+)*$"/>
+			<div class="accountHeader">
+				<h2 id="AccountInfo">My Account Information</h2>
+			</div>
+			<div class="fieldsContainer" id="fieldsContainer">
+				<input type="text" placeholder="Enter Your Name" class="NameField" id="nameField" aria-label="Your Name" pattern="^[A-Z]{1}[a-z]+( [A-Z]{1}[a-z]+)*$"/>
+				<input type="email" placeholder="Enter Your Email" class="EmailField" id="emailField" aria-label="Your Email"/>
+				<input type="text" placeholder="Enter Your School" class="SchoolField" id="schoolField" aria-label="Your School" pattern="^[A-Z]{1}[a-z]+( [A-Z]{1}[a-z]+)*$"/>
 
-                    <input type="button" value="Update Password" class="buttonFields" id="updatePasswordButton"/>
-                    <input type="button" value="Update Account" class="buttonFields" id="updateAccountButton"/>
-                    <input type="button" value="Disable Account" class="buttonFields" id="disableAccountButton"/>
-                </div>
-            </form>
+				<input type="button" value="Update Password" class="buttonFields" id="updatePasswordButton"/>
+				<input type="button" value="Update Account" class="buttonFields" id="updateAccountButton"/>
+				<input type="button" value="Disable Account" class="buttonFields" id="disableAccountButton"/>
+			</div>
             <script type="text/javascript" src="accountInfor.js"></script>
             <noscript>Your browser does not support JavaScript</noscript>
         </div>
@@ -51,7 +49,7 @@
         <!-- Start of saved search table -->
         <div class="formsContainer" id="searches">
             <div class="savedSearchHeader">
-                <h3>My Saved Searches</h3>
+                <h2>My Saved Searches</h2>
              </div>
             <script type="text/javascript">displaySavedSearch();</script>
             <noscript>Your browser does not support JavaScript</noscript>

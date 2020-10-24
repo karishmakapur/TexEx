@@ -271,3 +271,182 @@ h1{
 }
 
 /*end of My posts page*/
+
+/*my account page*/
+.AccountInfo{
+	text-align: center;
+}
+.container{
+    margin: 0 auto;
+    max-width: 900px;
+    text-align: center;
+}
+.formsContainer{
+	background-color: #B2DFEE;
+	border-radius: 25px;
+	display: inline-block;
+	height: 600px;
+	margin: 15px;
+	position: relative;
+	top: 40px;
+	vertical-align: top;
+	width: 45%;
+}
+
+.fieldsContainer{
+	background-color: #FFFFFF;	
+	border-radius: 25px;
+	height: 350px;
+	margin: 0 auto;
+	margin-top: 50px;
+	overflow: auto;
+	text-align: center;
+	width: 80%;
+}
+
+.NameField {
+	background: url(Images/nameIcon.svg) no-repeat 7px 7px;
+	border-color: #46ABCC;
+	border-radius: 25px;
+	border-style: solid;
+	border-width: 1px;
+	cursor: pointer;
+	margin-top: 10px;
+	padding: 15px 40px;
+}
+
+.EmailField {
+	background: url(Images/emailIcon.svg) no-repeat 7px 13px;
+	border-color: #46ABCC;
+	border-radius: 25px;
+	border-style: solid;
+	border-width: 1px;
+	cursor: pointer;
+	margin-top: 10px;
+	padding: 15px 40px;
+}
+
+.SchoolField {
+	background: url(Images/schoolName.svg) no-repeat 7px 1px;
+	border-color: #46ABCC;
+	border-radius: 25px;
+	border-style: solid;
+	border-width: 1px;
+	cursor: pointer;
+	margin-top: 10px;
+	padding: 15px 40px;
+}
+
+.buttonFields{
+	background-color: #46ABCC;
+	border-color: #46ABCC;
+	border-radius: 25px;
+	border-style: solid;
+	border-width: 1px;
+	color: #FFFFFF;
+	cursor: pointer;
+	height: 40px;
+	margin-top: 10px;
+	width: 88%;
+}
+
+.modal-content {
+	background-color: #fefefe;
+	border: 1px solid #888;
+	border-radius: 25px;
+	margin: 10% 20% 10% 20%;
+	padding: 20px;
+	text-align: center;
+}
+
+.modalInput{
+	background: url(Images/passwordIcon.svg) no-repeat 4px 4px;
+	border-radius: 25px;
+	border-style: solid;
+	border-width: 2px;
+	height: 40px;
+    margin: 5px 1px;
+	position: relative;
+	text-align: center;
+    top: 15px;
+	width: 80%;
+}
+
+.closeButton {
+	color: #aaaaaa;
+	float: left;
+  	font-size: 23px;
+  	font-weight: bold;
+
+}
+
+.okButton {
+	background-color: #46ABCC;
+	border: none;
+	border-radius: 25px;
+	color: #ffffff;
+	height: 40px;
+	text-align: center;
+	width: 80%;
+}
+
+.closeButton:hover,
+.closeButton:focus {
+  color: #000;
+  cursor: pointer;
+  text-decoration: none;
+ 
+}
+
+.searchContainer {
+	border-color: #46ABCC;
+	border-radius: 25px;
+    border-style: solid;
+    border-width: 1px;
+	height: 40px;
+	margin: 5px 1px;
+    text-align: center;
+    width: 75%;
+}
+
+.searchContainer:focus{
+	cursor: auto;
+	outline: none;
+}
+.modalStyle{
+	background-color: rgb(0,0,0);
+  	background-color: rgba(0,0,0,0.4);
+	display: none;	
+	height: 100%;
+  	left: -1px;
+  	position: fixed;
+  	top: -1px;
+	width: 100%;
+  	z-index: 1;  
+	
+}
+
+.errorArea{
+	background-color: red;
+	text-align: center;
+}
+
+.errorMsg{
+	color: white;
+}
+.Successmessage{
+	background-color: #4CAF50;
+	width: 100%;
+	height: 30px;
+	color: white;
+	text-indent: 10px;
+}
+
+.Errormessage{
+	background-color: #f44336;
+	width: 100%;
+	height: 30px;
+	color: white;
+	text-indent: 10px;
+}
+/*end of my posts page*/
