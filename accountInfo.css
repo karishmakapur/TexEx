@@ -46,7 +46,6 @@ body{
 	border-radius: 25px;
 	display: inline-block;
     vertical-align: top;
-   
 }
 
 .fieldsContainer{
@@ -58,6 +57,7 @@ body{
 	padding-top: 30px;
 	border-radius: 25px;
 	text-align: center;
+	overflow: auto;
 }
 
 .NameField {
@@ -70,10 +70,11 @@ body{
 	border-color: #46ABCC;
 	cursor: pointer;
 	background: url(Images/nameIcon.svg) no-repeat 7px 7px;
+	padding-left: 40px;
 }
-input[type="text"]{
+/*input[type="text"]{
 	padding-left: 40px
-}
+}*/
 
 .EmailField {
 	margin-top: 10px;
@@ -85,12 +86,15 @@ input[type="text"]{
 	border-color: #46ABCC;
 	cursor: pointer;
 	background: url(Images/emailIcon.svg) no-repeat 7px 13px;
+	padding-left: 40px;
 	
 }
 
-input[type="email"]{
+/*input[type="email"]{
 	padding-left: 40px
-}
+}*/
+
+
 
 .SchoolField {
 	margin-top: 10px;
@@ -102,6 +106,7 @@ input[type="email"]{
 	border-color: #46ABCC;
 	cursor: pointer;
 	background: url(Images/schoolName.svg) no-repeat 7px 0px;
+	padding-left: 40px;
 }
 
 .buttonFields{
@@ -151,7 +156,7 @@ input[type="email"]{
 	background-color: #46ABCC;
 	color: #ffffff;
 	margin-top: 10px;
-	width: 56%;
+	width: 50%;
     height: 40px;
     border: none;
 
@@ -162,6 +167,18 @@ input[type="email"]{
   color: #000;
   text-decoration: none;
   cursor: pointer;
+}
+
+.searchContainer {
+	border-radius: 25px;
+    text-align: center;
+    margin: 5px 0px;
+    width: 75%;
+    height: 40px;
+    border-color: #46ABCC;
+    border-style: solid;
+    border-width: 1px;
+
 }
 
 .modalStyle{

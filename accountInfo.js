@@ -170,4 +170,26 @@ function disableAccount (event) {
 
 }
 
+function displaySavedSearch () {
+
+	var searchContainer = document.createElement("div");
+	searchContainer.setAttribute("class", "fieldsContainer");
+	var savedSearches = new Array(new Array());
+	
+	savedSearches = [["123", "Author", "Peter"], ["234", "ISBN", "345678"], ["345", "Title", "Book1"], ["123", "Author", "Peter"], ["234", "ISBN", "345678"], ["345", "Title", "Book1"], ["123", "Author", "Peter"], ["234", "ISBN", "345678"], ["345", "Title", "Book1"], ["123", "Author", "Peter"], ["234", "ISBN", "345678"], ["345", "Title", "Book1"]];
+
+	for (var i = 0; i < savedSearches.length; i++) {
+		var search = savedSearches[i];
+		var list = document.createElement("input");
+		list.setAttribute("type", "text");
+		list.setAttribute("disabled", "disabled");
+		list.setAttribute("value", search[1] + ": " + search[2]);
+		list.setAttribute("class", "searchContainer");
+		searchContainer.appendChild(list);
+	}
+	document.getElementById("searches").appendChild(searchContainer);
+}
+
+
+
 
