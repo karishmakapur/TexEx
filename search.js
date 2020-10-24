@@ -1,11 +1,11 @@
 function searchBook(event){
 	
 	deleteResults(); //clearing search results, if there are any
+
 	
 	var searchOption = document.getElementById("searchType").value;
 	
 	var searchInfo = document.getElementById("searchBar").value;
-	
 	//go to database for specified search criteria.
 	//use searchInfo against searchOption and return results.
 	//results will be a 2d array upon return.
@@ -29,6 +29,7 @@ function searchBook(event){
 		displayNoResults();
 	}
 	else{
+		
 		displayResults(results);
 		
 	}
@@ -171,6 +172,23 @@ function displayResults(results){
 		//append searchResultContainer to end of document.
 		document.getElementById("searchWrapper").insertAdjacentElement('afterend', searchResultContainer);
 			
+	}
+}
+
+function displaySearch(){
+	var url = window.location.href;
+	queryString = url.match(/(?<=\?).+/);
+	if(queryString != null){
+		var searchType = url.match(/(?<=searchType=)[A-Za-z]+/);
+		console.log(searchType[0]);
+		var searchTerm = url.match(/(?<=searchTerm=)\w+/);
+		console.log(searchTerm[0]);
+		
+		document.getElementById("searchType").value = searchType;
+		document.getElementById("searchBar").value = searchTerm;
+		document.getElementById("saveSearch").checked = "true";
+		var ev = new Event('click');
+		document.getElementById("searchButton").click();
 	}
 }
 	

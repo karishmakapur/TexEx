@@ -178,9 +178,13 @@ body{
     border-color: #46ABCC;
     border-style: solid;
     border-width: 1px;
-
+	
 }
 
+.searchContainer:focus{
+	cursor: auto;
+	outline: none;
+}
 .modalStyle{
 	display: none; /* Hidden by default */
   	position: fixed; /* Stay in place */

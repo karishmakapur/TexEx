@@ -46,10 +46,6 @@ function openModal (event) {
 	newPassword.setAttribute("id", "newPassword");
 	newPassword.setAttribute("class", "modalInput");
 	newPassword.setAttribute("required", "true");
-	// newPassword.setAttribute("pattern", "(?=^.{8,}$)(?=.*\d)(?=.*[!@#$%^&*]+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$");
-
-	// newPassword.addEventListener("invalid", invalidPass, false);
-	// newPassword.addEventListener("input", enteringPass, false);
 
 	confirmPassword.setAttribute("type", "text");
 	confirmPassword.setAttribute("placeholder", "Confirm new password");
@@ -99,14 +95,14 @@ function changePassword (event) {
 	var confirmPassword = document.getElementById("confirmPassword").value;
 	var passwordChange = false;
 
-	var correctPassword = checkPassword(CryptoJS.SHA256(oldPassword.value)); 
+	var correctPassword = checkPassword(CryptoJS.SHA256(oldPassword.value));
 	if(correctPassword) {
 		var pos = newPassword.search(/(?=^.{8,}$)(?=.*\d)(?=.*[!@#$%^&*]+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/);
 		if (pos != 0) {
 			passwordChange = false;
 			return false;
 		}
-		var passwordConfirm = validateConfirmPassword(confirmPassword, newPassword); 
+		var passwordConfirm = validateConfirmPassword(confirmPassword, newPassword);
 		if (passwordConfirm == false) {
 			passwordChange = false;
 			return false;
@@ -148,8 +144,8 @@ function updateAccount (event) {
 	// TO DO swap these values with a PHP function to update account
 	var updatedAccount = true;
 
-	if(updatedAccount == false) { 
-		alert("Couldn't update account. Try again later"); 
+	if(updatedAccount == false) {
+		alert("Couldn't update account. Try again later");
 	} else {
 		alert("Your account has been successfully updated!");
 		window.location.href="accountInfo.html";
@@ -176,20 +172,34 @@ function displaySavedSearch () {
 	searchContainer.setAttribute("class", "fieldsContainer");
 	var savedSearches = new Array(new Array());
 	
-	savedSearches = [["123", "Author", "Peter"], ["234", "ISBN", "345678"], ["345", "Title", "Book1"], ["123", "Author", "Peter"], ["234", "ISBN", "345678"], ["345", "Title", "Book1"], ["123", "Author", "Peter"], ["234", "ISBN", "345678"], ["345", "Title", "Book1"], ["123", "Author", "Peter"], ["234", "ISBN", "345678"], ["345", "Title", "Book1"]];
+	savedSearches = [["123", "Author", "Peter"], ["234", "ISBN", "345678"], ["345", "Title", "Book1"], 
+	["456", "Author", "Peter"], ["567", "ISBN", "345678"], ["789", "Title", "Book1"], 
+	["891", "Author", "Peter"], ["897", "ISBN", "345678"], ["945", "Title", "Book1"], 
+	["923", "Author", "Peter"], ["934", "ISBN", "345678"], ["945", "Title", "Book1"]];
 
 	for (var i = 0; i < savedSearches.length; i++) {
 		var search = savedSearches[i];
 		var list = document.createElement("input");
 		list.setAttribute("type", "text");
-		list.setAttribute("disabled", "disabled");
+		list.setAttribute("id", "search"+search[0]);
+		list.setAttribute("readonly", "readonly");
 		list.setAttribute("value", search[1] + ": " + search[2]);
 		list.setAttribute("class", "searchContainer");
+		list.addEventListener("click", redirectSearch, false);
 		searchContainer.appendChild(list);
 	}
 	document.getElementById("searches").appendChild(searchContainer);
 }
 
-
+function redirectSearch(event){
+	var dom = event.currentTarget;
+	var values = dom.value;
+	var type = values.match(/[A-Za-z]+/);
+	var term = values.match(/(?<=: )\w+/);
+	var queryString = "searchType=" + type + "&searchTerm=" + term;
+	console.log(queryString);
+	window.location.href="search.html"+ "?" + queryString;
+	
+}
 
 
