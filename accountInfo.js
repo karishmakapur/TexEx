@@ -94,24 +94,27 @@ function closeMsg (event) {
 }
 
 function changePassword (event) {
+	if(document.contains(document.getElementById("errorDiv"))){
+		document.getElementById("errorDiv").remove();
+	}
 	var oldPassword = document.getElementById("oldPassword").value;
 	var newPassword = document.getElementById("newPassword").value;
 	var confirmPassword = document.getElementById("confirmPassword").value;
 	var passwordChange = false;
 	if(oldPassword == "" || newPassword == "" || confirmPassword == ""){
-		passwordErrorMessage();
+		passwordErrorMessage("All fields are required!");
 		return false;
 	}
 	var correctPassword = checkPassword(CryptoJS.SHA256(oldPassword.value));
 	if(correctPassword) {
 		var pos = newPassword.search(/(?=^.{8,}$)(?=.*\d)(?=.*[!@#$%^&*]+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/);
 		if (pos != 0) {
-			passwordErrorMessage();
+			passwordErrorMessage("Your new password length must be greater than or equal to 8. It must contain one or more uppercase characters. It must contain one or more lowercase characters. It must contain one or more numeric values. It must contain one or more special characters.");
 			return false;
 		}
 		var passwordConfirm = validateConfirmPassword(confirmPassword, newPassword);
 		if (!passwordConfirm) {
-			passwordErrorMessage();
+			passwordErrorMessage("Your new password and your confirm password do not match. Try again.");
 			return false;
 		}
 		// TO DO swap value with passwordchange function
@@ -119,6 +122,7 @@ function changePassword (event) {
 	} 
 	else 
 	{
+		passwordErrorMessage("Please make sure your old password is entered correctly.");
 		return false;
 	}
 	if (passwordChange) {
@@ -158,18 +162,27 @@ function updateAccount (event) {
 		return false;
 	}
 
+	var emailForm = validEmailForm(document.getElementById("emailField"));
+	if(!emailForm){
+		notificationMessage("Errormessage", "Error! Please enter a valid email address.");
+		return false;
+	}
+	
 	var emailExists = validateEmail(document.getElementById("emailField"));
 	if(emailExists){
 		notificationMessage("Errormessage", "Error! The email you are trying to use already has an account.");
 		return false;
 	}
 	
+	
 	var nameValidate = validateName(name);
-	var schoolValidate = validateSchool(school);
 	if(!nameValidate){
 		notificationMessage("Errormessage", "Error! Please enter a correct name!");
 		return false;
 	}
+	
+	
+	var schoolValidate = validateSchool(school);
 	if(!schoolValidate){
 		notificationMessage("Errormessage", "Error! Please enter a valid school! It must be completely spelled out with either University or College attached to the name.");
 		return false;
@@ -212,8 +225,8 @@ function displaySavedSearch () {
 	/*savedSearches = [["123", "Author", "Peter"], ["234", "ISBN", "345678"], ["345", "Title", "Book1"], 
 	["456", "Author", "Peter"], ["567", "ISBN", "345678"], ["789", "Title", "Book1"], 
 	["891", "Author", "Peter"], ["897", "ISBN", "345678"], ["945", "Title", "Book1"], 
-	["923", "Author", "Peter"], ["934", "ISBN", "345678"], ["945", "Title", "Book1"]];
-	*/
+	["923", "Author", "Peter"], ["934", "ISBN", "345678"], ["945", "Title", "Book1"]];*/
+	
 	
 	if(isEmpty(savedSearches)){
 		var list = document.createElement("input");
@@ -246,7 +259,6 @@ function redirectSearch(event){
 	var type = values.match(/[A-Za-z]+/);
 	var term = values.match(/(?<=: )\w+/);
 	var queryString = "searchType=" + type + "&searchTerm=" + term;
-	console.log(queryString);
 	window.location.href="search.html"+ "?" + queryString;
 	
 }
@@ -270,7 +282,7 @@ function notificationMessage(cssClass, message){
 		document.getElementById("nav").insertAdjacentElement('afterend',alertDiv);
 }
 
-function passwordErrorMessage(){
+function passwordErrorMessage(message){
 	
 	var errorDiv = document.createElement("div");
 	var errorMsg = document.createElement("p");
@@ -279,7 +291,7 @@ function passwordErrorMessage(){
 	errorDiv.setAttribute("class", "errorArea");
 	errorMsg.setAttribute("id", "errorMessage");
 	errorMsg.setAttribute("class", "errorMsg");
-	errorMsg.textContent = "Error changing password! Please make sure your old password is entered correctly. Your new password length must be greater than or equal to 8. It must contain one or more uppercase characters. It must contain one or more lowercase characters. It must contain one or more numeric values. It must contain one or more special characters.";
+	errorMsg.textContent = "Error changing password! " + message;
 
 	errorDiv.appendChild(errorMsg);
 	
@@ -287,8 +299,18 @@ function passwordErrorMessage(){
 	document.getElementById("confirmPassword").insertAdjacentElement("afterend", errorDiv);
 }
 
+function validEmailForm(el){
+	var email = el.value;
+	//first check if email is a valid email pattern
+	var pos = email.search(/^[A-Za-z0-9]+@[A-Za-z]+.[a-z]+$/);
+	if(pos != 0){
+		return false;
+	}
+	return true;
+}
 function validateEmail(el){
 	var email = el.value;
+	
 	
 	//TODO: false needs to be changed with function call to PHP
 	//to actually search in database and see if email already exists.

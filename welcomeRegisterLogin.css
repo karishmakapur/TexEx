@@ -144,10 +144,12 @@ input[type="text"]{
 	border-radius: 25px;
 	border-style: solid;
 	border-width: 1px;
+	color: #FFFFFF;
 	cursor: pointer;
 	height: 40px;
 	margin-top: 10px;
 	width: 300px;
+	
 }
 
 .AdminbuttonFields{
@@ -156,10 +158,12 @@ input[type="text"]{
 	border-radius: 25px;
 	border-style: solid;
 	border-width: 1px;
+	color: #46ABCC;
 	cursor: pointer;
 	height: 40px;
 	margin-top: 15px;
 	width: 300px;
+	
 }
 
 .linkContainer{

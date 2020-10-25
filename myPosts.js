@@ -31,8 +31,6 @@ function displayPosts(){
 }
 
 function editPost(event){
-	//TODO: swap out true for a PHP function call to edit post
-
 	var id = this.id;
 	var pos = id.search(/\d+/);
 	var primaryKey = id.substring(pos,);
@@ -106,7 +104,7 @@ function deletePost(event){
 	var pos = id.search(/\d+/);
 	var primaryKey = id.substring(pos,);
 
-	//TODO: send variables to database from PHP function and delete user from database
+	//TODO: send primary key to database from PHP function and delete user from database
 	//PHP function will return true or false
 	var successfulDelete = true;
 
@@ -119,7 +117,7 @@ function deletePost(event){
 	}
 }
  
- function isEmpty(array) {
+function isEmpty(array) {
   return Array.isArray(array) && (array.length == 0 || array.every(isEmpty));
 }
 

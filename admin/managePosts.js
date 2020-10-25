@@ -8,10 +8,10 @@ function searchPost(event){
 		//send the search terms (searchTerm and searchType) to the PHP function
 		//returned array will be stored in searched
 		var searched = new Array(new Array());
-		searched = [["12345", "", "Title 1", "Author 1", "ISBN #", "This is the post content. Contact me here."],
+		/*searched = [["12345", "", "Title 1", "Author 1", "ISBN #", "This is the post content. Contact me here."],
 		["35633", "../Images/samplePic.svg", "Title 2", "Author 2", "ISBN #", "This is the post content"],
 		["37569", "../Images/samplePic.svg","Title 3", "Author 3", "ISBN #", "This is the post content"],
-		["78909", "","Title 4", "Author 4", "ISBN #", "This is the post content"]];
+		["78909", "","Title 4", "Author 4", "ISBN #", "This is the post content"]];*/
 		
 		//if there are results
 		if(!isEmpty(searched)){
@@ -31,10 +31,10 @@ function searchPost(event){
 function displayResults(){
 	// the array is hardcoded for now. The PHP function will return a 2D array of all posts in the database.
 	var posts = new Array(new Array());
-	posts =[["12345", "", "Title 1", "Author 1", "ISBN #", "This is the post content. Contact me here."],
+	/*posts =[["12345", "", "Title 1", "Author 1", "ISBN #", "This is the post content. Contact me here."],
 	["35633", "../Images/samplePic.svg", "Title 2", "Author 2", "ISBN #", "This is the post content"],
 	["37569", "../Images/samplePic.svg","Title 3", "Author 3", "ISBN #", "This is the post content"],
-	["78909", "","Title 4", "Author 4", "ISBN #", "This is the post content"]];
+	["78909", "","Title 4", "Author 4", "ISBN #", "This is the post content"]];*/
 	
 	if (!isEmpty(posts)) {
 		showPosts(posts);
@@ -187,8 +187,6 @@ function showNoPosts(){
 
 
 function editPost(event){
-	//TODO: swap out true for a PHP function call to edit post
-
 	var id = this.id;
 	var pos = id.search(/\d+/);
 	var primaryKey = id.substring(pos,);

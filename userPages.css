@@ -32,9 +32,9 @@ body, html{
 	text-align: center;
 	text-decoration: none;
 }
-
-
 /*end of nav*/
+
+/*search bar on search.html*/
 .searchBarWrapper{
 	background-color: #B2DFEE;
 	border-radius: 25px;
@@ -96,8 +96,9 @@ body, html{
 	display:inline;	
 	padding-left: 10px;
 }
+/*end of search bar on search.html*/
 
-
+/*common between sell, search, my posts, and account info*/
 .textarea{
 	background-color: #FFFFFF;
 	border-radius: 25px;
@@ -115,8 +116,6 @@ h1{
 	text-align: center;
 }
 
-
-/*javascript css for creating the search results*/
 .searchResult{
 	background-color: #B2DFEE;
 	border-radius: 25px;
@@ -186,9 +185,9 @@ h1{
 	font-weight: bold;
 	text-align:center;
 }
-/*end of javascript css for creating search results */
+/*end of common between sell, search, my posts, and account info*/
 
-/*beginning of html css for creating sell page*/
+/*beginning of book post css for creating sell page*/
 .sellBarWrapper{
 	background-color: #B2DFEE;
 	border-radius: 25px;
@@ -249,7 +248,7 @@ h1{
 	margin-top: 10px;
 	text-align: right;
 }
-/*end of html css for creating sell page*/
+/*end of book post css for creating sell page*/
 
 /*My Post Page Edit and Delete Button css*/
 .myPostButton{
@@ -271,9 +270,6 @@ h1{
 /*end of My posts page*/
 
 /*my account page*/
-.AccountInfo{
-	text-align: center;
-}
 .container{
     margin: 0 auto;
     max-width: 900px;
@@ -303,14 +299,17 @@ h1{
 }
 
 .NameField {
-	background: url(Images/nameIcon.svg) no-repeat 7px 7px;
+	background: url(Images/nameIcon.svg) no-repeat 7px 5px;
 	border-color: #46ABCC;
 	border-radius: 25px;
 	border-style: solid;
 	border-width: 1px;
 	cursor: pointer;
+	height: 10%;
 	margin-top: 10px;
-	padding: 15px 40px;
+	min-width: 73%;
+	padding-left: 40px;
+	
 }
 
 .EmailField {
@@ -320,19 +319,24 @@ h1{
 	border-style: solid;
 	border-width: 1px;
 	cursor: pointer;
+	height: 10%;
 	margin-top: 10px;
-	padding: 15px 40px;
+	min-width: 73%;
+	padding-left: 40px;
+	
 }
 
 .SchoolField {
-	background: url(Images/schoolName.svg) no-repeat 7px 1px;
+	background: url(Images/schoolName.svg) no-repeat 7px -4px;
 	border-color: #46ABCC;
 	border-radius: 25px;
 	border-style: solid;
 	border-width: 1px;
 	cursor: pointer;
+	height: 10%;
 	margin-top: 10px;
-	padding: 15px 40px;
+	min-width: 73%;
+	padding-left: 40px;
 }
 
 .buttonFields{
@@ -345,7 +349,7 @@ h1{
 	cursor: pointer;
 	height: 40px;
 	margin-top: 10px;
-	width: 88%;
+	min-width: 88%;
 }
 
 .modal-content {
@@ -404,8 +408,9 @@ h1{
     border-width: 1px;
 	height: 40px;
 	margin: 5px 1px;
+	min-width: 75%;
     text-align: center;
-    width: 75%;
+    
 }
 
 .searchContainer:focus{
@@ -426,8 +431,8 @@ h1{
 }
 
 .errorArea{
-	text-align: center;
 	margin-bottom: -10px;
+	text-align: center;
 	width: 80%;
 }
 
@@ -438,17 +443,17 @@ h1{
 }
 .Successmessage{
 	background-color: #4CAF50;
-	width: 100%;
 	color: white;
-	text-indent: 10px;
 	font-size: 20pt;
+	text-indent: 10px;
+	width: 100%;
 }
 
 .Errormessage{
 	background-color: #f44336;
-	width: 100%;
 	color: white;
-	text-indent: 10px;
 	font-size: 20pt;
+	text-indent: 10px;	
+	width: 100%;
 }
 /*end of my posts page*/

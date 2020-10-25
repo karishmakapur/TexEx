@@ -1,5 +1,4 @@
 function searchUser(event){
-	console.log("here");
 	var searchTerm = document.getElementById("searchBox").value;
 	
 	while(document.getElementById("searchField").nextSibling){
@@ -10,11 +9,11 @@ function searchUser(event){
 		//send the search term to the PHP function.
 		//PHP function should search regex for all posts that include letters provided.
 		var searched = new Array(new Array());
-		searched = [["1", "Marcos Lopez", "unlocked"], 
+		/*searched = [["1", "Marcos Lopez", "unlocked"], 
 		["245", "Arianna Camino", "locked"], 
 		["2345", "Pascual Sebastian", "unlocked"], 
 		["5234", "Ben Gonzalez", "locked"], 
-		["9038", "Karishma Kapur", "unlocked"]];
+		["9038", "Karishma Kapur", "unlocked"]];*/
 		
 		if(!isEmpty(searched)){
 			showUsers(searched);
@@ -49,11 +48,11 @@ function displayUsers(){
 	//key and their name. PHP will also be responsible for sorting the array on the primary key value
 	
 	var users = new Array(new Array());
-	users = [["1", "Marcos Lopez", "unlocked"], 
+	/*users = [["1", "Marcos Lopez", "unlocked"], 
 	["245", "Arianna Camino", "locked"], 
 	["2345", "Pascual Sebastian", "unlocked"], 
 	["5234", "Ben Gonzalez", "locked"], 
-	["9038", "Karishma Kapur", "unlocked"]];
+	["9038", "Karishma Kapur", "unlocked"]];*/
 
 	if (!isEmpty(users)) {
 		showUsers(users);

@@ -7,8 +7,6 @@ function validateLogin(){
 	//encryption algorithm. Script is defined in html.
 	var pass = CryptoJS.SHA256(document.getElementById("passwordField").value);
 	
-	console.log(email);
-	console.log(pass.toString());
 	
 	//TODO: PHP function - first check if user is disabled
 	var disabled = false;

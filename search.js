@@ -54,7 +54,7 @@ function saveSearch(event){
 		}   
  }
  
- function isEmpty(array) {
+function isEmpty(array) {
   return Array.isArray(array) && (array.length == 0 || array.every(isEmpty));
 }
 
@@ -180,9 +180,7 @@ function displaySearch(){
 	queryString = url.match(/(?<=\?).+/);
 	if(queryString != null){
 		var searchType = url.match(/(?<=searchType=)[A-Za-z]+/);
-		console.log(searchType[0]);
 		var searchTerm = url.match(/(?<=searchTerm=)\w+/);
-		console.log(searchTerm[0]);
 		
 		document.getElementById("searchType").value = searchType;
 		document.getElementById("searchBar").value = searchTerm;
