@@ -24,9 +24,9 @@ Do NOT make any more changes to this file without notifying the group.
 			</div>
 			<h1 class="text">Register</h1>
 			<div class="fieldsContainerRegister">
-				<input type="text" placeholder="Name" class="NameField" id="nameField" aria-label="Your Name" pattern="^[A-Z]{1}[a-z]+( [A-Z]{1}[a-z]+)*$" required/>
+				<input type="text" placeholder="Name" class="NameField" id="nameField" aria-label="Your Name" pattern="^[A-Za-z]+( [A-Za-z]+)*$" required/>
 				<input type="email" placeholder="Email" class="EmailField" id="emailField" aria-label="Your Email" required/>
-				<input type="text" placeholder="School" class="SchoolField" id="schoolField" aria-label="Your School" pattern="^[A-Z]{1}[a-z]+( [A-Z]{1}[a-z]+)*$" required/>
+				<input type="text" placeholder="School" class="SchoolField" id="schoolField" aria-label="Your School" pattern="[A-Za-z, ]*([Uu]niversity|[Cc]ollege)([A-Za-z]*,? ?)*" required/>
 				<input type="password" placeholder="Password" class="UnlockPasswordField" id="passwordField" aria-label="Your Password" pattern="(?=^.{8,}$)(?=.*\d)(?=.*[!@#$%^&*]+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required/>
 				<input type="password" placeholder="Confirm Password" class="PasswordField" aria-label="Confirm Your Password" id="confirmpasswordField" required/>
 

@@ -14,12 +14,11 @@ function displayPosts(){
 
 	//testing array for search with actual results. This will be changes to the return 2D array of a PHP function.
 	//to test with no results, comment out the below line and run it.
-	results = [
+	/*results = [
 		["10", "","Book Number 1", "1234567890", "Karishma Kapur", "This is a book by Karishma Kapur. If you would like to purchase it, please contact me at (111)111-1111. Thank you."],
 		["15", "Images/samplePic.svg","Book Number 2", "2345678901", "Peter Sharp", "This is a book by Peter Sharp. Contact me at (222)222-2222"],
 		["20", "Images/samplePic.svg","Book Number 3", "3456789012", "Mike Trani", "Written by Mike Trani. Contact me for purchase! (333)-333-3333"]
-	];
-	console.log(isEmpty(results));
+	];*/
 
 	//if there are no results
 	if(isEmpty(results)){
@@ -109,9 +108,8 @@ function deletePost(event){
 
 	//TODO: send variables to database from PHP function and delete user from database
 	//PHP function will return true or false
-	var successfulDelete = false;
+	var successfulDelete = true;
 
-	console.log(this.parentNode.parentNode)
 	if(successfulDelete == true) {
 		var divToRemove = this.parentNode.parentNode;
 		divToRemove.parentNode.removeChild(divToRemove);
@@ -130,7 +128,6 @@ function displayResults(results){
 	for(var i = results.length-1; i >= 0; i--){
 			
 		var result = results[i];
-		console.log("result is", result);
 		
 		var searchResultContainer = document.createElement("div");
 		var bookImage = document.createElement("img");

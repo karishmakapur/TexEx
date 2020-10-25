@@ -75,7 +75,7 @@ body, html{
 
 .searchButton{
 	background-color: #46ABCC;
-	background-image: url(images/searchIcon.svg);
+	background-image: url(Images/searchIcon.svg);
 	background-position: 80% 50%;
     background-repeat: no-repeat;
 	background-size: 13px;
@@ -111,8 +111,7 @@ h1{
 	background-color: #46ABCC;
 	border-radius: 25px;
 	color: #FFFFFF;
-	margin: 0 auto;
-	padding: 15px 10px;
+	padding: 5px 5px;
 	text-align: center;
 }
 
@@ -205,7 +204,6 @@ h1{
 	background: #FFFFFF;
 	border: none;
 	border-radius: 25px;
-	color: #D6D6D6;
 	height: 33px;
 	text-align: center;
 	top: 20px;
@@ -386,6 +384,7 @@ h1{
 	border-radius: 25px;
 	color: #ffffff;
 	height: 40px;
+	margin-top: 15px;
 	text-align: center;
 	width: 80%;
 }
@@ -427,26 +426,29 @@ h1{
 }
 
 .errorArea{
-	background-color: red;
 	text-align: center;
+	margin-bottom: -10px;
+	width: 80%;
 }
 
 .errorMsg{
-	color: white;
+	color: red;
+	margin-left: 22%;
+	text-align: center;
 }
 .Successmessage{
 	background-color: #4CAF50;
 	width: 100%;
-	height: 30px;
 	color: white;
 	text-indent: 10px;
+	font-size: 20pt;
 }
 
 .Errormessage{
 	background-color: #f44336;
 	width: 100%;
-	height: 30px;
 	color: white;
 	text-indent: 10px;
+	font-size: 20pt;
 }
 /*end of my posts page*/

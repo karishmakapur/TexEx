@@ -14,30 +14,39 @@ Do NOT make any more changes to this file without notifying the group.
     <script type="text/javascript" src = "managePosts.js"> </script>
   </head>
  
-  <body  class="documentBody" id="documentBody" onload="changeHeading();">
+  <body  class="documentBody" id="documentBody">
     <!-- Start of NAV --> 
     <div class="topNav">
-      <a href="manageUsers.html">Manage Users&nbsp;&nbsp;<img src="../Images/NameIcon.svg" alt="Manage Users Icon" width="10" height="10"/></a>
+      <a href="manageUsers.html">Manage Users&nbsp;&nbsp;<img src="../Images/user_icon.svg" alt="Manage Users Icon" width="10" height="10"/></a>
       <a href="managePosts.html">Manage Posts&nbsp;&nbsp;<img src="../Images/postsIcon.svg" alt="Manage Posts Icon" width="10" height="10"/></a>
       <a href="adminLogin.html"> Logout&nbsp;&nbsp;<img src="../Images/logoutIcon.svg" alt="Logout Icon" width="10" height="10"/></a>
       <div class="logoContainer">
         <img src="../Images/Logo.svg" alt="TexEx Logo" height="30" width="30">
       </div>
     </div>
-    <!-- End of NAV -->
-	<h1 class="welcomeMssg" id="welcomeMessage"> Welcome back adminUser!</h1>
-	<div class="searchField">
-		<input type="search" id="searchBox" placeholder="Search by post title" class="adminSearchBox" aria-label="Admin Search Box" />
+    <!-- End of NAV -->	
+	<h1 class="searchMssg" id="searchMessage"><span class="headings">Narrow your search here!</span></h1>
+	<div class="searchField"id="searchBox">
+		<select aria-label="Search By Options" name="searchType" id="searchType" class="selectBox">
+					<option value="Choose a field" disabled>Any Field</option>
+					<option value="Author">Author</option>
+					<option value="ISBN">ISBN</option>
+					<option value="Title">Title</option>
+		</select>
+		<div class="bar">
+			<input type="text" placeholder="Book, Author, ISBN" name="searchBar" aria-label="Search by Book, Author, ISBN" id="searchBar" class="searchBar"/>
+		</div>
+		<div class="bar">
+			<input type="button" value="Search" aria-label="Search Button" name="searchButton" id="searchButton" class="searchButton"/>
+		</div>
 	</div>
+	<br /><br /><br /><br /><br /><br />
+    <script type="text/javascript">displayResults();</script>
+	<noscript>Your browser does not support JavaScript</noscript>
+	
 	<script type="text/javascript" src="managePostsr.js"></script>
 	<noscript>Your browser does not support Javascript</noscript>
-	<br /><br /><br /><br /><br /><br />
-    <div class="tableContainer" id="tableCon">
-        <script type="text/javascript"> 
-		createTable(); 
-		</script>
-		<noscript>Your browser does not support JavaScript</noscript>
-    </div>
+   
 	
   </body>
 </html>

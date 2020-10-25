@@ -1,18 +1,19 @@
 function searchPost(event){
-	var searchTerm = document.getElementById("searchBox").value;
+	var searchTerm = document.getElementById("searchBar").value;
+	var searchType = document.getElementById("searchType").value;
 	
-	
-	document.getElementById("resultsTable").remove();
+	deleteResults(); //clearing search results, if there are any
 	if(searchTerm != ''){
-		
-		//send the search term to the PHP function.
-		//PHP function should search regex for all posts that include letters provided.
+				
+		//send the search terms (searchTerm and searchType) to the PHP function
+		//returned array will be stored in searched
 		var searched = new Array(new Array());
-		/*searched = [["12345", "Title 1", "Author 1", "ISBN #", "This is the post content. Contact me here."],
-		["35633","Title 2", "Author 2", "ISBN #", "This is the post content"],
-		["37569","Title 3", "Author 3", "ISBN #", "This is the post content"],
-		["78909","Title 4", "Author 4", "ISBN #", "This is the post content"]];*/
+		searched = [["12345", "", "Title 1", "Author 1", "ISBN #", "This is the post content. Contact me here."],
+		["35633", "../Images/samplePic.svg", "Title 2", "Author 2", "ISBN #", "This is the post content"],
+		["37569", "../Images/samplePic.svg","Title 3", "Author 3", "ISBN #", "This is the post content"],
+		["78909", "","Title 4", "Author 4", "ISBN #", "This is the post content"]];
 		
+		//if there are results
 		if(!isEmpty(searched)){
 			showPosts(searched);
 		}
@@ -21,111 +22,20 @@ function searchPost(event){
 		}
 	}
 	else{
-		createTable();
-	}
-}
-function changeHeading(event){
-	//TODO: replace this string with the current users name
-	//need to get logged in users name
-	var username = "billy";
-	var heading = document.getElementById("welcomeMessage");
-	heading.innerHTML="Welcome back " + username + "!";
-}
-
-function deleteRow (){
-	var id = this.id;
-	var pos = id.search(/\d+/);
-	var primaryKey = id.substring(pos,);
-	
-	//TODO: send variables to database from PHP function and delete user from database
-	//PHP function will return true or false
-    var successfulDelete = true;
-	
-	if(successfulDelete){
-		//deleting the row from view
-		var row = this.parentNode.parentNode;
-		row.parentNode.removeChild(row);
-	}
-	else{
-		alert("Could not delete row. Please try again");
-	}
-}
-    
-function saveRow(){
-	// This function should allow the edited infromation in the row to be saved
-	// there should be a save button that appears after the user clicks the edit button
-
-	var id = this.id;
-	var pos = id.search(/\d+/);
-	var primaryKey = id.substring(pos,);
-	
-	//get new content
-	var row = this.parentNode.parentNode;
-	var newPost = new Array(4);
-	
-	var j = 0;
-	for(var i = 1; i < row.childNodes.length-1;i++){
-		newPost[j] = row.childNodes[i].childNodes[0].value;
-		j++;
-	}
-	
-	//TODO: send array newPost to database from PHP function 
-	//and edit post in database
-	//PHP function will return true or false depending if it was successful
-    var successfulEdit = true;
-	
-	if(successfulEdit){
-		var deleteButton = document.getElementById("deleteButton"+primaryKey);
-		deleteButton.style.visibility= "visible";
-		
-		var editButton = document.getElementById("editButton"+primaryKey);;
-		editButton.style.visibility= "visible";
-		
-		var saveButton = document.getElementById("saveButton"+primaryKey);
-		saveButton.style.visibility = "hidden";
-		
-		for(var i = 1; i < row.childNodes.length-1;i++){
-		row.childNodes[i].childNodes[0].setAttribute("disabled", "true");
-		}
-	}
-	else{
-		alert("Could not edit row. Please try again");
+		displayResults();
 	}
 }
 
-function editRow(){
-	
-	var id = this.id;
-	var pos = id.search(/\d+/);
-	var primaryKey = id.substring(pos,);
-	
-	//Starting point for function that will allow the user to edit rows when the edit button calls this function
-	
-	var deleteButton = document.getElementById("deleteButton"+primaryKey);
-	deleteButton.style.visibility= "hidden";
-	
-	var editButton = this;
-	editButton.style.visibility= "hidden";
-	
-	var saveButton = document.getElementById("saveButton"+primaryKey);
-	saveButton.style.visibility = "visible";
-	
-	var row = this.parentNode.parentNode;
-	for(var i = 2; i < row.childNodes.length-1;i++){
-		row.childNodes[i].childNodes[0].removeAttribute("disabled");
-	}
-}
 
     
-function createTable(){
+function displayResults(){
 	// the array is hardcoded for now. The PHP function will return a 2D array of all posts in the database.
 	var posts = new Array(new Array());
-	/*posts =[["12345", "", "Title 1", "Author 1", "ISBN #", "This is the post content. Contact me here."],
+	posts =[["12345", "", "Title 1", "Author 1", "ISBN #", "This is the post content. Contact me here."],
 	["35633", "../Images/samplePic.svg", "Title 2", "Author 2", "ISBN #", "This is the post content"],
 	["37569", "../Images/samplePic.svg","Title 3", "Author 3", "ISBN #", "This is the post content"],
-	["78909", "","Title 4", "Author 4", "ISBN #", "This is the post content"]];*/
+	["78909", "","Title 4", "Author 4", "ISBN #", "This is the post content"]];
 	
- 
 	if (!isEmpty(posts)) {
 		showPosts(posts);
 	}	
@@ -135,181 +45,244 @@ function createTable(){
 } 
 
 function showPosts(posts){
-	var table = document.createElement('table');
-	table.setAttribute("aria-label", "Admin Manage Posts Table");
-	table.setAttribute("id", "resultsTable");
-	
-	var cap = document.createElement("caption");
-	cap.textContent = "Manage Posts";
-	table.appendChild(cap);
-	
-	var head = document.createElement("thead");
-	var row1 = document.createElement("tr");
-	
-	var heading1 = document.createElement("th");
-	heading1.setAttribute("id", "cornerHeading");
-	heading1.setAttribute("scope", "col");
-	
-	var heading2 = document.createElement("th");
-	heading2.setAttribute("id", "titleHeading");
-	heading2.setAttribute("scope", "col");
-	heading2.textContent = "Image";
-	
-	var heading3 = document.createElement("th");
-	heading3.setAttribute("id", "titleHeading");
-	heading3.setAttribute("scope", "col");
-	heading3.textContent = "Title";
-	
-	var heading4 = document.createElement("th");
-	heading4.setAttribute("id", "authorHeading");
-	heading4.setAttribute("scope", "col");
-	heading4.textContent = "Author";
-	
-	var heading5 = document.createElement("th");
-	heading5.setAttribute("id", "isbnHeading");
-	heading5.setAttribute("scope", "col");
-	heading5.textContent = "ISBN";
-	
-	var heading6 = document.createElement("th");
-	heading6.setAttribute("id", "descriptionHeading");
-	heading6.setAttribute("scope", "col");
-	heading6.textContent = "Description";
-	
-	var heading7 = document.createElement("th");
-	heading7.setAttribute("id", "actionHeading");
-	heading7.setAttribute("scope", "col");
-	heading7.textContent = "Action";
-	
-	row1.appendChild(heading1);
-	row1.appendChild(heading2);
-	row1.appendChild(heading3);
-	row1.appendChild(heading4);
-	row1.appendChild(heading5);
-	row1.appendChild(heading6);
-	row1.appendChild(heading7);
-	
-	head.appendChild(row1);
-	
-	table.appendChild(head);
-	var tbody = document.createElement("tbody");
-
-	// this for loop displays the contents of the array along with a counter and buttons for editing and deleting rows
-	for (var j = 0; j < posts.length ; j++) { 
-		post = posts[j];
-		var row = document.createElement('tr');
-		row.setAttribute("id", "row"+post[0]);
-		var countCell = document.createElement('td');
-		countCell.textContent = j+1;
-		countCell.style.paddingLeft = "20px";
-		countCell.style.paddingRight = "20px";
-		row.appendChild(countCell); // append the counter to the start of the row
-
-		var cell = document.createElement('td');
-		var inputField = document.createElement('img');
-		if(post[1] == ""){
-			inputField.setAttribute("src", "../Images/no-image-icon.png");
-		}
-		else{
-			inputField.setAttribute("src", post[1]);
-		}
-		inputField.style.borderRadius = "10px";
-		inputField.style.border = "none";
-		inputField.style.height = "50%";
-		inputField.style.width="50%";
-		inputField.value = post[k];
-		cell.appendChild(inputField);
-		row.appendChild(cell);
-		
-		for (var k = 2; k < post.length-1; k++) {
-			cell = document.createElement('td');
-			inputField = document.createElement('input');
-			inputField.setAttribute("input", "text");
-			inputField.setAttribute("disabled", "true");
-			inputField.style.overflow = "auto";
-			inputField.style.borderRadius = "10px";
-			inputField.style.border = "none";
-			inputField.style.height = "40%";
-			inputField.style.width="90%";
-			inputField.value = post[k];
-			cell.appendChild(inputField);
-			row.appendChild(cell);
-		}
-		
-		cell = document.createElement('td');
-		inputField = document.createElement('textarea');
-		inputField.setAttribute("disabled", "true");
-		inputField.style.overflow = "auto";
-		inputField.style.borderRadius = "10px";
-		inputField.style.height = "40%";
-		inputField.style.width="90%";
-		inputField.style.border = "none";
-		inputField.value = post[k];
-		cell.appendChild(inputField);
-		row.appendChild(cell);
-		
-		
-		var del = document.createElement("button");
-		del.setAttribute("class", "deleteButton");
-		del.setAttribute("id", "deleteButton"+post[0]);
-		del.textContent = "Delete";
-		
-		var edt = document.createElement("button");
-		edt.setAttribute("class", "deleteButton");
-		edt.setAttribute("id", "editButton"+post[0]);
-		edt.textContent = "Edit";
-		
-		var save = document.createElement("button");
-		save.setAttribute("class", "deleteButton");
-			save.setAttribute("id", "saveButton"+post[0]);
-			save.textContent = "Save";
-			save.style.visibility = "hidden";
-			save.setAttribute("contenteditable", "false");
-
-		del.addEventListener("click", deleteRow, false);
-
-		edt.addEventListener("click", editRow, false);
-		save.addEventListener("click", saveRow, false);
+	//if there are results
+	for(var i = posts.length-1; i >= 0; i--){
 			
-		var buttonCell = document.createElement('td');
-		buttonCell.appendChild(del); 
-		buttonCell.appendChild(edt);
-		buttonCell.appendChild(save);
-		row.appendChild(buttonCell); // append the buttons to the row 
+		var result = posts[i];
+		
+		var searchResultContainer = document.createElement("div");
+		var bookImage = document.createElement("img");
+		var subDiv = document.createElement("div");
+		var titleLabel = document.createElement("label");
+		var titleInput = document.createElement("input");
+		var authorLabel = document.createElement("label");
+		var authorInput = document.createElement("input");
+		var isbnLabel = document.createElement("label");
+		var isbnInput = document.createElement("input");
+		var breakLine = document.createElement("br");
+		var descInput = document.createElement("textarea");
+		var descLabel = document.createElement("p");
+		var editButton = document.createElement("button");
+		var deleteButton = document.createElement("button");
+		var saveButton = document.createElement("button");
+		var buttonDiv =  document.createElement("div");
 
-		tbody.appendChild(row); // append the row to the body of the table
+		//inner most elements: input fields
+		titleInput.setAttribute("type", "text");
+		titleInput.setAttribute("id", "titleInput" + result[0]);
+		titleInput.setAttribute("class", "row1");
+		titleInput.setAttribute("disabled", "true");
+		titleInput.setAttribute("value", result[2]);
+		
+		
+		isbnInput.setAttribute("type", "text");
+		isbnInput.setAttribute("id", "isbnInput" + result[0]);
+		isbnInput.setAttribute("class", "row1");
+		isbnInput.setAttribute("disabled", "true");
+		isbnInput.setAttribute("value", result[3]);
+		
+		authorInput.setAttribute("type", "text");
+		authorInput.setAttribute("id", "authorInput" + result[0]);
+		authorInput.setAttribute("class", "row1");
+		authorInput.setAttribute("disabled", "true");
+		authorInput.setAttribute("value", result[4]);
+		
+		//surrounding input fields: labels
+		titleLabel.setAttribute("class", "line");
+		authorLabel.setAttribute("class", "line");
+		isbnLabel.setAttribute("class", "line");
+		
+		//place input fields inside labels
+		titleLabel.appendChild(titleInput);
+		titleLabel.appendChild(document.createTextNode("Title"));
+		isbnLabel.appendChild(isbnInput);
+		isbnLabel.appendChild(document.createTextNode("ISBN"));
+		authorLabel.appendChild(authorInput);
+		authorLabel.appendChild(document.createTextNode("Author"));
+		
+		
+		//other input field
+		descInput.setAttribute("disabled", "true");
+		descInput.setAttribute("id", "descInput" + result[0]);
+		descInput.setAttribute("class", "row2");
+		descInput.setAttribute("wrap", "hard");
+		descInput.setAttribute("rows", "100");
+		descInput.setAttribute("cols", "100");
+		descInput.textContent = result[5];
+		descLabel.setAttribute("class", "line2");
+		descLabel.textContent = "Description/Contact Information";
+		
+		//place labels and input field inside subDiv
+		subDiv.setAttribute("class", "innerDiv");
+		subDiv.appendChild(titleLabel);
+		subDiv.appendChild(authorLabel);
+		subDiv.appendChild(isbnLabel);
+		subDiv.appendChild(breakLine);
+		subDiv.appendChild(descInput);
+		subDiv.appendChild(descLabel);
+		
+		//image
+		if(result[1] == ""){
+			result[1] = "../Images/no-image-icon.png";
+		}
+		bookImage.setAttribute("class", "bookPic");
+		bookImage.setAttribute("src", result[1]);
+		bookImage.setAttribute("alt", "Book Picture");
+
+		//edit and delete buttons
+		editButton.setAttribute("id", "editBtn" + result[0]);
+		editButton.setAttribute("class", "myPostButton");
+		editButton.textContent = "Edit";
+		deleteButton.setAttribute("id", "deleteBtn" + result[0]);
+		deleteButton.setAttribute("class", "myPostButton");
+		deleteButton.textContent = "Delete";
+		saveButton.setAttribute("id", "saveBtn" + result[0]);
+		saveButton.setAttribute("class", "myPostButton");
+		saveButton.style.visibility = "hidden";
+		saveButton.textContent = "Save";
+		editButton.addEventListener("click", editPost, false);
+		deleteButton.addEventListener("click", deletePost, false);
+		saveButton.addEventListener("click", savePost, false);
+		buttonDiv.setAttribute("class", "divButton");
+		buttonDiv.appendChild(editButton);
+		buttonDiv.appendChild(deleteButton);
+		buttonDiv.appendChild(saveButton);
+
+		//place subDiv and image inside searchResultContainer
+		searchResultContainer.setAttribute("id", "resultsOfSearch" + result[0]);
+		searchResultContainer.setAttribute("class", "searchResult");
+		searchResultContainer.appendChild(bookImage);
+		searchResultContainer.appendChild(subDiv);
+		searchResultContainer.appendChild(buttonDiv);
+		
+		//append searchResultContainer to end of document.
+		document.getElementById("searchBox").insertAdjacentElement('afterend', searchResultContainer);
+			
 	}
-	table.appendChild(tbody); // append the table body to the table
-	document.getElementById("tableCon").insertAdjacentElement('beforeend', table);
 }
 function showNoPosts(){
-	var table = document.createElement('table');
-	table.setAttribute("aria-label", "Admin Manage Posts Table");
-	table.setAttribute("id", "resultsTable");
-	var cap = document.createElement("caption");
-	cap.textContent = "Manage Posts";
-	table.appendChild(cap);
+	//create elements
+	var resultContainer = document.createElement("div");
+	resultContainer.setAttribute("id", "resultCon");
+	resultContainer.setAttribute("class", "resultContainer");
+	var searchResultContainer = document.createElement("div");
+	var noResultsPara = document.createElement("p");
 	
-	var head = document.createElement("thead");
-	var row1 = document.createElement("tr");
+	//set paragraph
+	noResultsPara.setAttribute("class", "noresults");
+	noResultsPara.textContent = "No posts have been made!";
 	
-	var heading1 = document.createElement("th");
-	heading1.setAttribute("scope", "col");
+	//set div container
+	searchResultContainer.setAttribute("id", "resultsOfSearch");
+	searchResultContainer.setAttribute("class", "searchResult");
 	
-	row1.appendChild(heading1);
+	//append para to div
+	searchResultContainer.appendChild(noResultsPara);
 	
-	head.appendChild(row1);
-	
-	table.appendChild(head);
-	
-	var tbody = document.createElement("tbody");
-	var messageCell = document.createElement('td');
-	messageCell.textContent = "There are no posts"; // display message to the user that there are no posts
-	messageCell.style.fontSize = "40pt";
-	tbody.appendChild(messageCell);
-	
-	table.appendChild(tbody); // append the table body to the table
-	document.getElementById("tableCon").insertAdjacentElement('beforeend', table);
+	//add div to document.
+	//append searchResultContainer to end of document.
+	resultContainer.append(searchResultContainer);
+	document.getElementById("searchBox").insertAdjacentElement("afterend", resultContainer);
 }
+
+
+function editPost(event){
+	//TODO: swap out true for a PHP function call to edit post
+
+	var id = this.id;
+	var pos = id.search(/\d+/);
+	var primaryKey = id.substring(pos,);
+
+	//Starting point for function that will allow the user to edit rows when the edit button calls this function
+
+	var deleteButton = document.getElementById("deleteBtn"+primaryKey);
+	deleteButton.style.visibility= "hidden";
+
+	var editButton = this;
+	editButton.style.visibility= "hidden";
+
+	var saveButton = document.getElementById("saveBtn"+primaryKey);
+	saveButton.style.visibility = "visible";
+
+	var title = document.getElementById("titleInput"+primaryKey);
+	var isbn = document.getElementById("isbnInput"+primaryKey);
+	var author = document.getElementById("authorInput"+primaryKey);
+	var desc = document.getElementById("descInput"+primaryKey);
+
+	title.removeAttribute("disabled");
+	isbn.removeAttribute("disabled");
+	author.removeAttribute("disabled");
+	desc.removeAttribute("disabled");
+}
+
+function savePost(event) {
+//TODO: swap out true for a PHP function call to edit post
+
+	var id = this.id;
+	var pos = id.search(/\d+/);
+	var primaryKey = id.substring(pos,);
+
+	var title = document.getElementById("titleInput" + primaryKey);
+	var isbn = document.getElementById("isbnInput" + primaryKey);
+	var author = document.getElementById("authorInput" + primaryKey);
+	var desc = document.getElementById("descInput" + primaryKey);
+
+	var newPost = new Array(4);
+	newPost[0] = title.value;
+	newPost[1] = author.value;
+	newPost[2] = isbn.value;
+	newPost[3] = desc.value;
+
+	var successfulEdit = true;
+
+	if (successfulEdit == true) {
+		//Starting point for function that will allow the user to edit rows when the edit button calls this function
+
+		var deleteButton = document.getElementById("deleteBtn" + primaryKey);
+		deleteButton.style.visibility = "visible";
+
+		var editButton = document.getElementById("editBtn" + primaryKey);
+		editButton.style.visibility = "visible";
+
+		var saveButton = document.getElementById("saveBtn" + primaryKey);
+		saveButton.style.visibility = "hidden";
+
+		title.setAttribute("disabled", "true");
+		isbn.setAttribute("disabled", "true");
+		author.setAttribute("disabled", "true");
+		desc.setAttribute("disabled", "true");
+	}
+	else {
+		alert("Could not edit post, please try again.")
+	}
+}
+
+function deletePost(event){
+	var id = this.id;
+	var pos = id.search(/\d+/);
+	var primaryKey = id.substring(pos,);
+
+	//TODO: send variables to database from PHP function and delete user from database
+	//PHP function will return true or false
+	var successfulDelete = true;
+
+	if(successfulDelete == true) {
+		var divToRemove = this.parentNode.parentNode;
+		divToRemove.parentNode.removeChild(divToRemove);
+	}
+	else{
+		alert("Error deleting the post!");
+	}
+}
+ 
+ 
 function isEmpty(array) {
 	return Array.isArray(array) && (array.length == 0 || array.every(isEmpty));
 }
+
+ function deleteResults() { 
+		while(document.contains(document.getElementById("searchBox").nextSibling)) {
+				document.getElementById("searchBox").nextSibling.remove();
+		}   
+ }
+	

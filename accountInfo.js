@@ -24,13 +24,10 @@ function openModal (event) {
 	var okButton = document.createElement("input");
 	var innerContent = document.createElement("div");
 	var modal = document.createElement("div");
-	var errorDiv = document.createElement("div");
-	var errorMsg = document.createElement("p");
 	var breakLine1 = document.createElement("br");
 	var breakLine2 = document.createElement("br");
 	var breakLine3 = document.createElement("br");
 	var breakLine4 = document.createElement("br");
-	var breakLine5 = document.createElement("br");
 	
 
 	closeButton.setAttribute("class", "closeButton");
@@ -38,40 +35,34 @@ function openModal (event) {
 	closeButton.setAttribute("id", "closeButton");
 	closeButton.addEventListener("click", closeModal, false);
 
-	oldPassword.setAttribute("type", "text");
+	oldPassword.setAttribute("type", "password");
 	oldPassword.setAttribute("placeholder", "Enter old password");
 	oldPassword.setAttribute("id", "oldPassword");
 	oldPassword.setAttribute("class", "modalInput");
 
 
-	newPassword.setAttribute("type", "text");
+	newPassword.setAttribute("type", "password");
 	newPassword.setAttribute("placeholder", "Enter new password");
 	newPassword.setAttribute("id", "newPassword");
 	newPassword.setAttribute("class", "modalInput");
 	newPassword.setAttribute("required", "true");
 
-	confirmPassword.setAttribute("type", "text");
+	confirmPassword.setAttribute("type", "password");
 	confirmPassword.setAttribute("placeholder", "Confirm new password");
 	confirmPassword.setAttribute("id", "confirmPassword");
 	confirmPassword.setAttribute("class", "modalInput");
 	confirmPassword.setAttribute("required", "true");
 
-	errorDiv.setAttribute("id", "errorDiv");
-	errorDiv.setAttribute("class", "errorArea");
-	errorDiv.style.visibility = "hidden";
-	errorMsg.setAttribute("id", "errorMessage");
-	errorMsg.setAttribute("class", "errorMsg");
-	errorMsg.style.visibility = "hidden";
-	errorMsg.textContent = "Error changing password! Please make sure your old password is entered correctly. Your new password length must be greater than or equal to 8. It must contain one or more uppercase characters. It must contain one or more lowercase characters. It must contain one or more numeric values. It must contain one or more special characters.";
-
-	errorDiv.appendChild(errorMsg);
+	
 	okButton.setAttribute("type", "button");
+	okButton.setAttribute("id", "changePass");
 	okButton.setAttribute("value", "Change Password");
 	okButton.setAttribute("class", "okButton");
 
 	okButton.addEventListener("click", changePassword, false);
 
 	innerContent.setAttribute("class", "modal-content");
+	innerContent.setAttribute("id", "modalContent");
 
 	innerContent.appendChild(closeButton);
 	innerContent.appendChild(breakLine1);
@@ -81,8 +72,6 @@ function openModal (event) {
 	innerContent.appendChild(newPassword);
 	innerContent.appendChild(breakLine4);
 	innerContent.appendChild(confirmPassword);
-	innerContent.appendChild(breakLine5);
-	innerContent.appendChild(errorDiv);
 	innerContent.appendChild(okButton);
 
 	modal.appendChild(innerContent);
@@ -103,28 +92,26 @@ function closeMsg (event) {
 	close.parentNode.style.display = "none";
 
 }
+
 function changePassword (event) {
-	document.getElementById("errorDiv").style.visibility = "hidden";
-	document.getElementById("errorMessage").style.visibility = "hidden";
 	var oldPassword = document.getElementById("oldPassword").value;
 	var newPassword = document.getElementById("newPassword").value;
 	var confirmPassword = document.getElementById("confirmPassword").value;
 	var passwordChange = false;
-
+	if(oldPassword == "" || newPassword == "" || confirmPassword == ""){
+		passwordErrorMessage();
+		return false;
+	}
 	var correctPassword = checkPassword(CryptoJS.SHA256(oldPassword.value));
 	if(correctPassword) {
 		var pos = newPassword.search(/(?=^.{8,}$)(?=.*\d)(?=.*[!@#$%^&*]+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/);
 		if (pos != 0) {
-			passwordChange = false;
-			document.getElementById("errorDiv").style.visibility = "visible";
-			document.getElementById("errorMessage").style.visibility = "visible";
+			passwordErrorMessage();
 			return false;
 		}
 		var passwordConfirm = validateConfirmPassword(confirmPassword, newPassword);
 		if (!passwordConfirm) {
-			document.getElementById("errorDiv").style.visibility = "visible";
-			document.getElementById("errorMessage").style.visibility = "visible";
-			passwordChange = false;
+			passwordErrorMessage();
 			return false;
 		}
 		// TO DO swap value with passwordchange function
@@ -139,18 +126,7 @@ function changePassword (event) {
 		close.parentNode.parentNode.style.display = "none";
 		
 		//create a success message
-		var closebtn = document.createElement("span");
-		var alertDiv = document.createElement("div");
-		
-		closebtn.setAttribute("class", "closeButton");
-		closebtn.textContent = "X";
-		closebtn.addEventListener("click", closeMsg, false);
-		alertDiv.setAttribute("class", "Successmessage");
-		alertDiv.textContent = "Success! Your password has been successfully changed!";
-		
-		alertDiv.appendChild(closebtn);
-		document.getElementById("nav").insertAdjacentElement('afterend',alertDiv);
-		
+		notificationMessage("Successmessage", "Success! Your password has been successfully changed!");		
 		
 	}
 	return true;
@@ -178,21 +154,30 @@ function updateAccount (event) {
 	
 	if(name == "" || email == "" || school == ""){
 		//create a error message
-		var closebtn = document.createElement("span");
-		var alertDiv = document.createElement("div");
-		
-		closebtn.setAttribute("class", "closeButton");
-		closebtn.textContent = "X";
-		closebtn.addEventListener("click", closeMsg, false);
-		alertDiv.setAttribute("class", "Errormessage");
-		alertDiv.textContent = "Error! You must fill in all fields before updating your account.";
-		
-		alertDiv.appendChild(closebtn);
-		document.getElementById("nav").insertAdjacentElement('afterend',alertDiv);
-		
+		notificationMessage("Errormessage", "Error! You must fill in all fields before updating your account.");
 		return false;
 	}
 
+	var emailExists = validateEmail(document.getElementById("emailField"));
+	if(emailExists){
+		notificationMessage("Errormessage", "Error! The email you are trying to use already has an account.");
+		return false;
+	}
+	
+	var nameValidate = validateName(name);
+	var schoolValidate = validateSchool(school);
+	if(!nameValidate){
+		notificationMessage("Errormessage", "Error! Please enter a correct name!");
+		return false;
+	}
+	if(!schoolValidate){
+		notificationMessage("Errormessage", "Error! Please enter a valid school! It must be completely spelled out with either University or College attached to the name.");
+		return false;
+	}
+	
+	name = titleCase(name);
+	school = titleCase(school);
+	
 	// TO DO swap these values with a PHP function to update account
 	var updatedAccount = true;
 
@@ -270,3 +255,76 @@ function isEmpty(array) {
   return Array.isArray(array) && (array.length == 0 || array.every(isEmpty));
 }
 
+function notificationMessage(cssClass, message){
+	
+	var closebtn = document.createElement("span");
+		var alertDiv = document.createElement("div");
+		
+		closebtn.setAttribute("class", "closeButton");
+		closebtn.textContent = "X";
+		closebtn.addEventListener("click", closeMsg, false);
+		alertDiv.setAttribute("class", cssClass);
+		alertDiv.textContent = message;
+		
+		alertDiv.appendChild(closebtn);
+		document.getElementById("nav").insertAdjacentElement('afterend',alertDiv);
+}
+
+function passwordErrorMessage(){
+	
+	var errorDiv = document.createElement("div");
+	var errorMsg = document.createElement("p");
+	
+	errorDiv.setAttribute("id", "errorDiv");
+	errorDiv.setAttribute("class", "errorArea");
+	errorMsg.setAttribute("id", "errorMessage");
+	errorMsg.setAttribute("class", "errorMsg");
+	errorMsg.textContent = "Error changing password! Please make sure your old password is entered correctly. Your new password length must be greater than or equal to 8. It must contain one or more uppercase characters. It must contain one or more lowercase characters. It must contain one or more numeric values. It must contain one or more special characters.";
+
+	errorDiv.appendChild(errorMsg);
+	
+	
+	document.getElementById("confirmPassword").insertAdjacentElement("afterend", errorDiv);
+}
+
+function validateEmail(el){
+	var email = el.value;
+	
+	//TODO: false needs to be changed with function call to PHP
+	//to actually search in database and see if email already exists.
+	var exists = false; 
+	
+	if(exists === true){
+		return true;
+	}
+	else{
+		return false;
+	}
+}
+
+function validateName(name){
+	var pos = name.search(/^[A-Za-z]+( [A-Za-z]+)*$/);
+	if(pos != 0){
+		return false;
+	}
+	return true;
+}
+
+function validateSchool(school){
+	var pos = school.search(/[A-Za-z, ]*([Uu]niversity|[Cc]ollege)([A-Za-z]*,? ?)*/);
+	if(pos != 0){
+		return false;
+	}
+	return true;
+}
+
+function titleCase(str) {
+   var splitStr = str.toLowerCase().split(' ');
+   for (var i = 0; i < splitStr.length; i++) {
+       // You do not need to check if i is larger than splitStr length, as your for does that for you
+       // Assign it back to the array
+       splitStr[i] = splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);     
+   }
+   // Directly return the joined string
+   return splitStr.join(' '); 
+}

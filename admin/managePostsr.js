@@ -1,2 +1,2 @@
-var domSearchField = document.getElementById("searchBox");
-domSearchField.addEventListener("search", searchPost, false);
+var domSearchField = document.getElementById("searchButton");
+domSearchField.addEventListener("click", searchPost, false);

@@ -14,28 +14,26 @@ Do NOT make any more changes to this file without notifying the group.
     <script type="text/javascript" src = "manageUsers.js"></script>
   </head>
  
-  <body class="documentBody" id="documentBody" onload="changeHeading();">
-    <!-- Start of NAV-->
+  <body class="documentBody" id="documentBody">
+    <!-- Start of NAV --> 
     <div class="topNav">
-      <a href="manageUsers.html">Manage Users&nbsp;&nbsp;<img src="../Images/NameIcon.svg" alt="Manage Users Icon" width="10" height="10"/></a>
+      <a href="manageUsers.html">Manage Users&nbsp;&nbsp;<img src="../Images/user_icon.svg" alt="Manage Users Icon" width="10" height="10"/></a>
       <a href="managePosts.html">Manage Posts&nbsp;&nbsp;<img src="../Images/postsIcon.svg" alt="Manage Posts Icon" width="10" height="10"/></a>
       <a href="adminLogin.html"> Logout&nbsp;&nbsp;<img src="../Images/logoutIcon.svg" alt="Logout Icon" width="10" height="10"/></a>
       <div class="logoContainer">
         <img src="../Images/Logo.svg" alt="TexEx Logo" height="30" width="30">
       </div>
     </div>
-    <!-- End of NAV -->
-	<h1 class="welcomeMssg" id="welcomeMessage"> Welcome back adminUser!</h1>
-	<div class="searchField">
-		<input type="search" id="searchBox" placeholder="Search by user name" class="adminSearchBox" aria-label="Admin Search Box"/>
+    <!-- End of NAV -->	
+	<h1 class="searchMssg" id="searchMessage"><span class="headings">Narrow your search here!</span></h1>
+	<div id="searchField" class="searchField">
+		<input type="search" id="searchBox" placeholder="Search by user name" class="searchBar" aria-label="Admin Search Box"/>
 	</div>
 	<script type="text/javascript" src="manageUsersr.js"></script>
 	<noscript>Your browser does not support Javascript</noscript>
 	<br /><br /><br /><br /><br /><br />
     <div class="tableContainer" id="tableCon">
-        <script type="text/javascript" >
-			createTable();
-		</script>
+        <script type="text/javascript">displayUsers();</script>
 		<noscript>Your browser does not support JavaScript</noscript>
     </div>
   </body>

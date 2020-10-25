@@ -1,7 +1,7 @@
 //register.js
 
 function invalidName(event){
-	event.currentTarget.setCustomValidity("Please enter a correct name! Your first name must start with a capital letter. If you provide your last name, or any other names, they must also begin with a capital letter."); 
+	event.currentTarget.setCustomValidity("Please enter a correct name!"); 
 }
 function enteringName(event){
 	event.currentTarget.setCustomValidity(""); 
@@ -13,7 +13,7 @@ function enteringPass(event){
 	event.currentTarget.setCustomValidity(""); 
 }
 function invalidSchool(event){
-	event.currentTarget.setCustomValidity("Please enter a correct school name! It must be completely spelled out.");
+	event.currentTarget.setCustomValidity("Please enter a valid school name! It must be completely spelled out with either University or College attached to the name.");
 }
 
 function invalidPass(event){
@@ -54,15 +54,28 @@ function validateCreateAccount(){
 	var domPasswordField = document.getElementById("passwordField");
 	var domConfirmPasswordField = document.getElementById("confirmpasswordField");
 
+	var name = titleCase(domNameField.value);
+	var school = titleCase(domSchoolField.value);
+	
 	var emailValidated = validateEmail(domEmailField);
 	var confirmPass = validateConfirmPassword(domConfirmPasswordField,domPasswordField);
 	var addedToDatabase = false;
 	var pass = CryptoJS.SHA256(domPasswordField.value);
-	console.log(pass);
 	if(emailValidated === true && confirmPass === true){
 		//TODO: replace true with a PHP function
 		//send all the fields to the database by calling a PHP function and passing the fields	
 		addedToDatabase = true;
 	}
 	return addedToDatabase;
+}
+
+function titleCase(str) {
+   var splitStr = str.toLowerCase().split(' ');
+   for (var i = 0; i < splitStr.length; i++) {
+       // You do not need to check if i is larger than splitStr length, as your for does that for you
+       // Assign it back to the array
+       splitStr[i] = splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);     
+   }
+   // Directly return the joined string
+   return splitStr.join(' '); 
 }
