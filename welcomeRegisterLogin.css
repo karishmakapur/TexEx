@@ -144,6 +144,7 @@ input[type="text"]{
 	border-radius: 25px;
 	border-style: solid;
 	border-width: 1px;
+	box-shadow: 1px 4px 6px rgba(0, 0, 0, 0.15);
 	color: #FFFFFF;
 	cursor: pointer;
 	height: 40px;
@@ -154,10 +155,11 @@ input[type="text"]{
 
 .AdminbuttonFields{
 	background-color: white;
-	border-color: white;
+	border-color: #46ABCC;
 	border-radius: 25px;
 	border-style: solid;
 	border-width: 1px;
+	box-shadow: 1px 4px 6px rgba(0, 0, 0, 0.15);
 	color: #46ABCC;
 	cursor: pointer;
 	height: 40px;
