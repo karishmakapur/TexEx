@@ -302,7 +302,7 @@ function passwordErrorMessage(message){
 function validEmailForm(el){
 	var email = el.value;
 	//first check if email is a valid email pattern
-	var pos = email.search(/^\w+@\w+$/);
+	var pos = email.search(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
 	if(pos != 0){
 		return false;
 	}
@@ -325,7 +325,7 @@ function validateEmail(el){
 }
 
 function validateName(name){
-	var pos = name.search(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/);
+	var pos = name.search(/^[A-Za-z]+( [A-Za-z]+)*$/);
 	if(pos != 0){
 		return false;
 	}
