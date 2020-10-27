@@ -285,6 +285,9 @@ function deletePost(event){
 	else{
 		alert("Error deleting the post!");
 	}
+	if(document.getElementsByTagName("div").length == 5){
+			showNoPosts();
+	}
 }
  
  
