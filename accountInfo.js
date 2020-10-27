@@ -204,14 +204,16 @@ function updateAccount (event) {
 }
 
 function disableAccount (event) {
-	// TO DO swap with PHP function to delete account
+	// TO DO swap with PHP function to disable account
 	var disabledAccount = true;
 
 	if (disabledAccount) {
 		alert("Your account has been successfully disabled.");
 		window.location.href="index.html";
+		return true;
 	} else {
 		alert("Account could not be disabled, try again later.");
+		return false;
 	}
 
 }

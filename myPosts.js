@@ -1,7 +1,6 @@
 //myPosts.js
 
 function displayPosts(){
-
 	//go to database for specified search criteria.
 	//use searchInfo against searchOption and return results.
 	//results will be a 2d array upon return.
@@ -114,6 +113,10 @@ function deletePost(event){
 	else{
 		alert("Error deleting the post!");
 	}
+	if(document.getElementsByTagName("div").length == 2){
+			displayNoResults();
+	}
+	
 }
  
 function isEmpty(array) {
