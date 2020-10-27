@@ -28,6 +28,10 @@ function validateLogin(){
 	//Send the email and encrypted pass to the php
 	//php will check email against email and encrypted pass against stored pass
 	var validated = true;
+	
+	if(validated == false){
+		alert("An account with that email address and password does not exist. Try again.");
+	}
 	return validated;
 
 }

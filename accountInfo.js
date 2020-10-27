@@ -7,11 +7,11 @@ function displayAccount () {
 	var school = document.getElementById("schoolField");
 
 	//TODO: swap values with user information from a PHP function call
-	/*var userInfo = ["John Doe", "johndoe@cougars.csusm.edu", "California State University San Marcos"];
+	var userInfo = ["John Doe", "johndoe@cougars.csusm.edu", "California State University San Marcos"];
 
 	name.setAttribute("value", userInfo[0]);
 	email.setAttribute("value", userInfo[1]);
-	school.setAttribute("value", userInfo[2]);*/
+	school.setAttribute("value", userInfo[2]);
 }
 
 function openModal (event) {
@@ -195,10 +195,10 @@ function updateAccount (event) {
 	var updatedAccount = true;
 
 	if(updatedAccount == false) {
-		alert("Couldn't update account. Try again later");
+		notificationMessage("Errormessage", "Error! Couldn't update account. Try again later.");
 	} else {
-		alert("Your account has been successfully updated!");
-		window.location.href="accountInfo.html";
+		
+		notificationMessage("Successmessage", "Success! Your account has been successfully updated!");		
 	}
 	return updatedAccount;
 }
@@ -222,10 +222,7 @@ function displaySavedSearch () {
 	searchContainer.setAttribute("class", "fieldsContainer");
 	var savedSearches = new Array(new Array());
 	
-	/*savedSearches = [["123", "Author", "Peter"], ["234", "ISBN", "345678"], ["345", "Title", "Book1"], 
-	["456", "Author", "Peter"], ["567", "ISBN", "345678"], ["789", "Title", "Book1"], 
-	["891", "Author", "Peter"], ["897", "ISBN", "345678"], ["945", "Title", "Book1"], 
-	["923", "Author", "Peter"], ["934", "ISBN", "345678"], ["945", "Title", "Book1"]];*/
+	savedSearches = [["123", "Title", "Programming the World Wide Web"]];
 	
 	
 	if(isEmpty(savedSearches)){
@@ -257,7 +254,7 @@ function redirectSearch(event){
 	var dom = event.currentTarget;
 	var values = dom.value;
 	var type = values.match(/[A-Za-z]+/);
-	var term = values.match(/(?<=: )\w+/);
+	var term = values.match(/(?<=: )[A-Za-z0-9 ]+/);
 	var queryString = "searchType=" + type + "&searchTerm=" + term;
 	window.location.href="search.html"+ "?" + queryString;
 	

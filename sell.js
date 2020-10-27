@@ -29,6 +29,7 @@ function makePost(event){
 		document.getElementById("postArea").value = "";
 		document.getElementById("uploadImageButton").value = "";
 	}
+	window.location.href="sell.html";
 	return true;
 	
 }
@@ -67,11 +68,10 @@ function showPosts(){
 
 	//testing array for search with actual results. This will be changes to the return 2D array of a PHP function.
 	//to test with no results, comment out the below line and run it.
-	/*results = [
-	["","Book Number 1", "1234567890", "Karishma Kapur", "This is a book by Karishma Kapur. If you would like to purchase it, please contact me at (111)111-1111. Thank you."],
-	["Images/samplePic.svg","Book Number 2", "2345678901", "Peter Sharp", "This is a book by Peter Sharp. Contact me at (222)222-2222"],
-	["","Book Number 3", "3456789012", "Mike Trani", "Written by Mike Trani. Contact me for purchase! (333)-333-3333"]
-	];*/
+	results = [
+	["Images/Economics.PNG","Principals of Economics", "978-1305585126", "N. Gregory Mankiw", "This is an economics textbook. Contact me at (222)222-2222"],	
+	["Images/ProgrammingWeb.PNG","Programming the World Wide Web", "978-0133775983", "Robert W. Sebesta", "This is a web programming book. If you would like to purchase it, please contact me at (111)111-1111. Thank you."]
+	];
 
 	if(isEmpty(results)){
 		displayNoResults();
