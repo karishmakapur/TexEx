@@ -9,11 +9,9 @@ function searchUser(event){
 		//send the search term to the PHP function.
 		//PHP function should search regex for all posts that include letters provided.
 		var searched = new Array(new Array());
-		/*searched = [["1", "Marcos Lopez", "unlocked"], 
-		["245", "Arianna Camino", "locked"], 
-		["2345", "Pascual Sebastian", "unlocked"], 
-		["5234", "Ben Gonzalez", "locked"], 
-		["9038", "Karishma Kapur", "unlocked"]];*/
+		searched = [
+		["9038","kapur004@cougars.csusm.edu", "Karishma Kapur", "unlocked"]
+		];
 		
 		if(!isEmpty(searched)){
 			showUsers(searched);
@@ -48,11 +46,8 @@ function displayUsers(){
 	//key and their name. PHP will also be responsible for sorting the array on the primary key value
 	
 	var users = new Array(new Array());
-	/*users = [["1", "Marcos Lopez", "unlocked"], 
-	["245", "Arianna Camino", "locked"], 
-	["2345", "Pascual Sebastian", "unlocked"], 
-	["5234", "Ben Gonzalez", "locked"], 
-	["9038", "Karishma Kapur", "unlocked"]];*/
+	users = [["1", "lopez816@cougars.csusm.edu", "Marcos Lopez", "unlocked"],
+	["9038","kapur004@cougars.csusm.edu", "Karishma Kapur", "unlocked"]];
 
 	if (!isEmpty(users)) {
 		showUsers(users);
@@ -72,6 +67,8 @@ function showUsers(users){
 		var subDiv = document.createElement("div");
 		var nameLabel = document.createElement("label");
 		var nameInput = document.createElement("input");
+		var emailLabel = document.createElement("label");
+		var emailInput = document.createElement("input");
 		var lockLabel = document.createElement("label");
 		var lockInput = document.createElement("input");
 		var breakLine = document.createElement("br");
@@ -81,26 +78,33 @@ function showUsers(users){
 		nameInput.setAttribute("id", "userName" + result[0]);
 		nameInput.setAttribute("class", "row1");
 		nameInput.setAttribute("disabled", "true");
-		nameInput.setAttribute("value", result[1]);
+		nameInput.setAttribute("value", result[2]);
 		
+		emailInput.setAttribute("type", "text");
+		emailInput.setAttribute("id", "userEmail" + result[0]);
+		emailInput.setAttribute("class", "row1");
+		emailInput.setAttribute("disabled", "true");
+		emailInput.setAttribute("value", result[1]);
 		
 		lockInput.setAttribute("type", "checkbox");
 		lockInput.setAttribute("id", "lock" + result[0]);
-		if(result[2] == "locked"){
+		if(result[3] == "locked"){
 			lockInput.setAttribute("checked", "checked");
 		}
 		lockInput.setAttribute("class", "lockCheck");
-		lockInput.setAttribute("value", result[3]);
 		lockInput.addEventListener("change", lockUser, false);
 		
 		
 		//surrounding input fields: labels
 		nameLabel.setAttribute("class", "userline");
 		lockLabel.setAttribute("class", "userline");
+		emailLabel.setAttribute("class", "userline");
 		
 		//place input fields inside labels
 		nameLabel.appendChild(nameInput);
 		nameLabel.appendChild(document.createTextNode("User's Name"));
+		emailLabel.appendChild(emailInput);
+		emailLabel.appendChild(document.createTextNode("User's Email"));
 		lockLabel.appendChild(lockInput);
 		lockLabel.appendChild(document.createTextNode("Account Locked?"));
 		
@@ -108,6 +112,7 @@ function showUsers(users){
 		//place labels and input field inside subDiv
 		subDiv.setAttribute("class", "usersInnerDiv");
 		subDiv.appendChild(nameLabel);
+		subDiv.appendChild(emailLabel);
 		subDiv.appendChild(lockLabel);
 		
 		//place subDiv and image inside searchResultContainer

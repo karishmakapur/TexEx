@@ -1,33 +1,43 @@
 function searchBook(event){
-	
-	deleteResults(); //clearing search results, if there are any
+	if(event.keyCode == 13 || event.type == "click"){
+		
+		
+		deleteResults(); //clearing search results, if there are any
 
-	
-	var searchOption = document.getElementById("searchType").value;
-	
-	var searchInfo = document.getElementById("searchBar").value;
-	//go to database for specified search criteria.
-	//use searchInfo against searchOption and return results.
-	//results will be a 2d array upon return.
-	//results[0][0] will be first book image, 
-	//results[0][1] will be first book title, 
-	//results[0][2] will be first book authors, 
-	//results[0][3] will be first book ISBN, 
-	//results[0][4] will be first book description, 
-	var results = new Array(new Array());
-	
-	//testing array for search with actual results. This will be changes to the return 2D array of a PHP function.
-	//to test with no results, comment out the below line and run it.
-	results = [["Images/ProgrammingWeb.PNG","Programming the World Wide Web", "978-0133775983", "Robert W. Sebesta", "This is a web programming book. If you would like to purchase it, please contact me at (111)111-1111. Thank you."]]
-	
-	//if there are no results
-	if(isEmpty(results)){
-		displayNoResults();
-	}
-	else{
 		
-		displayResults(results);
+		var searchOption = document.getElementById("searchType").value;
 		
+		var searchInfo = document.getElementById("searchBar").value;
+		
+		if(searchInfo == ""){
+			displayNoResults();
+			return false;
+		}
+		//go to database for specified search criteria.
+		//use searchInfo against searchOption and return results.
+		//results will be a 2d array upon return.
+		//results[0][0] will be first book image, 
+		//results[0][1] will be first book title, 
+		//results[0][2] will be first book authors, 
+		//results[0][3] will be first book ISBN, 
+		//results[0][4] will be first book description, 
+		var results = new Array(new Array());
+		
+		//testing array for search with actual results. This will be changes to the return 2D array of a PHP function.
+		//to test with no results, comment out the below line and run it.
+		results = [
+		["Images/Economics.PNG","Principles of Economics", "978-1305585126", "N. Gregory Mankiw", "This is an economics textbook. Contact me at (222)222-2222"],
+		["Images/ProgrammingWeb.PNG","Programming the World Wide Web", "978-0133775983", "Robert W. Sebesta", "This is a web programming book. If you would like to purchase it, please contact me at (111)111-1111. Thank you."]
+		];
+		//if there are no results
+		if(isEmpty(results)){
+			displayNoResults();
+		}
+		else{
+			
+			displayResults(results);
+			
+		}
 	}
 }
 

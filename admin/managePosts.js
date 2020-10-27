@@ -1,28 +1,29 @@
 function searchPost(event){
-	var searchTerm = document.getElementById("searchBar").value;
-	var searchType = document.getElementById("searchType").value;
-	
-	deleteResults(); //clearing search results, if there are any
-	if(searchTerm != ''){
-				
-		//send the search terms (searchTerm and searchType) to the PHP function
-		//returned array will be stored in searched
-		var searched = new Array(new Array());
-		/*searched = [["12345", "", "Title 1", "Author 1", "ISBN #", "This is the post content. Contact me here."],
-		["35633", "../Images/samplePic.svg", "Title 2", "Author 2", "ISBN #", "This is the post content"],
-		["37569", "../Images/samplePic.svg","Title 3", "Author 3", "ISBN #", "This is the post content"],
-		["78909", "","Title 4", "Author 4", "ISBN #", "This is the post content"]];*/
+	if(event.keyCode == 13 || event.type == "click"){
+		var searchTerm = document.getElementById("searchBar").value;
+		var searchType = document.getElementById("searchType").value;
 		
-		//if there are results
-		if(!isEmpty(searched)){
-			showPosts(searched);
+		deleteResults(); //clearing search results, if there are any
+		if(searchTerm != ''){
+					
+			//send the search terms (searchTerm and searchType) to the PHP function
+			//returned array will be stored in searched
+			var searched = new Array(new Array());
+			searched = [
+			["12345", "kapur004@cougars.csusm.edu","../Images/Economics.PNG","Principles of Economics", "978-1305585126", "N. Gregory Mankiw", "This is an economics textbook. Contact me at (222)222-2222"],
+			];
+			
+			//if there are results
+			if(!isEmpty(searched)){
+				showPosts(searched);
+			}
+			else{
+				showNoPosts();
+			}
 		}
 		else{
-			showNoPosts();
+			displayResults();
 		}
-	}
-	else{
-		displayResults();
 	}
 }
 
@@ -31,10 +32,10 @@ function searchPost(event){
 function displayResults(){
 	// the array is hardcoded for now. The PHP function will return a 2D array of all posts in the database.
 	var posts = new Array(new Array());
-	/*posts =[["12345", "", "Title 1", "Author 1", "ISBN #", "This is the post content. Contact me here."],
-	["35633", "../Images/samplePic.svg", "Title 2", "Author 2", "ISBN #", "This is the post content"],
-	["37569", "../Images/samplePic.svg","Title 3", "Author 3", "ISBN #", "This is the post content"],
-	["78909", "","Title 4", "Author 4", "ISBN #", "This is the post content"]];*/
+	posts = [
+	["12345", "kapur004@cougars.csusm.edu","../Images/Economics.PNG","Principles of Economics", "978-1305585126", "N. Gregory Mankiw", "This is an economics textbook. Contact me at (222)222-2222"],
+	["56789", "lopez816@cougars.csusm.edu", "../Images/ProgrammingWeb.PNG","Programming the World Wide Web", "978-0133775983", "Robert W. Sebesta", "This is a web programming book. If you would like to purchase it, please contact me at (111)111-1111. Thank you."]
+	];
 	
 	if (!isEmpty(posts)) {
 		showPosts(posts);
@@ -59,6 +60,8 @@ function showPosts(posts){
 		var authorInput = document.createElement("input");
 		var isbnLabel = document.createElement("label");
 		var isbnInput = document.createElement("input");
+		var postMadeByLabel = document.createElement("label");
+		var postMadeByInput = document.createElement("input");
 		var breakLine = document.createElement("br");
 		var descInput = document.createElement("textarea");
 		var descLabel = document.createElement("p");
@@ -68,29 +71,37 @@ function showPosts(posts){
 		var buttonDiv =  document.createElement("div");
 
 		//inner most elements: input fields
+		postMadeByInput.setAttribute("type", "text");
+		postMadeByInput.setAttribute("id", "postMadeByInput" + result[0]);
+		postMadeByInput.setAttribute("class", "row1");
+		postMadeByInput.setAttribute("disabled", "true");
+		postMadeByInput.setAttribute("value", result[1]);
+		
 		titleInput.setAttribute("type", "text");
 		titleInput.setAttribute("id", "titleInput" + result[0]);
 		titleInput.setAttribute("class", "row1");
 		titleInput.setAttribute("disabled", "true");
-		titleInput.setAttribute("value", result[2]);
+		titleInput.setAttribute("value", result[3]);
 		
 		
 		isbnInput.setAttribute("type", "text");
 		isbnInput.setAttribute("id", "isbnInput" + result[0]);
 		isbnInput.setAttribute("class", "row1");
 		isbnInput.setAttribute("disabled", "true");
-		isbnInput.setAttribute("value", result[3]);
+		isbnInput.setAttribute("value", result[4]);
 		
 		authorInput.setAttribute("type", "text");
 		authorInput.setAttribute("id", "authorInput" + result[0]);
 		authorInput.setAttribute("class", "row1");
 		authorInput.setAttribute("disabled", "true");
-		authorInput.setAttribute("value", result[4]);
+		authorInput.setAttribute("value", result[5]);
 		
 		//surrounding input fields: labels
 		titleLabel.setAttribute("class", "line");
 		authorLabel.setAttribute("class", "line");
 		isbnLabel.setAttribute("class", "line");
+		postMadeByLabel.setAttribute("class", "line");
+		
 		
 		//place input fields inside labels
 		titleLabel.appendChild(titleInput);
@@ -99,6 +110,8 @@ function showPosts(posts){
 		isbnLabel.appendChild(document.createTextNode("ISBN"));
 		authorLabel.appendChild(authorInput);
 		authorLabel.appendChild(document.createTextNode("Author"));
+		postMadeByLabel.appendChild(postMadeByInput);
+		postMadeByLabel.appendChild(document.createTextNode("Post Made By"));
 		
 		
 		//other input field
@@ -108,7 +121,7 @@ function showPosts(posts){
 		descInput.setAttribute("wrap", "hard");
 		descInput.setAttribute("rows", "100");
 		descInput.setAttribute("cols", "100");
-		descInput.textContent = result[5];
+		descInput.textContent = result[6];
 		descLabel.setAttribute("class", "line2");
 		descLabel.textContent = "Description/Contact Information";
 		
@@ -117,16 +130,17 @@ function showPosts(posts){
 		subDiv.appendChild(titleLabel);
 		subDiv.appendChild(authorLabel);
 		subDiv.appendChild(isbnLabel);
+		subDiv.appendChild(postMadeByLabel);
 		subDiv.appendChild(breakLine);
 		subDiv.appendChild(descInput);
 		subDiv.appendChild(descLabel);
 		
 		//image
-		if(result[1] == ""){
-			result[1] = "../Images/no-image-icon.png";
+		if(result[2] == ""){
+			result[2] = "../Images/no-image-icon.png";
 		}
 		bookImage.setAttribute("class", "bookPic");
-		bookImage.setAttribute("src", result[1]);
+		bookImage.setAttribute("src", result[2]);
 		bookImage.setAttribute("alt", "Book Picture");
 
 		//edit and delete buttons
