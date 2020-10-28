@@ -204,6 +204,11 @@ function updateAccount (event) {
 }
 
 function disableAccount (event) {
+	
+	var userAnswer = confirm("Are you sure you want to disable your account?");
+	if(userAnswer == false){
+		return false;
+	}
 	// TO DO swap with PHP function to disable account
 	var disabledAccount = true;
 
@@ -300,6 +305,7 @@ function passwordErrorMessage(message){
 
 function validEmailForm(el){
 	var email = el.value;
+
 	//first check if email is a valid email pattern
 	var pos = email.search(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
 	if(pos != 0){

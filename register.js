@@ -22,13 +22,19 @@ function invalidPass(event){
 function validateEmail(el){
 	var dom = el;
 	var input = el.value;
+	var pos = input.search(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
 	
+	if(pos != 0){
+		AccountErrorMessage("Please enter a valid email address.");
+		dom.focus();
+		return false;
+	}
 	//TODO: false needs to be changed with function call to PHP
 	//to actually search in database and see if email already exists.
 	var exists = false; 
 	
 	if(exists === true){
-		alert("This email already has an account!");
+		AccountErrorMessage("This email already has an account.");
 		dom.focus();
 		return false;
 	}
@@ -38,7 +44,7 @@ function validateEmail(el){
 }
 function validateConfirmPassword(entryTwo, original){
 	if(entryTwo.value !== original.value){
-		alert("The passwords do not match. Please reenter your password.");
+		AccountErrorMessage("The passwords do not match. Please reenter your password.");
 		entryTwo.focus();
 		return false;
 	}
@@ -47,6 +53,9 @@ function validateConfirmPassword(entryTwo, original){
 	}
 }
 function validateCreateAccount(){
+	if(document.contains(document.getElementById("errorDiv"))){
+		document.getElementById("errorDiv").remove();
+	}
 	//get all form elements
 	var domNameField = document.getElementById("nameField");
 	var domEmailField = document.getElementById("emailField");
@@ -58,15 +67,37 @@ function validateCreateAccount(){
 	var school = titleCase(domSchoolField.value);
 	
 	var emailValidated = validateEmail(domEmailField);
+	if(emailValidated == false){
+		return false;
+	}
 	var confirmPass = validateConfirmPassword(domConfirmPasswordField,domPasswordField);
+	
+	if(confirmPass == false){
+		return false;
+	}
+	
 	var addedToDatabase = false;
 	var pass = CryptoJS.SHA256(domPasswordField.value);
-	if(emailValidated === true && confirmPass === true){
-		//TODO: replace true with a PHP function
-		//send all the fields to the database by calling a PHP function and passing the fields	
-		addedToDatabase = true;
-	}
+	//TODO: replace true with a PHP function
+	//send all the fields to the database by calling a PHP function and passing the fields	
+	addedToDatabase = true;
 	return addedToDatabase;
+}
+function AccountErrorMessage(message){
+	
+	var errorDiv = document.createElement("div");
+	var errorMsg = document.createElement("p");
+	
+	errorDiv.setAttribute("id", "errorDiv");
+	errorDiv.setAttribute("class", "errorArea");
+	errorMsg.setAttribute("id", "errorMessage");
+	errorMsg.setAttribute("class", "errorMsg");
+	errorMsg.textContent = message;
+
+	errorDiv.appendChild(errorMsg);
+	
+	
+	document.getElementById("confirmpasswordField").insertAdjacentElement("afterend", errorDiv);
 }
 
 function titleCase(str) {

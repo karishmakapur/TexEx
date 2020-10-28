@@ -1,8 +1,9 @@
 .formBackgroundRegister{
 	background-color: #B2DFEE;
 	border-radius: 25px;
-	height: 700px;
+	height: auto;
 	margin: 0 auto;
+	padding-bottom: 10px;
 	position: relative;
 	top: 40px;
 	width: 500px;
@@ -11,8 +12,9 @@
 .formBackground{
 	background-color: #B2DFEE;
 	border-radius: 25px;
-	height: 550px;
+	height: auto;
 	margin: 0 auto;
+	padding-bottom: 10px;
 	position: relative;
 	top: 40px;
 	width: 500px;
@@ -44,9 +46,10 @@ body, html {
 .fieldsContainerLogin{
 	background-color: #FFFFFF;	
 	border-radius: 25px;
-	height: 175px;
+	height: auto;
 	margin: 0 auto;
 	margin-top: 10px;
+	padding-bottom: 10px;
 	text-align: center;
 	width: 400px;
 }
@@ -54,9 +57,10 @@ body, html {
 .fieldsContainerRegister{
 	background-color: #FFFFFF;
 	border-radius: 25px;
-	height: 350px;
+	height: auto;
 	margin: 0 auto;
 	margin-top: 10px;
+	padding-bottom: 10px;
 	text-align: center;
 	width: 400px;	
 }
@@ -101,7 +105,7 @@ body, html {
 
 
 .NameField {
-	background: url(Images/nameIcon.svg) no-repeat 5px 7px;
+	background: url(Images/NameIcon.svg) no-repeat 5px 7px;
 	background-size: 30px 25px;
 	border-color: #46ABCC;
 	border-radius: 25px;
@@ -186,4 +190,15 @@ input[type="text"]{
 .Logo{
 	height: 208.46px;
 	width: 204.53px;
+}
+.errorArea{
+	margin-top: -10px;
+	text-align: center;
+	width: 80%;
+}
+
+.errorMsg{
+	color: red;
+	margin-left: 22%;
+	text-align: center;
 }

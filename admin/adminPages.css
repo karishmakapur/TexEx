@@ -23,8 +23,9 @@ body, html {
 .formBackgroundLogin{
 	background-color: #B2DFEE;
 	border-radius: 25px;
-	height: 550px;
+	height: auto;
 	margin: 0 auto;
+	padding-bottom: 10px;
 	position: relative;
 	top: 40px;
 	width: 500px;
@@ -33,9 +34,10 @@ body, html {
 .fieldsContainerAdminLogin{
 	background-color: #FFFFFF;	
 	border-radius: 25px;
-	height: 175px;
+	height: auto;
 	margin: 0 auto;
 	margin-top: 10px;
+	padding-bottom: 10px;
 	text-align: center;
 	width: 400px;
 }
@@ -83,6 +85,17 @@ body, html {
 .Logo{
 	height: 208.46px;
 	width: 204.53px;
+}
+.errorArea{
+	margin-top: -10px;
+	text-align: center;
+	width: 80%;
+}
+
+.errorMsg{
+	color: red;
+	margin-left: 22%;
+	text-align: center;
 }
 /*end of login page*/
 

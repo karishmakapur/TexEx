@@ -1,6 +1,8 @@
 //login.js
 function validateLogin(){
-	
+	if(document.contains(document.getElementById("errorDiv"))){
+		document.getElementById("errorDiv").remove();
+	}
 	//getting the values of the email and password fields
 	var email = document.getElementById("emailField").value;
 	
@@ -11,7 +13,7 @@ function validateLogin(){
 	//TODO: PHP function - first check if user is disabled
 	var disabled = false;
 	if(disabled == true){
-		alert("Your account has been disabled.\nYou are no longer able to access it.");
+		LoginErrorMessage("Your account has been disabled. You are no longer able to access it.");
 		return false;
 	}
 	
@@ -19,7 +21,7 @@ function validateLogin(){
 	//they can contact company to unlock.
 	var locked = false;
 	if(locked == true){
-		alert("Your account has been locked.\nContact TexEx to further assistance.");
+		LoginErrorMessage("Your account has been locked. Contact TexEx at (760)000-0000 for further assistance.");
 		return false;
 	}
 	
@@ -30,9 +32,25 @@ function validateLogin(){
 	var validated = true;
 	
 	if(validated == false){
-		alert("An account with that email address and password does not exist. Try again.");
+		LoginErrorMessage("An account with that email address and password does not exist. Try again.");
 	}
 	return validated;
 
 }
 
+function LoginErrorMessage(message){
+	
+	var errorDiv = document.createElement("div");
+	var errorMsg = document.createElement("p");
+	
+	errorDiv.setAttribute("id", "errorDiv");
+	errorDiv.setAttribute("class", "errorArea");
+	errorMsg.setAttribute("id", "errorMessage");
+	errorMsg.setAttribute("class", "errorMsg");
+	errorMsg.textContent = message;
+
+	errorDiv.appendChild(errorMsg);
+	
+	
+	document.getElementById("passwordField").insertAdjacentElement("afterend", errorDiv);
+}
