@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS tbl_post;
+DROP TABLE IF EXISTS tbl_book_post;
 DROP TABLE IF EXISTS tbl_saved_search;
 DROP TABLE IF EXISTS tbl_user;
 
@@ -22,13 +22,13 @@ CONSTRAINT fk_admin FOREIGN KEY (AdminID) REFERENCES tbl_user(UserID) ON DELETE 
 
 ALTER TABLE tbl_user AUTO_INCREMENT = 0;
 
-CREATE TABLE tbl_post (
+CREATE TABLE tbl_book_post (
 PostID int NOT NULL AUTO_INCREMENT UNIQUE,
 UserID int NOT NULL,
 BookTitle varchar(255) NOT NULL,
 BookAuthor varchar(255) NOT NULL,
 BookISBN varchar(255) NOT NULL,
-BookDesc longtext NOT NULL,
+PostContent longtext NOT NULL,
 BookImage varchar(255) NOT NULL,
 PostedStamp datetime NOT NULL,
 LastUpdated datetime,
@@ -38,7 +38,7 @@ CONSTRAINT fk_postedBy FOREIGN KEY (UserID) REFERENCES tbl_user(UserID) ON DELET
 CONSTRAINT fk_editedBy FOREIGN KEY (UpdatedBy) REFERENCES tbl_user(UserID) ON DELETE SET NULL
 );
 
-ALTER TABLE tbl_post AUTO_INCREMENT = 0;
+ALTER TABLE tbl_book_post AUTO_INCREMENT = 0;
 
 CREATE TABLE tbl_saved_search (
 SearchID int NOT NULL AUTO_INCREMENT UNIQUE,
