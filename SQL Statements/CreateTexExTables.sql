@@ -35,7 +35,7 @@ ALTER TABLE tbl_admin AUTO_INCREMENT = 0;
 CREATE TABLE tbl_manages (
 AdminID int NOT NULL,
 UserID int NOT NULL,
-ActionTaken varchar(7),
+ActionTaken varchar(20),
 ActionDate datetime,
 CONSTRAINT pk_manages PRIMARY KEY (AdminID, UserID),
 CONSTRAINT fk_manages_admin FOREIGN KEY (AdminID) REFERENCES tbl_admin(AdminID) ON DELETE CASCADE,
@@ -74,7 +74,7 @@ CREATE TABLE tbl_reviews (
 AdminID int NOT NULL,
 PostID int NOT NULL,
 UserID int NOT NULL,
-ActionTaken varchar(7),
+ActionTaken varchar(20),
 ActionDate datetime,
 CONSTRAINT pk_reviews PRIMARY KEY (AdminID, PostID, UserID),
 CONSTRAINT fk_reviews_admin FOREIGN KEY (AdminID) REFERENCES tbl_admin(AdminID) ON DELETE CASCADE,
