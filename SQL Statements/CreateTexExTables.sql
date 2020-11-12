@@ -76,7 +76,7 @@ PostID int NOT NULL,
 UserID int NOT NULL,
 ActionTaken varchar(7),
 ActionDate datetime,
-CONSTRAINT pk_manages PRIMARY KEY (AdminID, PostID, UserID),
+CONSTRAINT pk_reviews PRIMARY KEY (AdminID, PostID, UserID),
 CONSTRAINT fk_reviews_admin FOREIGN KEY (AdminID) REFERENCES tbl_admin(AdminID) ON DELETE CASCADE,
 CONSTRAINT fk_reviews_post FOREIGN KEY (PostID, UserID) REFERENCES tbl_book_post(PostID, UserID) ON DELETE CASCADE
 );
