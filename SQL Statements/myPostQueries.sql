@@ -1,7 +1,7 @@
 /*Query for getting all a specific user's posts*/
-SELECT BookTitle, BookAuthor, BookISBN, PostContent, BookImage 
+SELECT PostID, BookTitle, BookAuthor, BookISBN, PostContent, BookImage 
 FROM tbl_book_post, tbl_user
-WHERE tbl_book_post.UserID = tbl_user.UserID AND tbl_user.Email LIKE 'lopez816@cougars.csusm.edu'
+WHERE tbl_book_post.UserID = tbl_user.UserID AND tbl_user.Email LIKE 'lopez816@cougars.csusm.edu' AND PostVisible = TRUE
 ORDER BY PostedStamp DESC;
 
 /*Query for editing a post*/
