@@ -10,7 +10,7 @@ function searchUser(event){
 		//PHP function should search regex for all posts that include letters provided.
 		var searched = new Array(new Array());
 		searched = [
-		["9038","kapur004@cougars.csusm.edu", "Karishma Kapur", "unlocked"]
+		["9038","kapur004@cougars.csusm.edu", "Karishma Kapur", 0]
 		];
 		
 		if(!isEmpty(searched)){
@@ -46,8 +46,8 @@ function displayUsers(){
 	//key and their name. PHP will also be responsible for sorting the array on the primary key value
 	
 	var users = new Array(new Array());
-	users = [["1", "lopez816@cougars.csusm.edu", "Marcos Lopez", "unlocked"],
-	["9038","kapur004@cougars.csusm.edu", "Karishma Kapur", "unlocked"]];
+	users = [["1", "lopez816@cougars.csusm.edu", "Marcos Lopez", 0],
+	["9038","kapur004@cougars.csusm.edu", "Karishma Kapur", 0]];
 
 	if (!isEmpty(users)) {
 		showUsers(users);
@@ -88,7 +88,7 @@ function showUsers(users){
 		
 		lockInput.setAttribute("type", "checkbox");
 		lockInput.setAttribute("id", "lock" + result[0]);
-		if(result[3] == "locked"){
+		if(result[3] == true){
 			lockInput.setAttribute("checked", "checked");
 		}
 		lockInput.setAttribute("class", "lockCheck");

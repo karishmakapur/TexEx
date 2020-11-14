@@ -1,21 +1,21 @@
 /*inserting 10 rows into tbl_admin*/
 INSERT INTO tbl_admin(Name, Email, Password, CreationDate)
-VALUES ('Marc Jacobs', 'jacobs8907@gmail.com', 'j@coBsM@rc', '2018-01-01 01:01:01');
+VALUES ('Marc Jacobs', 'jacobs8907@gmail.com', 'j@c0BsM@rc', '2018-01-01 01:01:01');
 
 INSERT INTO tbl_admin(Name, Email, Password, CreationDate)
-VALUES ('Sandy Brown', 'brownsandy123@yahoo.com', 'S@ndybrownzz', '2018-02-10 08:15:45');
+VALUES ('Sandy Brown', 'brownsandy123@yahoo.com', 'S@ndybr0wnzz', '2018-02-10 08:15:45');
 
 INSERT INTO tbl_admin(Name, Email, Password, CreationDate)
-VALUES ('John Smith', 'smithJohn@gmail.com', 'adminP@ssword', '2018-03-17 10:24:19');
+VALUES ('John Smith', 'smithJohn@gmail.com', 'adm1nP@ssword', '2018-03-17 10:24:19');
 
 INSERT INTO tbl_admin(Name, Email, Password, CreationDate)
-VALUES ('Sarah Taylor', 'helloFromTaylor@gmail.com', 'P@ssword@dmin', '2018-04-19 12:01:01');
+VALUES ('Sarah Taylor', 'helloFromTaylor@gmail.com', 'P@ssword@dm1n', '2018-04-19 12:01:01');
 
 INSERT INTO tbl_admin(Name, Email, Password, CreationDate)
 VALUES ('Jane Doe', 'doejane@gmail.com', 'j@n3LovesDo3', '2018-05-20 15:09:27');
 
 INSERT INTO tbl_admin(Name, Email, Password, CreationDate)
-VALUES ('Sally Ruth', 'sally.ruth@gmail.com', 'iLov3W0rk', '2018-06-01 17:18:31');
+VALUES ('Sally Ruth', 'sally.ruth@gmail.com', '!Lov3W0rk', '2018-06-01 17:18:31');
 
 INSERT INTO tbl_admin(Name, Email, Password, CreationDate)
 VALUES ('Morray Johnson', 'johnson1990@gmail.com', 'j0hns0nM0rr@y', '2018-07-11 18:01:01');

@@ -1,19 +1,19 @@
 /* These queries will show posts based on the specified search criteria. */
 
-/*Search by ISBN*/
+/*search by author*/
 SELECT BookImage, BookTitle, BookAuthor, BookISBN, PostContent
 FROM tbl_book_post
-WHERE BookISBN LIKE '978-0133943038' AND PostVisible = TRUE;
+WHERE BookAuthor LIKE 'Michael Geringer' AND PostVisible = TRUE;
 
 /*Search by title*/
 SELECT BookImage, BookTitle, BookAuthor, BookISBN, PostContent
 FROM tbl_book_post
 WHERE BookTitle LIKE 'Photography: A Cultural History' AND PostVisible = TRUE;
 
-/*search by author*/
+/*Search by ISBN*/
 SELECT BookImage, BookTitle, BookAuthor, BookISBN, PostContent
 FROM tbl_book_post
-WHERE BookAuthor LIKE 'Michael Geringer' AND PostVisible = TRUE;
+WHERE BookISBN LIKE '978-0133943038' AND PostVisible = TRUE;
 
 /*Adding a saved search record for a user - this means they clicked the saved search box*/
 INSERT INTO tbl_saved_search(UserID, SearchType, SearchTerm)

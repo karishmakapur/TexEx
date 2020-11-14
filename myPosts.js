@@ -67,11 +67,12 @@ function savePost(event) {
 	var author = document.getElementById("authorInput" + primaryKey);
 	var desc = document.getElementById("descInput" + primaryKey);
 
-	var newPost = new Array(4);
-	newPost[0] = title.value;
-	newPost[1] = author.value;
-	newPost[2] = isbn.value;
-	newPost[3] = desc.value;
+	var newPost = new Array(5);
+	newPost[0] = primaryKey;
+	newPost[1] = title.value;
+	newPost[2] = author.value;
+	newPost[3] = isbn.value;
+	newPost[4] = desc.value;
 
 	var successfulEdit = true;
 

@@ -10,6 +10,16 @@ function validateLogin(){
 	var pass = CryptoJS.SHA256(document.getElementById("passwordField").value);
 	
 	
+	//TODO: this true value needs to be replaced with the call to php function
+	//Send the email and encrypted pass to the php
+	//php will check email against email and encrypted pass against stored pass
+	var validated = true;
+	
+	if(validated == false){
+		LoginErrorMessage("An account with that email address and password does not exist. Try again.");
+		return false;
+	}
+
 	//TODO: PHP function - first check if user is disabled
 	var disabled = false;
 	if(disabled == true){
@@ -26,14 +36,7 @@ function validateLogin(){
 	}
 	
 	
-	//TODO: this true value needs to be replaced with the call to php function
-	//Send the email and encrypted pass to the php
-	//php will check email against email and encrypted pass against stored pass
-	var validated = true;
 	
-	if(validated == false){
-		LoginErrorMessage("An account with that email address and password does not exist. Try again.");
-	}
 	return validated;
 
 }

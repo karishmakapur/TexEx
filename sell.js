@@ -37,11 +37,11 @@ function makePost(event){
 function uploadImage(file){
 
 	//send this path to the users database and save it.
-	var path = "userUploadedImages/" + file.name;
+	var path = "Images/" + file.name;
 	
 	var response = "200";
 	//use the fetch method to upload an image on the server.
-	/*var url = '/userUploadedImages/';
+	/*var url = 'Images/';
 	fetch(url, {
 		method: 'POST',
 		body: file,

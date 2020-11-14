@@ -10,7 +10,7 @@ function searchPost(event){
 			//returned array will be stored in searched
 			var searched = new Array(new Array());
 			searched = [
-			["12345", "kapur004@cougars.csusm.edu","../Images/Economics.PNG","Principles of Economics", "978-1305585126", "N. Gregory Mankiw", "This is an economics textbook. Contact me at (222)222-2222"],
+			["12345", "kapur004@cougars.csusm.edu","Images/Economics.PNG","Principles of Economics", "978-1305585126", "N. Gregory Mankiw", "This is an economics textbook. Contact me at (222)222-2222"]
 			];
 			
 			//if there are results
@@ -33,8 +33,8 @@ function displayResults(){
 	// the array is hardcoded for now. The PHP function will return a 2D array of all posts in the database.
 	var posts = new Array(new Array());
 	posts = [
-	["12345", "kapur004@cougars.csusm.edu","../Images/Economics.PNG","Principles of Economics", "978-1305585126", "N. Gregory Mankiw", "This is an economics textbook. Contact me at (222)222-2222"],
-	["56789", "lopez816@cougars.csusm.edu", "../Images/ProgrammingWeb.PNG","Programming the World Wide Web", "978-0133775983", "Robert W. Sebesta", "This is a web programming book. If you would like to purchase it, please contact me at (111)111-1111. Thank you."]
+	["12345", "kapur004@cougars.csusm.edu","Images/Economics.PNG","Principles of Economics", "978-1305585126", "N. Gregory Mankiw", "This is an economics textbook. Contact me at (222)222-2222"],
+	["56789", "lopez816@cougars.csusm.edu", "Images/ProgrammingWeb.PNG","Programming the World Wide Web", "978-0133775983", "Robert W. Sebesta", "This is a web programming book. If you would like to purchase it, please contact me at (111)111-1111. Thank you."]
 	];
 	
 	if (!isEmpty(posts)) {
@@ -136,9 +136,8 @@ function showPosts(posts){
 		subDiv.appendChild(descLabel);
 		
 		//image
-		if(result[2] == ""){
-			result[2] = "../Images/no-image-icon.png";
-		}
+		result[2] = '../' + result[2];
+		
 		bookImage.setAttribute("class", "bookPic");
 		bookImage.setAttribute("src", result[2]);
 		bookImage.setAttribute("alt", "Book Picture");
