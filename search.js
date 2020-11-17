@@ -26,7 +26,6 @@ function searchBook(event){
 		//testing array for search with actual results. This will be changes to the return 2D array of a PHP function.
 		//to test with no results, comment out the below line and run it.
 		results = [
-		["Images/Economics.PNG","Principles of Economics", "978-1305585126", "N. Gregory Mankiw", "This is an economics textbook. Contact me at (222)222-2222"],
 		["Images/ProgrammingWeb.PNG","Programming the World Wide Web", "978-0133775983", "Robert W. Sebesta", "This is a web programming book. If you would like to purchase it, please contact me at (111)111-1111. Thank you."]
 		];
 		//if there are no results
