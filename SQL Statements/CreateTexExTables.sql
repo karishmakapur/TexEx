@@ -51,7 +51,7 @@ BookISBN varchar(255) NOT NULL,
 PostContent longtext NOT NULL,
 BookImage varchar(255) NOT NULL,
 PostedStamp datetime NOT NULL,
-LastUpdated datetime,
+LastUpdatedByUser datetime,
 PostVisible bool,
 CONSTRAINT pk_post PRIMARY KEY (PostID, UserID),
 CONSTRAINT fk_postedBy FOREIGN KEY (UserID) REFERENCES tbl_user(UserID) ON DELETE CASCADE

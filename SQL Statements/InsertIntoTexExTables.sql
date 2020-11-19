@@ -70,17 +70,17 @@ INSERT INTO tbl_user (Name, Email, Password, UpdatedDate, School, Disabled, Lock
 VALUES ('Patrick Star', 'star.patrick@student.csulb.edu', 'P@ssword10', NULL, 'California State University Long Beach', TRUE, FALSE, '2020-3-08 10:32:20', '2020-06-07 12:40:13');
 
 /*inserting 10 rows into tbl_book_post */
-INSERT INTO tbl_book_post (UserID, BookTitle, BookAuthor, BookISBN, PostContent, BookImage, PostedStamp, LastUpdated, PostVisible)
+INSERT INTO tbl_book_post (UserID, BookTitle, BookAuthor, BookISBN, PostContent, BookImage, PostedStamp, LastUpdatedByUser, PostVisible)
 VALUES ((SELECT x.UserID FROM (SELECT UserID FROM tbl_user WHERE Email LIKE 'sebas004@cougars.csusm.edu') as x), 'Principles of Economics', 'N. Gregory Mankiw', '978-1305585126', 'This is an economics textbook. Contact me at (222)222-2222', 'Images/Economics.PNG', '2020-01-01 10:10:10', NULL, TRUE);
 
-INSERT INTO tbl_book_post (UserID, BookTitle, BookAuthor, BookISBN, PostContent, BookImage, PostedStamp, LastUpdated, PostVisible)
+INSERT INTO tbl_book_post (UserID, BookTitle, BookAuthor, BookISBN, PostContent, BookImage, PostedStamp, LastUpdatedByUser, PostVisible)
 VALUES ((SELECT x.UserID FROM (SELECT UserID FROM tbl_user WHERE Email LIKE 'lopez816@cougars.csusm.edu') as x),'Programming the World Wide Web', 'Robert W. Sebesta', '978-0133775983', 'This is a web programming book. If you would like to purchase it, please contact me at (111)111-1111. Thank you.', 'Images/ProgrammingWeb.PNG', '2020-11-10 23:52:23', NULL, TRUE);
 
-INSERT INTO tbl_book_post (UserID, BookTitle, BookAuthor, BookISBN, PostContent, BookImage, PostedStamp, LastUpdated, PostVisible)
+INSERT INTO tbl_book_post (UserID, BookTitle, BookAuthor, BookISBN, PostContent, BookImage, PostedStamp, LastUpdatedByUser, PostVisible)
 VALUES ((SELECT x.UserID FROM (SELECT UserID FROM tbl_user WHERE Email LIKE 'star.patrick@student.csulb.edu') as x),'Requirements Engineering', 'Axel van Lamsweerde', '978-0470012703', 'This is a engineering book. Contact me at (333)333-3333. Cheers.', 'Images/REngineering.PNG', '2019-11-01 05:10:10', NULL, TRUE);
 
-INSERT INTO tbl_book_post (UserID, BookTitle, BookAuthor, BookISBN, PostContent, BookImage, PostedStamp, LastUpdated, PostVisible)
-VALUES ((SELECT x.UserID FROM (SELECT UserID FROM tbl_user WHERE Email LIKE 'trani001@cougars.csusm.edu') as x),'Intermediate Accounting', 'J. David Spiceland', '978-1260310177', 'I am selling an old accounting book. Contact me at (555)555-5555. Thank you.', 'Images/Accounting.PNG', '2019-07-11 11:19:21', '2019-10-21 07:14:37', FALSE);
+INSERT INTO tbl_book_post (UserID, BookTitle, BookAuthor, BookISBN, PostContent, BookImage, PostedStamp, LastUpdatedByUser, PostVisible)
+VALUES ((SELECT x.UserID FROM (SELECT UserID FROM tbl_user WHERE Email LIKE 'trani001@cougars.csusm.edu') as x),'Intermediate Accounting', 'J. David Spiceland', '978-1260310177', 'I am selling an old accounting book. Contact me at (555)555-5555. Thank you.', 'Images/Accounting.PNG', '2019-07-11 11:19:21', NULL, FALSE);
 
 /*Intermediate Accountings's post is not visible because an Admin deleted it. For this reason, a record in the tbl_reviews table needs to be made*/
 INSERT INTO tbl_reviews(AdminID, PostID, UserID, ActionTaken, ActionDate)
@@ -92,8 +92,8 @@ VALUES (
         '2019-10-21 07:14:37'
 );
 
-INSERT INTO tbl_book_post (UserID, BookTitle, BookAuthor, BookISBN, PostContent, BookImage, PostedStamp, LastUpdated, PostVisible)
-VALUES ((SELECT x.UserID FROM (SELECT UserID FROM tbl_user WHERE Email LIKE 'camin003@cougars.csusm.edu') as x),'Software Engineering', 'Ian Sommerville', '978-0133943038', 'This is a software engineering book. HML at (444)444-444 to buy. Thanks.', 'Images/SEngineering.PNG', '2020-10-01 11:34:55', '2020-11-10 10:14:18', FALSE);
+INSERT INTO tbl_book_post (UserID, BookTitle, BookAuthor, BookISBN, PostContent, BookImage, PostedStamp, LastUpdatedByUser, PostVisible)
+VALUES ((SELECT x.UserID FROM (SELECT UserID FROM tbl_user WHERE Email LIKE 'camin003@cougars.csusm.edu') as x),'Software Engineering', 'Ian Sommerville', '978-0133943038', 'This is a software engineering book. HML at (444)444-444 to buy. Thanks.', 'Images/SEngineering.PNG', '2020-10-01 11:34:55', NULL, FALSE);
 
 /*Software Engineering's post is not visible because an Admin deleted it. For this reason, a record in the tbl_reviews table needs to be made*/
 INSERT INTO tbl_reviews(AdminID, PostID, UserID, ActionTaken, ActionDate)
@@ -104,8 +104,8 @@ VALUES (
 		'Deleted Post',
         '2020-11-10 10:14:18'
 );
-INSERT INTO tbl_book_post (UserID, BookTitle, BookAuthor, BookISBN, PostContent, BookImage, PostedStamp, LastUpdated, PostVisible)
-VALUES ((SELECT x.UserID FROM (SELECT UserID FROM tbl_user WHERE Email LIKE 'kapur004@cougars.csusm.edu') as x),'International Business', 'Michael Geringer', '978-1259685224', 'This is a business book. Contact me at (777)777-7777 to buy it. Cheers.', 'Images/Business.PNG', '2020-11-04 09:11:15', '2020-12-01 09:10:15', TRUE);
+INSERT INTO tbl_book_post (UserID, BookTitle, BookAuthor, BookISBN, PostContent, BookImage, PostedStamp, LastUpdatedByUser, PostVisible)
+VALUES ((SELECT x.UserID FROM (SELECT UserID FROM tbl_user WHERE Email LIKE 'kapur004@cougars.csusm.edu') as x),'International Business', 'Michael Geringer', '978-1259685224', 'This is a business book. Contact me at (777)777-7777 to buy it. Cheers.', 'Images/Business.PNG', '2020-11-04 09:11:15', NULL, TRUE);
 
 /*International Business's post added to reviews table because an Admin edited it.*/
 INSERT INTO tbl_reviews(AdminID, PostID, UserID, ActionTaken, ActionDate)
@@ -118,17 +118,17 @@ VALUES (
 );
 
 /*example of a user edit to a post*/
-INSERT INTO tbl_book_post (UserID, BookTitle, BookAuthor, BookISBN, PostContent, BookImage, PostedStamp, LastUpdated, PostVisible)
+INSERT INTO tbl_book_post (UserID, BookTitle, BookAuthor, BookISBN, PostContent, BookImage, PostedStamp, LastUpdatedByUser, PostVisible)
 VALUES ((SELECT x.UserID FROM (SELECT UserID FROM tbl_user WHERE Email LIKE 'sharp032@cougars.csusm.edu') as x),'Human Anatomy', 'Michael McKinley', '978-1260251357', 'Currently looking to sell this anatomy book. Text or call at (888)888-8888 if interested. Thanks a lot!', 'Images/Anatomy.PNG', '2019-03-01 08:34:51', '2019-03-01 09:00:00', TRUE);
 
 /*example of a user 'deletion' of a post*/
-INSERT INTO tbl_book_post (UserID, BookTitle, BookAuthor, BookISBN, PostContent, BookImage, PostedStamp, LastUpdated, PostVisible)
+INSERT INTO tbl_book_post (UserID, BookTitle, BookAuthor, BookISBN, PostContent, BookImage, PostedStamp, LastUpdatedByUser, PostVisible)
 VALUES ((SELECT x.UserID FROM (SELECT UserID FROM tbl_user WHERE Email LIKE 'jonesy987@cougars.csusm.edu') as x),'The Science of Psychology: An Appreciative View', 'Laura King', '978-1259544378', 'Would like to sell this Psychology book. Text at (999)999-9999. Thanks a bunch!', 'Images/Psych.PNG', '2020-07-11 10:32:11', '2020-08-01 07:09:18', FALSE);
 
-INSERT INTO tbl_book_post (UserID, BookTitle, BookAuthor, BookISBN, PostContent, BookImage, PostedStamp, LastUpdated, PostVisible)
+INSERT INTO tbl_book_post (UserID, BookTitle, BookAuthor, BookISBN, PostContent, BookImage, PostedStamp, LastUpdatedByUser, PostVisible)
 VALUES ((SELECT x.UserID FROM (SELECT UserID FROM tbl_user WHERE Email LIKE 'knight2112@csu.fullerton.edu') as x),'Art History', 'Marilyn Stokstad', '978-0205873487', 'Want to sell this art history book. Contact me at (211)123-1111. Thanks!', 'Images/AHistory.PNG', '2019-06-07 07:33:41', NULL, TRUE);
 
-INSERT INTO tbl_book_post (UserID, BookTitle, BookAuthor, BookISBN, PostContent, BookImage, PostedStamp, LastUpdated, PostVisible)
+INSERT INTO tbl_book_post (UserID, BookTitle, BookAuthor, BookISBN, PostContent, BookImage, PostedStamp, LastUpdatedByUser, PostVisible)
 VALUES ((SELECT x.UserID FROM (SELECT UserID FROM tbl_user WHERE Email LIKE 'gonza593@cougars.csusm.edu') as x),'Photography: A Cultural History', 'Mary Warner Marien', '978-0205988945', 'Looking to sell this photography book. Text or call at (112)333-1212.', 'Images/Photography.PNG', '2020-03-01 08:34:51', NULL, TRUE);
 
 
