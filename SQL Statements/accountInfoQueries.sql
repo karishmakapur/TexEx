@@ -15,7 +15,7 @@ SET Name = 'Marco', Email = 'lopez811@csu.fullerton.edu', School = 'California S
 WHERE UserID = (SELECT x.UserID FROM (SELECT UserID FROM tbl_user WHERE Email LIKE 'lopez816@cougars.csusm.edu') as x) AND Disabled = FALSE;
 
 /*get user's current password for password change validation*/
-SELECT password 
+SELECT Password 
 FROM tbl_user
 WHERE UserID = (SELECT UserID FROM tbl_user WHERE Email LIKE 'lopez811@csu.fullerton.edu') AND Disabled = FALSE;
 
