@@ -94,8 +94,9 @@ function closeMsg (event) {
 }
 
 function changePassword (event) {
-	if(document.contains(document.getElementById("errorDiv"))){
-		document.getElementById("errorDiv").remove();
+	if(document.body.contains(document.getElementById("errorDiv"))){
+		var child = document.getElementById("errorDiv");
+		child.parentNode.removeChild(child);
 	}
 	var oldPassword = document.getElementById("oldPassword").value;
 	var newPassword = document.getElementById("newPassword").value;
@@ -260,9 +261,10 @@ function displaySavedSearch () {
 function redirectSearch(event){
 	var dom = event.currentTarget;
 	var values = dom.value;
-	var type = values.match(/[A-Za-z]+/);
-	var term = values.match(/(?<=: )[A-Za-z0-9 ]+/);
-	var queryString = "searchType=" + type + "&searchTerm=" + term;
+	var Stype = values.match(/[A-Za-z]+/);
+	var term = values.search(/: ([A-Za-z0-9]+)/);
+	var subStr = values.substring(term+2);
+	var queryString = "searchType=" + Stype + "&searchTerm=" + subStr;
 	window.location.href="search.html"+ "?" + queryString;
 	
 }

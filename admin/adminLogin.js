@@ -1,8 +1,9 @@
 //adminLogin.js
 
 function validateLogin(){
-	if(document.contains(document.getElementById("errorDiv"))){
-		document.getElementById("errorDiv").remove();
+	if(document.body.contains(document.getElementById("errorDiv"))){
+		var child = document.getElementById("errorDiv");
+		child.parentNode.removeChild(child);
 	}
 	//getting the values of the email and password fields
 	var email = document.getElementById("emailField").value;

@@ -202,7 +202,7 @@ function displayResults(results){
 }
 
  function deleteResults() { 
-		while(document.contains(document.getElementById("resultsOfSearch"))) {
+		while(document.body.contains(document.getElementById("resultsOfSearch"))) {
 				document.getElementById("resultsOfSearch").remove();
 		}   
  }

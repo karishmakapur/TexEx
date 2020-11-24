@@ -53,8 +53,9 @@ function validateConfirmPassword(entryTwo, original){
 	}
 }
 function validateCreateAccount(){
-	if(document.contains(document.getElementById("errorDiv"))){
-		document.getElementById("errorDiv").remove();
+	if(document.body.contains(document.getElementById("errorDiv"))){
+		var child = document.getElementById("errorDiv");
+		child.parentNode.removeChild(child);
 	}
 	//get all form elements
 	var domNameField = document.getElementById("nameField");

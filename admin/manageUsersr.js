@@ -1,2 +1,2 @@
 var domSearchField = document.getElementById("searchBox");
-domSearchField.addEventListener("search", searchUser, false);
+domSearchField.addEventListener("keyup", searchUser, false);

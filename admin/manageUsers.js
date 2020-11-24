@@ -1,34 +1,37 @@
 function searchUser(event){
-	var searchTerm = document.getElementById("searchBox").value;
-	
-	while(document.getElementById("searchField").nextSibling){
-		document.getElementById("searchField").nextSibling.remove();
-	}
-	if(searchTerm != ''){
+	if(event.keyCode === 13){
+		var searchTerm = document.getElementById("searchBox").value;
 		
-		//send the search term to the PHP function.
-		//PHP function should search regex for all posts that include letters provided.
-		var searched = new Array(new Array());
-		searched = [
-		["9038","kapur004@cougars.csusm.edu", "Karishma Kapur", 0]
-		];
-		
-		if(!isEmpty(searched)){
-			showUsers(searched);
+		while(document.getElementById("searchField").nextSibling){
+			var child = document.getElementById("searchField").nextSibling;
+			child.parentNode.removeChild(child);
+		}
+		if(searchTerm != ''){
+			
+			//send the search term to the PHP function.
+			//PHP function should search regex for all posts that include letters provided.
+			var searched = new Array(new Array());
+			searched = [
+			["9038","kapur004@cougars.csusm.edu", "Karishma Kapur", 0]
+			];
+			
+			if(!isEmpty(searched)){
+				showUsers(searched);
+			}
+			else{
+				showNoUsers();
+			}
 		}
 		else{
-			showNoUsers();
+			displayUsers();
 		}
-	}
-	else{
-		displayUsers();
 	}
 }
 
 function lockUser(event){
 	var id = this.id;
 	var pos = id.search(/\d+/);
-	var primaryKey = id.substring(pos,);
+	var primaryKey = id.substring(pos);
 	
 	//TODO: send variables to database from PHP function and lock user from database
 	//PHP function will return true or false. PHP function should determine if this

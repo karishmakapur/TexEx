@@ -82,6 +82,8 @@ function showPosts(posts){
 		titleInput.setAttribute("class", "row1");
 		titleInput.setAttribute("disabled", "true");
 		titleInput.setAttribute("value", result[3]);
+		titleInput.setAttribute("required", "required");
+		titleInput.addEventListener('input', resetTextColor, false);
 		
 		
 		isbnInput.setAttribute("type", "text");
@@ -89,12 +91,16 @@ function showPosts(posts){
 		isbnInput.setAttribute("class", "row1");
 		isbnInput.setAttribute("disabled", "true");
 		isbnInput.setAttribute("value", result[4]);
+		isbnInput.setAttribute("required", "required");
+		isbnInput.addEventListener('input', resetTextColor, false);
 		
 		authorInput.setAttribute("type", "text");
 		authorInput.setAttribute("id", "authorInput" + result[0]);
 		authorInput.setAttribute("class", "row1");
 		authorInput.setAttribute("disabled", "true");
 		authorInput.setAttribute("value", result[5]);
+		authorInput.setAttribute("required", "required");
+		authorInput.addEventListener('input', resetTextColor, false);
 		
 		//surrounding input fields: labels
 		titleLabel.setAttribute("class", "line");
@@ -124,6 +130,9 @@ function showPosts(posts){
 		descInput.textContent = result[6];
 		descLabel.setAttribute("class", "line2");
 		descLabel.textContent = "Description/Contact Information";
+		descInput.setAttribute("required", "required");
+		descInput.addEventListener('input', resetTextColor, false);
+		
 		
 		//place labels and input field inside subDiv
 		subDiv.setAttribute("class", "innerDiv");
@@ -194,7 +203,7 @@ function showNoPosts(){
 	
 	//add div to document.
 	//append searchResultContainer to end of document.
-	resultContainer.append(searchResultContainer);
+	resultContainer.appendChild(searchResultContainer);
 	document.getElementById("searchBox").insertAdjacentElement("afterend", resultContainer);
 }
 
@@ -202,7 +211,7 @@ function showNoPosts(){
 function editPost(event){
 	var id = this.id;
 	var pos = id.search(/\d+/);
-	var primaryKey = id.substring(pos,);
+	var primaryKey = id.substring(pos);
 
 	//Starting point for function that will allow the user to edit rows when the edit button calls this function
 
@@ -231,7 +240,7 @@ function savePost(event) {
 
 	var id = this.id;
 	var pos = id.search(/\d+/);
-	var primaryKey = id.substring(pos,);
+	var primaryKey = id.substring(pos);
 
 	var title = document.getElementById("titleInput" + primaryKey);
 	var isbn = document.getElementById("isbnInput" + primaryKey);
@@ -244,6 +253,38 @@ function savePost(event) {
 	newPost[2] = isbn.value;
 	newPost[3] = desc.value;
 
+	if(!title.validity.valid || title.value == "Please fill out this field."){
+		title.value = "Please fill out this field."
+		title.style.color = "red";
+		return false;
+	}
+	else{
+		title.style.color = "black";
+	}
+	if(!author.validity.valid || author.value == "Please fill out this field."){
+		author.value = "Please fill out this field."
+		author.style.color = "red";
+		return false;
+	}
+	else{
+		author.style.color = "black";
+	}
+	if(!isbn.validity.valid || isbn.value == "Please fill out this field."){
+		isbn.value = "Please fill out this field."
+		isbn.style.color = "red";
+		return false;
+	}
+	else{
+		isbn.style.color = "black";
+	}
+	if(!desc.validity.valid || desc.value == "Please fill out this field."){
+		desc.value = "Please fill out this field."
+		desc.style.color = "red";
+		return false;
+	}
+	else{
+		desc.style.color = "black";
+	}
 	var successfulEdit = true;
 
 	if (successfulEdit == true) {
@@ -271,7 +312,7 @@ function savePost(event) {
 function deletePost(event){
 	var id = this.id;
 	var pos = id.search(/\d+/);
-	var primaryKey = id.substring(pos,);
+	var primaryKey = id.substring(pos);
 
 	//TODO: send variables to database from PHP function and delete user from database
 	//PHP function will return true or false
@@ -295,8 +336,11 @@ function isEmpty(array) {
 }
 
  function deleteResults() { 
-		while(document.contains(document.getElementById("searchBox").nextSibling)) {
-				document.getElementById("searchBox").nextSibling.remove();
+		while(document.body.contains(document.getElementById("searchBox").nextSibling)) {
+				var child = document.getElementById("searchBox").nextSibling;
+				child.parentNode.removeChild(child);
 		}   
  }
-	
+function resetTextColor(event){
+	event.currentTarget.style.color = "black";
+}

@@ -54,8 +54,9 @@ function saveSearch(event){
 }
 
  function deleteResults() { 
-		while(document.contains(document.getElementById("resultsOfSearch"))) {
-				document.getElementById("resultsOfSearch").remove();
+		while(document.body.contains(document.getElementById("resultsOfSearch"))) {
+				var child = document.getElementById("resultsOfSearch");
+				child.parentNode.removeChild(child);
 		}   
  }
  
@@ -182,16 +183,20 @@ function displayResults(results){
 
 function displaySearch(){
 	var url = window.location.href;
-	queryString = url.match(/(?<=\?).+/);
-	if(queryString != null){
-		var searchType = url.match(/(?<=searchType=)[A-Za-z]+/);
-		var searchTerm = url.match(/(?<=searchTerm=)[A-Za-z0-9%20]+/);
-		searchTerm = searchTerm[0].replace(/%20/g, " ");
+	queryString = url.search(/\?/);
+	if(queryString != -1){
+		var searchTypePos = url.search(/searchType=/);
+		var searchTermPos = url.search(/&searchTerm=/);
+		var searchType = url.substring(searchTypePos+11, searchTermPos);
+		var searchTerm = url.substring(searchTermPos+12);
+		searchTerm = searchTerm.replace(/%20/g, " ");
 		
 		document.getElementById("searchType").value = searchType;
 		document.getElementById("searchBar").value = searchTerm;
 		document.getElementById("saveSearch").checked = "true";
-		var ev = new Event('click');
+		//var ev = new Event('click');
+		var ev = document.createEvent("MouseEvent");
+		ev.initMouseEvent('click', true, true, window, 0,0,0,0,0,false,false,false,false,0,null);
 		document.getElementById("searchButton").click();
 	}
 }
