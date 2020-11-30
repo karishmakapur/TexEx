@@ -30,7 +30,7 @@
 			<input type="submit" value="Login" class="buttonFields" name="submitButton" id="loginButton"/>
 		</div>
 		<div class="linkContainer">
-			<a class="redirectLink" href="resetEmail.php">Forgot Password?</a>
+			<a class="redirectLink" href="forgotPassword.php">Forgot Password?</a>
 			<br /><br />
 			<a class="redirectLink" href="register.php">Don't have an account? Get Started!</a>
 		</div>
