@@ -28,7 +28,7 @@
 				<input type="password" placeholder="Password" class="UnlockPasswordField" name="passwordField" id="passwordField" aria-label="Your Password" pattern="(?=^.{8,}$)(?=.*\d)(?=.*[!@#$%^&*]+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required/>
 				<input type="password" placeholder="Confirm Password" class="PasswordField" aria-label="Confirm Your Password" name="confirmpasswordField" id="confirmpasswordField" required/>
 
-				<input type="submit" value="Create Account" class="buttonFields" id="createAccountButton"/>
+				<input type="submit" value="Create Account" class="buttonFields" name="registerButton" id="createAccountButton"/>
 			</div>
 			<div class="linkContainer">
 				<a class="redirectLink" href="login.php">Already have an account? Login!</a>
@@ -51,7 +51,7 @@
 	}
 
 	//first get user inputted fields
-	if(isset($_POST['submitButton'])){
+	if(isset($_POST['registerButton'])){
 		$UserInputName = $_POST["nameField"];
 		$UserInputEmail = $_POST["emailField"];
 		$UserInputSchool = $_POST["schoolField"];
