@@ -1,37 +1,27 @@
 //myPosts.js
-
-function displayPosts(){
-	//go to database for specified search criteria.
-	//use searchInfo against searchOption and return results.
-	//results will be a 2d array upon return.
-	//results[0][0] will be first book image,
-	//results[0][1] will be first book title,
-	//results[0][2] will be first book authors,
-	//results[0][3] will be first book ISBN,
-	//results[0][4] will be first book description
-	var results = new Array(new Array());
-
-	//testing array for search with actual results. This will be changes to the return 2D array of a PHP function.
-	//to test with no results, comment out the below line and run it.
-	results = [
-	["111", "Images/Economics.PNG","Principles of Economics", "978-1305585126", "N. Gregory Mankiw", "This is an economics textbook. Contact me at (222)222-2222"],	
-	["222", "Images/ProgrammingWeb.PNG","Programming the World Wide Web", "978-0133775983", "Robert W. Sebesta", "This is a web programming book. If you would like to purchase it, please contact me at (111)111-1111. Thank you."]
-	];
-
-	//if there are no results
-	if(isEmpty(results)){
-		displayNoResults();
-	}
-	else{
-		displayResults(results);
-
-	}
+function notificationMessage(cssClass, message){
+	
+	var closebtn = document.createElement("span");
+		var alertDiv = document.createElement("div");
+		
+		closebtn.setAttribute("class", "closeButton");
+		closebtn.textContent = "X";
+		closebtn.addEventListener("click", closeMsg, false);
+		alertDiv.setAttribute("class", cssClass);
+		alertDiv.textContent = message;
+		
+		alertDiv.appendChild(closebtn);
+		document.getElementById("nav").insertAdjacentElement('afterend',alertDiv);
 }
 
 function editPost(event){
 	var id = this.id;
 	var pos = id.search(/\d+/);
 	var primaryKey = id.substring(pos);
+	
+	var queryString = "key=" + primaryKey;
+	var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?' + queryString;
+    window.history.pushState({path:newurl},'',newurl);
 
 	//Starting point for function that will allow the user to edit rows when the edit button calls this function
 
@@ -56,23 +46,16 @@ function editPost(event){
 }
 
 function savePost(event) {
-//TODO: swap out true for a PHP function call to edit post
-
 	var id = this.id;
 	var pos = id.search(/\d+/);
 	var primaryKey = id.substring(pos);
-
+	
+	
 	var title = document.getElementById("titleInput" + primaryKey);
 	var isbn = document.getElementById("isbnInput" + primaryKey);
 	var author = document.getElementById("authorInput" + primaryKey);
 	var desc = document.getElementById("descInput" + primaryKey);
-
-	var newPost = new Array(5);
-	newPost[0] = primaryKey;
-	newPost[1] = title.value;
-	newPost[2] = author.value;
-	newPost[3] = isbn.value;
-	newPost[4] = desc.value;
+	
 	if(!title.validity.valid || title.value == "Please fill out this field."){
 		title.value = "Please fill out this field."
 		title.style.color = "red";
@@ -81,6 +64,7 @@ function savePost(event) {
 	else{
 		title.style.color = "black";
 	}
+	
 	if(!author.validity.valid || author.value == "Please fill out this field."){
 		author.value = "Please fill out this field."
 		author.style.color = "red";
@@ -89,6 +73,7 @@ function savePost(event) {
 	else{
 		author.style.color = "black";
 	}
+	
 	if(!isbn.validity.valid || isbn.value == "Please fill out this field."){
 		isbn.value = "Please fill out this field."
 		isbn.style.color = "red";
@@ -97,6 +82,7 @@ function savePost(event) {
 	else{
 		isbn.style.color = "black";
 	}
+	
 	if(!desc.validity.valid || desc.value == "Please fill out this field."){
 		desc.value = "Please fill out this field."
 		desc.style.color = "red";
@@ -105,63 +91,33 @@ function savePost(event) {
 	else{
 		desc.style.color = "black";
 	}
-
-	var successfulEdit = true;
-
-	if (successfulEdit == true) {
-		//Starting point for function that will allow the user to edit rows when the edit button calls this function
-
-		var deleteButton = document.getElementById("deleteBtn" + primaryKey);
-		deleteButton.style.visibility = "visible";
-
-		var editButton = document.getElementById("editBtn" + primaryKey);
-		editButton.style.visibility = "visible";
-
-		var saveButton = document.getElementById("saveBtn" + primaryKey);
-		saveButton.style.visibility = "hidden";
-
-		title.setAttribute("disabled", "true");
-		isbn.setAttribute("disabled", "true");
-		author.setAttribute("disabled", "true");
-		desc.setAttribute("disabled", "true");
-	}
-	else {
-		alert("Could not edit post, please try again.")
-	}
+	
+	var ev = document.createEvent("MouseEvent");
+	ev.initMouseEvent('click', true, true, window, 0,0,0,0,0,false,false,false,false,0,null);
+	document.getElementById("savePostBttn" + primaryKey).click();
+	
+	
 }
 
 function deletePost(event){
 	var id = this.id;
 	var pos = id.search(/\d+/);
 	var primaryKey = id.substring(pos);
-
-	//TODO: send primary key to database from PHP function and delete user from database
-	//PHP function will return true or false
-	var successfulDelete = true;
-
-	if(successfulDelete == true) {
-		var divToRemove = this.parentNode.parentNode;
-		divToRemove.parentNode.removeChild(divToRemove);
-	}
-	else{
-		alert("Error deleting the post!");
-	}
-	if(document.getElementsByTagName("div").length == 2){
-			displayNoResults();
-	}
 	
+	var queryString = "key=" + primaryKey;
+	var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?' + queryString;
+    window.history.pushState({path:newurl},'',newurl);
+
 }
  
 function isEmpty(array) {
   return Array.isArray(array) && (array.length == 0 || array.every(isEmpty));
 }
 
-function displayResults(results){
-	//if there are results
-	for(var i = results.length-1; i >= 0; i--){
-			
-		var result = results[i];
+function displayResults(result){
 		
+		var formElement = document.createElement("form");
+		formElement.setAttribute("method", "post");
 		var searchResultContainer = document.createElement("div");
 		var bookImage = document.createElement("img");
 		var subDiv = document.createElement("div");
@@ -174,14 +130,16 @@ function displayResults(results){
 		var breakLine = document.createElement("br");
 		var descInput = document.createElement("textarea");
 		var descLabel = document.createElement("p");
-		var editButton = document.createElement("button");
-		var deleteButton = document.createElement("button");
-		var saveButton = document.createElement("button");
+		var editButton = document.createElement("input");
+		var deleteButton = document.createElement("input");
+		var saveButton = document.createElement("input");
+		var savePostButton = document.createElement("input");
 		var buttonDiv =  document.createElement("div");
 
 		//inner most elements: input fields
 		titleInput.setAttribute("type", "text");
 		titleInput.setAttribute("id", "titleInput" + result[0]);
+		titleInput.setAttribute("name", "titleInput" + result[0]);
 		titleInput.setAttribute("class", "row1");
 		titleInput.setAttribute("disabled", "true");
 		titleInput.setAttribute("value", result[2]);
@@ -190,6 +148,7 @@ function displayResults(results){
 		
 		isbnInput.setAttribute("type", "text");
 		isbnInput.setAttribute("id", "isbnInput" + result[0]);
+		isbnInput.setAttribute("name", "isbnInput" + result[0]);
 		isbnInput.setAttribute("class", "row1");
 		isbnInput.setAttribute("disabled", "true");
 		isbnInput.setAttribute("value", result[3]);
@@ -198,6 +157,7 @@ function displayResults(results){
 		
 		authorInput.setAttribute("type", "text");
 		authorInput.setAttribute("id", "authorInput" + result[0]);
+		authorInput.setAttribute("name", "authorInput" + result[0]);
 		authorInput.setAttribute("class", "row1");
 		authorInput.setAttribute("disabled", "true");
 		authorInput.setAttribute("value", result[4]);
@@ -221,6 +181,7 @@ function displayResults(results){
 		//other input field
 		descInput.setAttribute("disabled", "true");
 		descInput.setAttribute("id", "descInput" + result[0]);
+		descInput.setAttribute("name", "descInput" + result[0]);
 		descInput.setAttribute("class", "row2");
 		descInput.setAttribute("wrap", "hard");
 		descInput.setAttribute("rows", "100");
@@ -249,16 +210,26 @@ function displayResults(results){
 		bookImage.setAttribute("alt", "Book Picture");
 
 		//edit and delete buttons
+		savePostButton.setAttribute("type", "submit");
+		savePostButton.style.visibility = "hidden";
+		savePostButton.setAttribute("id", "savePostBttn" + result[0]);
+		savePostButton.setAttribute("name", "savePostBttn" + result[0]);
 		editButton.setAttribute("id", "editBtn" + result[0]);
+		editButton.setAttribute("name", "editBtn" + result[0]);
 		editButton.setAttribute("class", "myPostButton");
-		editButton.textContent = "Edit";
+		editButton.setAttribute("type", "button");
+		editButton.setAttribute("value", "Edit");
 		deleteButton.setAttribute("id", "deleteBtn" + result[0]);
+		deleteButton.setAttribute("name", "deleteBtn" + result[0]);
 		deleteButton.setAttribute("class", "myPostButton");
-		deleteButton.textContent = "Delete";
+		deleteButton.setAttribute("type", "submit");
+		deleteButton.setAttribute("value", "Delete");
 		saveButton.setAttribute("id", "saveBtn" + result[0]);
+		saveButton.setAttribute("name", "saveBtn" + result[0]);
 		saveButton.setAttribute("class", "myPostButton");
 		saveButton.style.visibility = "hidden";
-		saveButton.textContent = "Save";
+		saveButton.setAttribute("value", "Save");		
+		saveButton.setAttribute("type", "button");
 		editButton.addEventListener("click", editPost, false);
 		deleteButton.addEventListener("click", deletePost, false);
 		saveButton.addEventListener("click", savePost, false);
@@ -266,6 +237,7 @@ function displayResults(results){
 		buttonDiv.appendChild(editButton);
 		buttonDiv.appendChild(deleteButton);
 		buttonDiv.appendChild(saveButton);
+		buttonDiv.appendChild(savePostButton);
 
 		//place subDiv and image inside searchResultContainer
 		searchResultContainer.setAttribute("id", "resultsOfSearch" + result[0]);
@@ -274,10 +246,11 @@ function displayResults(results){
 		searchResultContainer.appendChild(subDiv);
 		searchResultContainer.appendChild(buttonDiv);
 		
+		formElement.appendChild(searchResultContainer);
+		
 		//append searchResultContainer to end of document.
-		document.getElementById("heading").insertAdjacentElement('afterend', searchResultContainer);
+		document.getElementById("heading").insertAdjacentElement('afterend', formElement);
 			
-	}
 }
 function displayNoResults(){
 	//create elements
@@ -301,4 +274,9 @@ function displayNoResults(){
 }
 function resetTextColor(event){
 	event.currentTarget.style.color = "black";
+}
+function closeMsg (event) {
+	var close = event.currentTarget;
+	close.parentNode.style.display = "none";
+
 }

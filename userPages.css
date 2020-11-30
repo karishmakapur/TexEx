@@ -96,6 +96,34 @@ body, html{
 	display:inline;	
 	padding-left: 10px;
 }
+
+.saveButton{
+	visibility: hidden;
+}
+
+.sortSearchWrapper{
+	border-radius: 25px;
+	margin: 0 auto;
+	max-width: 900px;
+	padding-bottom: 10px;
+	padding-top: 10px;
+	position: relative;
+	text-align: center;
+	top: 20px;
+}
+.sortSearchBox{
+	background-color: #46ABCC;
+	border: none;
+	border-radius: 25px;
+	box-shadow: 1px 4px 6px rgba(0, 0, 0, 0.15);
+	color: #FFFFFF;
+	padding: 10px;
+	visibility: hidden;
+	
+}
+.SearchSort{
+	visibility: hidden;
+}
 /*end of search bar on search.html*/
 
 /*common between sell, search, my posts, and account info*/

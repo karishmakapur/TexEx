@@ -1,69 +1,3 @@
-function searchBook(event){
-	if(event.keyCode == 13 || event.type == "click"){
-		
-		
-		deleteResults(); //clearing search results, if there are any
-
-		
-		var searchOption = document.getElementById("searchType").value;
-		
-		var searchInfo = document.getElementById("searchBar").value;
-		
-		if(searchInfo == ""){
-			displayNoResults();
-			return false;
-		}
-		//go to database for specified search criteria.
-		//use searchInfo against searchOption and return results.
-		//results will be a 2d array upon return.
-		//results[0][0] will be first book image, 
-		//results[0][1] will be first book title, 
-		//results[0][2] will be first book authors, 
-		//results[0][3] will be first book ISBN, 
-		//results[0][4] will be first book description, 
-		var results = new Array(new Array());
-		
-		//testing array for search with actual results. This will be changes to the return 2D array of a PHP function.
-		//to test with no results, comment out the below line and run it.
-		results = [
-		["Images/ProgrammingWeb.PNG","Programming the World Wide Web", "978-0133775983", "Robert W. Sebesta", "This is a web programming book. If you would like to purchase it, please contact me at (111)111-1111. Thank you."]
-		];
-		//if there are no results
-		if(isEmpty(results)){
-			displayNoResults();
-		}
-		else{
-			
-			displayResults(results);
-			
-		}
-	}
-}
-
-function saveSearch(event){
-	//TODO: swap out true for a PHP function call to save the search
-	//the PHP function will return a boolean - true if successful; false if not.
-	
-	if(event.currentTarget.checked){
-		var saved = true;
-		
-		if(saved === false){
-			alert("Error saving your search. Please try again");
-		}
-	}
-}
-
- function deleteResults() { 
-		while(document.body.contains(document.getElementById("resultsOfSearch"))) {
-				var child = document.getElementById("resultsOfSearch");
-				child.parentNode.removeChild(child);
-		}   
- }
- 
-function isEmpty(array) {
-  return Array.isArray(array) && (array.length == 0 || array.every(isEmpty));
-}
-
 function displayNoResults(){
 	//create elements
 	var searchResultContainer = document.createElement("div");
@@ -82,14 +16,10 @@ function displayNoResults(){
 	
 	//add div to document.
 	//append searchResultContainer to end of document.
-	document.getElementById("searchWrapper").insertAdjacentElement('afterend', searchResultContainer);
+	document.getElementById("sortSearchWrapper").insertAdjacentElement('afterend', searchResultContainer);
 }
 
-function displayResults(results){
-	//if there are results
-	for(var i = results.length-1; i >= 0; i--){
-			
-		var result = results[i];
+function displayResults(result){
 		
 		var searchResultContainer = document.createElement("div");
 		var bookImage = document.createElement("img");
@@ -176,14 +106,15 @@ function displayResults(results){
 		
 		
 		//append searchResultContainer to end of document.
-		document.getElementById("searchWrapper").insertAdjacentElement('afterend', searchResultContainer);
-			
-	}
+		document.getElementById("sortSearchWrapper").insertAdjacentElement('afterend', searchResultContainer);
+	
 }
 
 function displaySearch(){
 	var url = window.location.href;
 	queryString = url.search(/\?/);
+	var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+    window.history.pushState({path:newurl},'',newurl);
 	if(queryString != -1){
 		var searchTypePos = url.search(/searchType=/);
 		var searchTermPos = url.search(/&searchTerm=/);
@@ -194,10 +125,39 @@ function displaySearch(){
 		document.getElementById("searchType").value = searchType;
 		document.getElementById("searchBar").value = searchTerm;
 		document.getElementById("saveSearch").checked = "true";
-		//var ev = new Event('click');
 		var ev = document.createEvent("MouseEvent");
 		ev.initMouseEvent('click', true, true, window, 0,0,0,0,0,false,false,false,false,0,null);
 		document.getElementById("searchButton").click();
 	}
-}
 	
+	
+}
+
+function submitForm(){
+	if(document.getElementById("saveSearch").checked){
+		document.getElementById("saveSearch").value = "on";
+	}
+	else if(!document.getElementById("saveSearch").checked){
+		document.getElementById("unsaveSearch").value = "on";
+	}
+	
+	var ev = document.createEvent("MouseEvent");
+	ev.initMouseEvent('click', true, true, window, 0,0,0,0,0,false,false,false,false,0,null);
+	document.getElementById("searchButton").click();
+
+}
+function showSort(){
+	document.getElementById("sortSearch").style.visibility = "visible";
+}
+function submitSort(){
+	var ev = document.createEvent("MouseEvent");
+	ev.initMouseEvent('click', true, true, window, 0,0,0,0,0,false,false,false,false,0,null);
+	document.getElementById("searchButton").click();
+}
+
+ function deleteResults() { 
+		while(document.body.contains(document.getElementById("resultsOfSearch"))) {
+				var child = document.getElementById("resultsOfSearch");
+				child.parentNode.removeChild(child);
+		}   
+ }

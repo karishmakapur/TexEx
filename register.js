@@ -29,18 +29,7 @@ function validateEmail(el){
 		dom.focus();
 		return false;
 	}
-	//TODO: false needs to be changed with function call to PHP
-	//to actually search in database and see if email already exists.
-	var exists = false; 
-	
-	if(exists === true){
-		AccountErrorMessage("This email already has an account.");
-		dom.focus();
-		return false;
-	}
-	else{
-		return true;
-	}
+	return true;
 }
 function validateConfirmPassword(entryTwo, original){
 	if(entryTwo.value !== original.value){
@@ -77,15 +66,16 @@ function validateCreateAccount(){
 		return false;
 	}
 	
-	var addedToDatabase = false;
-	var pass = CryptoJS.SHA256(domPasswordField.value);
-	//TODO: replace true with a PHP function
-	//send all the fields to the database by calling a PHP function and passing the fields	
-	addedToDatabase = true;
-	return addedToDatabase;
+	var pass = CryptoJS.SHA256(document.getElementById("passwordField").value);
+	document.getElementById("passwordField").value = pass;
+	
+	return true;
 }
 function AccountErrorMessage(message){
-	
+	if(document.body.contains(document.getElementById("errorDiv"))){
+		var child = document.getElementById("errorDiv");
+		child.parentNode.removeChild(child);
+	}
 	var errorDiv = document.createElement("div");
 	var errorMsg = document.createElement("p");
 	
@@ -110,4 +100,8 @@ function titleCase(str) {
    }
    // Directly return the joined string
    return splitStr.join(' '); 
+}
+
+function redirectToSearch(){
+	window.location.href="search.php";
 }

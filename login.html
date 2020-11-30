@@ -20,15 +20,15 @@ Do NOT make any more changes to this file without notifying the group.
 
 <body>
 <div class="formBackground">
-	<form action="search.html" method="post" id="loginForm" onsubmit="return validateLogin();">
+	<form action="login.php" method="post" id="loginForm" onsubmit="return encryptPass();">
 		<div class="logoContainer">
 			<img id="Logo" class="Logo" src="Images/Logo.svg" alt="TexEx Logo">
 		</div>
 		<h1 class="text">Login</h1>
 		<div class="fieldsContainerLogin">
-			<input type="email" placeholder="Email Address" class="EmailField" id="emailField" aria-label="Your Email Address" required/>
+			<input type="email" placeholder="Email Address" class="EmailField" id="emailField" name="emailField" aria-label="Your Email Address" required/>
 			
-			<input type="password" placeholder="Password" class="PasswordField" id="passwordField" aria-label="Your Password" required/>
+			<input type="password" placeholder="Password" class="PasswordField" id="passwordField"  name="passwordField" aria-label="Your Password" required/>
 			
 			<input type="submit" value="Login" class="buttonFields" id="loginButton"/>
 		</div>

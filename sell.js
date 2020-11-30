@@ -1,86 +1,3 @@
-function makePost(event){
-	var title = document.getElementById("bookTitle").value;
-	var author = document.getElementById("bookAuthor").value;
-	var isbn = document.getElementById("bookISBN").value;
-	var desc = document.getElementById("postArea").value;
-	var file;
-	var imageUploaded;
-	if(document.getElementById("uploadImageButton").files.length == 0){
-		file = "";
-	}
-	else{
-		file = document.getElementById("uploadImageButton").files[0]; // FileList object
-		imageUploaded = uploadImage(file);
-	}
-	
-	//send these fields to a php function which will add the post 
-	//to the database
-	var saved = true;
-	
-	if(!saved){
-		alert("Failed to upload post. Please try again.");
-		return false;
-	}
-	else{
-		//clear the fields
-		document.getElementById("bookTitle").value = "";
-		document.getElementById("bookAuthor").value = "";
-		document.getElementById("bookISBN").value = "";
-		document.getElementById("postArea").value = "";
-		document.getElementById("uploadImageButton").value = "";
-	}
-	window.location.href="sell.html";
-	return true;
-	
-}
-
-function uploadImage(file){
-
-	//send this path to the users database and save it.
-	var path = "Images/" + file.name;
-	
-	var response = "200";
-	//use the fetch method to upload an image on the server.
-	/*var url = 'Images/';
-	fetch(url, {
-		method: 'POST',
-		body: file,
-	  }).then((response) => {
-		console.log(response)
-	  });*/
-	  
-	//call to php function to save image path on server
-	var imageUploaded = true;
-	if(response != "200" && imageUploaded == true){
-		alert("Failed to upload image. Please try again.");
-		return false;
-	}
-	return true;
-	
-	
-	
-}
-
-function showPosts(){
-	deleteResults();
-
-	var results = new Array(new Array());
-
-	//testing array for search with actual results. This will be changes to the return 2D array of a PHP function.
-	//to test with no results, comment out the below line and run it.
-	results = [
-	["Images/Economics.PNG","Principles of Economics", "978-1305585126", "N. Gregory Mankiw", "This is an economics textbook. Contact me at (222)222-2222"],
-	["Images/ProgrammingWeb.PNG","Programming the World Wide Web", "978-0133775983", "Robert W. Sebesta", "This is a web programming book. If you would like to purchase it, please contact me at (111)111-1111. Thank you."]
-	];
-
-	if(isEmpty(results)){
-		displayNoResults();
-	}
-	else{
-		displayResults(results);
-	}
-}
-
 function displayNoResults(){
 	//create elements
 	var searchResultContainer = document.createElement("div");
@@ -101,12 +18,8 @@ function displayNoResults(){
 	//append searchResultContainer to end of document.
 	document.getElementById("sellBarWrapper").insertAdjacentElement('afterend', searchResultContainer);
 }
-function displayResults(results){
-	//if there are results
-	for(var i = results.length-1; i >= 0; i--){
-			
-		var result = results[i];
-		
+function displayResults(result){
+	
 		var searchResultContainer = document.createElement("div");
 		var bookImage = document.createElement("img");
 		var titleLabel = document.createElement("label");
@@ -193,16 +106,5 @@ function displayResults(results){
 		
 		//append searchResultContainer to end of document.
 		document.getElementById("sellBarWrapper").insertAdjacentElement('afterend', searchResultContainer);
-			
-	}
-}
- 
- function isEmpty(array) {
-  return Array.isArray(array) && (array.length == 0 || array.every(isEmpty));
-}
 
- function deleteResults() { 
-		while(document.body.contains(document.getElementById("resultsOfSearch"))) {
-				document.getElementById("resultsOfSearch").remove();
-		}   
- }
+}

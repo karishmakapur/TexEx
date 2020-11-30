@@ -1,13 +1,10 @@
 // accountInfo.js
 
-function displayAccount () {
+function displayAccount (userInfo) {
 
 	var name = document.getElementById("nameField");
 	var email = document.getElementById("emailField");
 	var school = document.getElementById("schoolField");
-
-	//TODO: swap values with user information from a PHP function call
-	var userInfo = ["John Doe", "johndoe@cougars.csusm.edu", "California State University San Marcos"];
 
 	name.setAttribute("value", userInfo[0]);
 	email.setAttribute("value", userInfo[1]);
@@ -223,38 +220,32 @@ function disableAccount (event) {
 	}
 
 }
+function noSavedSearches(){
+	var searchContainer = document.createElement("div");
+	searchContainer.setAttribute("class", "fieldsContainer");
+	var list = document.createElement("input");
+	list.setAttribute("type", "text");
+	list.setAttribute("id", "NoSearch");
+	list.setAttribute("readonly", "readonly");
+	list.setAttribute("value", "No Saved Searches!");
+	list.setAttribute("class", "searchContainer");
+	searchContainer.appendChild(list);
+	document.getElementById("searches").appendChild(searchContainer);
 
-function displaySavedSearch () {
+}
+
+function displaySavedSearch (search) {
 
 	var searchContainer = document.createElement("div");
 	searchContainer.setAttribute("class", "fieldsContainer");
-	var savedSearches = new Array(new Array());
-	
-	savedSearches = [["123", "Title", "Programming the World Wide Web"]];
-	
-	
-	if(isEmpty(savedSearches)){
-		var list = document.createElement("input");
-		list.setAttribute("type", "text");
-		list.setAttribute("id", "NoSearch");
-		list.setAttribute("readonly", "readonly");
-		list.setAttribute("value", "No Saved Searches!");
-		list.setAttribute("class", "searchContainer");
-		searchContainer.appendChild(list);
-	}
-	else{
-		for (var i = 0; i < savedSearches.length; i++) {
-			var search = savedSearches[i];
-			var list = document.createElement("input");
-			list.setAttribute("type", "text");
-			list.setAttribute("id", "search"+search[0]);
-			list.setAttribute("readonly", "readonly");
-			list.setAttribute("value", search[1] + ": " + search[2]);
-			list.setAttribute("class", "searchContainer");
-			list.addEventListener("click", redirectSearch, false);
-			searchContainer.appendChild(list);
-		}
-	}
+	var list = document.createElement("input");
+	list.setAttribute("type", "text");
+	list.setAttribute("id", "search"+search[0]);
+	list.setAttribute("readonly", "readonly");
+	list.setAttribute("value", search[1] + ": " + search[2]);
+	list.setAttribute("class", "searchContainer");
+	list.addEventListener("click", redirectSearch, false);
+	searchContainer.appendChild(list);
 	document.getElementById("searches").appendChild(searchContainer);
 }
 
@@ -265,7 +256,7 @@ function redirectSearch(event){
 	var term = values.search(/: ([A-Za-z0-9]+)/);
 	var subStr = values.substring(term+2);
 	var queryString = "searchType=" + Stype + "&searchTerm=" + subStr;
-	window.location.href="search.html"+ "?" + queryString;
+	window.location.href="search.php"+ "?" + queryString;
 	
 }
 
