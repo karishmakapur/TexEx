@@ -249,19 +249,27 @@ function noSavedSearches(){
 
 }
 
-function displaySavedSearch (search) {
+function displaySavedSearch (searches) {
 
 	var searchContainer = document.createElement("div");
 	searchContainer.setAttribute("class", "fieldsContainer");
-	var list = document.createElement("input");
-	list.setAttribute("type", "text");
-	list.setAttribute("id", "search"+search[0]);
-	list.setAttribute("readonly", "readonly");
-	list.setAttribute("value", search[1] + ": " + search[2]);
-	list.setAttribute("class", "searchContainer");
-	list.addEventListener("click", redirectSearch, false);
-	searchContainer.appendChild(list);
-	document.getElementById("searches").appendChild(searchContainer);
+	
+	for(var i = 0; i < searches.length; i++){
+		var search = searches[i];
+		
+		var list = document.createElement("input");
+		list.setAttribute("type", "text");
+		list.setAttribute("id", "search"+search[0]);
+		list.setAttribute("readonly", "readonly");
+		list.setAttribute("value", search[1] + ": " + search[2]);
+		list.setAttribute("class", "searchContainer");
+		list.addEventListener("click", redirectSearch, false);
+		
+		
+		searchContainer.appendChild(list);
+	}
+	
+		document.getElementById("searches").appendChild(searchContainer);
 }
 
 function redirectSearch(event){

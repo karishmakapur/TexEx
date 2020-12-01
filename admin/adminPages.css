@@ -331,6 +331,16 @@ body, html {
 	text-align: center;
 	top: 20px;
 }
+.sortSearchWrapperPosts{
+	border-radius: 25px;
+	margin: 0 auto;
+	max-width: 900px;
+	padding-bottom: 10px;
+	padding-top: 10px;
+	position: relative;
+	text-align: center;
+	top: 80px;
+}
 .sortSearchBox{
 	background-color: #B2DFEE;
 	border: none;
@@ -341,3 +351,32 @@ body, html {
 	
 }
 /*end of css for manageUsers*/
+.Successmessage{
+	background-color: #4CAF50;
+	color: white;
+	font-size: 20pt;
+	text-indent: 10px;
+	width: 100%;
+}
+
+.Errormessage{
+	background-color: #f44336;
+	color: white;
+	font-size: 20pt;
+	text-indent: 10px;	
+	width: 100%;
+}
+.closeButton {
+	color: #aaaaaa;
+	float: left;
+  	font-size: 23px;
+  	font-weight: bold;
+
+}
+.closeButton:hover,
+.closeButton:focus {
+  color: #000;
+  cursor: pointer;
+  text-decoration: none;
+ 
+}

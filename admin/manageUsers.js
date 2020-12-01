@@ -1,3 +1,22 @@
+function notificationMessage(cssClass, message){
+	
+	var closebtn = document.createElement("span");
+		var alertDiv = document.createElement("div");
+		
+		closebtn.setAttribute("class", "closeButton");
+		closebtn.textContent = "X";
+		closebtn.addEventListener("click", closeMsg, false);
+		alertDiv.setAttribute("class", cssClass);
+		alertDiv.textContent = message;
+		
+		alertDiv.appendChild(closebtn);
+		document.getElementById("nav").insertAdjacentElement('afterend',alertDiv);
+}
+function closeMsg (event) {
+	var close = event.currentTarget;
+	close.parentNode.style.display = "none";
+
+}
 function searchUser(event){
 	
 	if(event.keyCode === 13){
@@ -18,8 +37,8 @@ function searchUser(event){
 	}
 }
 function clearResults(){
-	while(document.getElementById("searchField").nextSibling){
-			var child = document.getElementById("searchField").nextSibling;
+	while(document.getElementById("formElem").nextSibling){
+			var child = document.getElementById("formElem").nextSibling;
 			child.parentNode.removeChild(child);
 		}
 }
@@ -27,19 +46,32 @@ function lockUser(event){
 	var id = this.id;
 	var pos = id.search(/\d+/);
 	var primaryKey = id.substring(pos);
-	
-	//TODO: send variables to database from PHP function and lock user from database
-	//PHP function will return true or false. PHP function should determine if this
-	//means lock or unlock the user.
-    var successfulLock = true;
-	
-	if(!successfulLock){
-		alert("Could not delete row. Please try again");
+	var lockedVal = "";
+	if(document.getElementById("lock" + primaryKey).checked){
+		document.getElementById("lock" + primaryKey).value = "on";
+		document.getElementById("unlock" + primaryKey).value = "off";
+		lockedVal = "on";
 	}
+	else if(!document.getElementById("lock" + primaryKey).checked){
+		document.getElementById("unlock" + primaryKey).value = "on";
+		document.getElementById("lock" + primaryKey).value = "off";
+		lockedVal = "off";
+	}
+	
+	var queryString = "key=" + primaryKey + "&locked=" + lockedVal;
+	var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?' + queryString;
+    window.history.pushState({path:newurl},'',newurl);
+	
+	var ev = document.createEvent("MouseEvent");
+	ev.initMouseEvent('click', true, true, window, 0,0,0,0,0,false,false,false,false,0,null);
+	document.getElementById("submitBtn" + primaryKey).click();
+	
 }
 
 
 function showUsers(result){
+		var formElem = document.createElement("form");
+		formElem.setAttribute("method", "post");
 		var searchResultContainer = document.createElement("div");
 		var bookImage = document.createElement("img");
 		var subDiv = document.createElement("div");
@@ -49,7 +81,13 @@ function showUsers(result){
 		var emailInput = document.createElement("input");
 		var lockLabel = document.createElement("label");
 		var lockInput = document.createElement("input");
+		var unlockInput = document.createElement("input");
 		var breakLine = document.createElement("br");
+		var submitBttn = document.createElement("input");
+		submitBttn.setAttribute("type", "submit");
+		submitBttn.style.visibility = "hidden";
+		submitBttn.setAttribute("id", "submitBtn" + result[0]);
+		submitBttn.setAttribute("name", "submitBtn" + result[0]);
 
 		//inner most elements: input fields
 		nameInput.setAttribute("type", "text");
@@ -66,12 +104,16 @@ function showUsers(result){
 		
 		lockInput.setAttribute("type", "checkbox");
 		lockInput.setAttribute("id", "lock" + result[0]);
+		lockInput.setAttribute("name", "lock" + result[0]);
 		if(result[3] == true){
 			lockInput.setAttribute("checked", "checked");
 		}
 		lockInput.setAttribute("class", "lockCheck");
-		lockInput.addEventListener("change", lockUser, false);
+		lockInput.addEventListener("click", lockUser, false);
 		
+		unlockInput.setAttribute("type", "hidden");
+		unlockInput.setAttribute("id", "unlock" + result[0]);
+		unlockInput.setAttribute("name", "unlock" + result[0]);
 		
 		//surrounding input fields: labels
 		nameLabel.setAttribute("class", "userline");
@@ -98,9 +140,11 @@ function showUsers(result){
 		searchResultContainer.setAttribute("class", "searchResult");
 		searchResultContainer.appendChild(bookImage);
 		searchResultContainer.appendChild(subDiv);
-		
+		searchResultContainer.appendChild(unlockInput);
+		searchResultContainer.appendChild(submitBttn);
+		formElem.appendChild(searchResultContainer);
 		//append searchResultContainer to end of document.
-		document.getElementById("searchField").insertAdjacentElement('afterend', searchResultContainer);
+		document.getElementById("searchField").insertAdjacentElement('afterend', formElem);
 			
 	
 }

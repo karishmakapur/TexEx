@@ -85,9 +85,21 @@
 		
 		$emailStatus = mail($recipientEmail, $emailSubject, $message, $headers);
 		if($emailStatus) {
-			print "<script type=text/javascript>";
-			print "message('Email Sent Successfully!')";
-			print "</script>";
+			
+			
+			$query_change = 'UPDATE tbl_user SET Password = "' . $temporaryPass . '" WHERE UserID = (SELECT x.UserID FROM (SELECT UserID FROM tbl_user WHERE Email LIKE "' . $recipientEmail . '") as x)';
+			$query_html_change = htmlspecialchars($query_change);
+			$result_change = mysqli_query($db, $query_change);
+			if(!result_change){
+				print "<script type=text/javascript>";
+				print "message('Temporary Password was not able to be generated. Please try again later.')";
+				print "</script>";
+			}
+			else{
+				print "<script type=text/javascript>";
+				print "message('The temporary password was successfully sent to your email.')";
+				print "</script>";
+			}
 		} 
 		else {
 			print "<script type=text/javascript>";

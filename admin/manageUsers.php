@@ -18,7 +18,7 @@
  
   <body class="documentBody" id="documentBody">
     <!-- Start of NAV --> 
-    <div class="topNav">
+    <div class="topNav" id="nav">
       <a href="manageUsers.php">Manage Users&nbsp;&nbsp;<img src="../Images/user_icon.svg" alt="Manage Users Icon" width="10" height="10"/></a>
       <a href="managePosts.php">Manage Posts&nbsp;&nbsp;<img src="../Images/postsIcon.svg" alt="Manage Posts Icon" width="10" height="10"/></a>
       <a href="adminLogout.php"> Logout&nbsp;&nbsp;<img src="../Images/logoutIcon.svg" alt="Logout Icon" width="10" height="10"/></a>
@@ -28,7 +28,7 @@
     </div>
     <!-- End of NAV -->	
 	<h1 class="searchMssg" id="searchMessage"><span class="headings">Narrow your search here!</span></h1>
-	<form method="post">
+	<form method="post" id="formElem">
 		<div id="searchField" class="searchField">
 			<input type="search" name="searchBox" id="searchBox" placeholder="Search for a user by name" class="searchBar" aria-label="Admin Search Box" value="<?php if(isset($_POST['searchBox'])) echo htmlspecialchars($_POST['searchBox']); ?>"/>
 			<div class="bar">
@@ -53,10 +53,29 @@
 	<noscript>Your browser does not support Javascript</noscript>
 	<br /><br /><br /><br /><br /><br />
     <div class="tableContainer" id="tableCon">
-        <!--<script type="text/javascript">displayUsers();</script>
-		<noscript>Your browser does not support JavaScript</noscript>-->
 		
-		<?php
+	<?php
+		$key = $_SERVER['QUERY_STRING'];
+		if($key == "Errormessage=lock"){
+			print '<script type="text/javascript">';
+			print "notificationMessage('Errormessage', 'Error! Could not lock user. Please try again later.');";
+			print '</script>';
+		}
+		else if($key == "Errormessage=unlock"){
+			print '<script type="text/javascript">';
+			print "notificationMessage('Errormessage', 'Error! Could not unlock user. Please try again later.');";
+			print '</script>';
+		}
+		else if($key == "Successmessage=lock"){
+			print '<script type="text/javascript">';
+			print "notificationMessage('Successmessage', 'Success! The user\'s account has been locked.');";
+			print '</script>';
+		}
+		else if($key == "Successmessage=unlock"){
+			print '<script type="text/javascript">';
+			print "notificationMessage('Successmessage', 'Success! The user\'s account has been unlocked.');";
+			print '</script>';
+		}
 		$host =  'db';
 		$userid =  'user';
 		$password = 'test';
@@ -131,7 +150,92 @@
 				}
 			}
 		}
-		?>
+		$key = $_GET['key'];
+		$lockedVal = $_GET['locked'];
+		if(isset($_POST['submitBtn' . $key])){
+			if($lockedVal == "on"){
+				$query_lock = 'UPDATE tbl_user SET Locked = TRUE WHERE UserID = ' . $key;
+				$query_html_lock = htmlspecialchars($query_lock);
+				$result_lock = mysqli_query($db, $query_lock);
+				$refreshQueryString = 'manageUsers.php';
+				if(!$result_lock){
+					$refreshQueryString = $refreshQueryString . "?Errormessage=lock";
+					
+				}
+				else{
+					$refreshQueryString = $refreshQueryString . "?Successmessage=lock";
+					
+				}
+				$query_lock_manages = 'SELECT * FROM tbl_manages WHERE AdminID = (SELECT AdminID FROM tbl_admin WHERE Email LIKE "' . $_SESSION['adminsid'] . '") AND UserID = ' . $key;
+				$query_html_lock_manages = htmlspecialchars($query_lock_manages);
+				$result_lock_manages = mysqli_query($db, $query_lock_manages);
+				$num_fields_lock_manages = mysqli_num_fields($result_lock_manages);
+				$num_rows_lock_manages = mysqli_num_rows($result_lock_manages);
+				if($num_rows_lock_manages == 0){
+					$query_add = 'INSERT INTO tbl_manages(AdminID, UserID, ActionTaken, ActionDate)
+								VALUES ((SELECT AdminID FROM tbl_admin WHERE Email LIKE "' . $_SESSION['adminsid'] . '"), ' . $key .', "Locked Account", now())';
+				
+					$query_html_add = htmlspecialchars($query_add);
+					$result_add = mysqli_query($db, $query_add);
+					if(!$result_add){
+						$refreshQueryString = $refreshQueryString . "?Errormessage=lock";
+					}
+				}
+				else if($num_rows_lock_manages > 0){
+					$query_update = 'UPDATE tbl_manages SET ActionTaken = "Locked Account", ActionDate = now()
+									WHERE AdminID = (SELECT AdminID FROM tbl_admin WHERE Email LIKE "' . $_SESSION['adminsid']. '")
+									AND UserID = ' . $key;
+					$query_html_update = htmlspecialchars($query_update);
+					$result_update = mysqli_query($db, $query_update);
+					if(!$result_update){
+						$refreshQueryString = $refreshQueryString . "?Errormessage=lock";
+					}
+				}
+				print "<script>window.open('" . $refreshQueryString . "', '_self') </script>";
+			}
+			else if($lockedVal == "off"){
+				$query_lock = 'UPDATE tbl_user SET Locked = FALSE WHERE UserID = ' . $key;
+				$query_html_lock = htmlspecialchars($query_lock);
+				$result_lock = mysqli_query($db, $query_lock);
+				$refreshQueryString = 'manageUsers.php';
+				if(!$result_lock){
+					$refreshQueryString = $refreshQueryString . "?Errormessage=unlock";
+					
+				}
+				else{
+					$refreshQueryString = $refreshQueryString . "?Successmessage=unlock";
+					
+				}
+				$query_lock_manages = 'SELECT * FROM tbl_manages WHERE AdminID = (SELECT AdminID FROM tbl_admin WHERE Email LIKE "' . $_SESSION['adminsid'] . '") AND UserID = ' . $key;
+				$query_html_lock_manages = htmlspecialchars($query_lock_manages);
+				$result_lock_manages = mysqli_query($db, $query_lock_manages);
+				$num_fields_lock_manages = mysqli_num_fields($result_lock_manages);
+				$num_rows_lock_manages = mysqli_num_rows($result_lock_manages);
+				if($num_rows_lock_manages == 0){
+					$query_add = 'INSERT INTO tbl_manages(AdminID, UserID, ActionTaken, ActionDate)
+								VALUES ((SELECT AdminID FROM tbl_admin WHERE Email LIKE "' . $_SESSION['adminsid'] . '"), ' . $key .', "Unlocked Account", now())';
+				
+					$query_html_add = htmlspecialchars($query_add);
+					$result_add = mysqli_query($db, $query_add);
+					if(!$result_add){
+						$refreshQueryString = $refreshQueryString . "?Errormessage=unlock";
+					}
+				}
+				else if($num_rows_lock_manages > 0){
+					$query_update = 'UPDATE tbl_manages SET ActionTaken = "Unlocked Account", ActionDate = now()
+									WHERE AdminID = (SELECT AdminID FROM tbl_admin WHERE Email LIKE "' . $_SESSION['adminsid']. '")
+									AND UserID = ' . $key;
+					$query_html_update = htmlspecialchars($query_update);
+					$result_update = mysqli_query($db, $query_update);
+					if(!$result_update){
+						$refreshQueryString = $refreshQueryString . "?Errormessage=unlock";
+					}
+				}
+				print "<script>window.open('" . $refreshQueryString . "', '_self') </script>";
+			}
+		}
+		mysqli_close($db);
+	?>
     </div>
   </body>
   

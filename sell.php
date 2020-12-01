@@ -63,7 +63,7 @@
 		}
 		
 		//get all posts sorted by most recently posted
-		$query_get_posts = 'SELECT BookImage, BookTitle, BookISBN, BookAuthor, PostContent FROM tbl_book_post WHERE PostVisible = TRUE ORDER BY PostedStamp ASC';
+		$query_get_posts = 'SELECT BookImage, BookTitle, BookISBN, BookAuthor, PostContent FROM tbl_book_post, tbl_user WHERE tbl_book_post.UserID = tbl_user.UserID AND PostVisible = TRUE AND Disabled = False ORDER BY PostedStamp ASC';
 		$query_html_get_posts = htmlspecialchars($query_get_posts);
 		$result_get_posts = mysqli_query($db, $query_get_posts);
 		$num_fields_get_posts = mysqli_num_fields($result_get_posts);

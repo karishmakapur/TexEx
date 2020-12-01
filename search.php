@@ -34,7 +34,7 @@
 	
 	<!--Search bar -->
 		<h1><span class="text">Search for a book!</span></h1>
-		<form method="post">
+		<form method="post" id="formElem">
 			<div class="searchBarWrapper" id="searchWrapper">
 				
 					<div class="selectWrapper">
@@ -133,129 +133,43 @@
 			}
 
 			$searchBy = $_POST['sortSearch'];
-			if($searchBy == 'Relevance'){
-				print '<script type="text/javascript">';
-				print 'deleteResults()';
-				print '</script>';
-				$query_SearchByRelevance = 'SELECT BookImage, BookTitle,  BookISBN, BookAuthor, PostContent FROM tbl_book_post WHERE ' . $searchType . ' LIKE "%' . $searchTerm . '%" AND PostVisible = TRUE';
-				$query_html_SearchByRelevance = htmlspecialchars($query_SearchByRelevance);
-				$result_SearchByRelevance = mysqli_query($db, $query_SearchByRelevance);
-				$num_fields_SearchByRelevance = mysqli_num_fields($result_SearchByRelevance);
-				$num_rows_SearchByRelevance = mysqli_num_rows($result_SearchByRelevance);
-				$row_SearchByRelevance = mysqli_fetch_assoc($result_SearchByRelevance);
-				if($num_rows_SearchByRelevance == 0){
-					print '<script type="text/javascript">';
-					print 'displayNoResults()';
-					print '</script>';
-				}
-				else{
-					for($row_num = 0; $row_num < $num_rows_SearchByRelevance; $row_num++){
-						$values_SearchByRelevance = array_values($row_SearchByRelevance);
-						print '<script type="text/javascript">';
-						print 'displayResults('.json_encode($values_SearchByRelevance).')';
-						print '</script>';
-						$row_SearchByRelevance = mysqli_fetch_assoc($result_SearchByRelevance);
-					}
-				}
-			}
-			else if($searchBy == 'Recently Posted'){
-				print '<script type="text/javascript">';
-				print 'deleteResults()';
-				print '</script>';
-				$query_searchByRecent = 'SELECT BookImage, BookTitle,  BookISBN, BookAuthor, PostContent, PostedStamp FROM tbl_book_post WHERE ' . $searchType . ' LIKE "%' . $searchTerm . '%" AND PostVisible = TRUE ORDER BY PostedStamp ASC';
-				$query_html_searchByRecent = htmlspecialchars($query_searchByRecent);
-				$result_searchByRecent = mysqli_query($db, $query_searchByRecent);
-				$num_fields_searchByRecent = mysqli_num_fields($result_searchByRecent);
-				$num_rows_searchByRecent = mysqli_num_rows($result_searchByRecent);
-				$row_searchByRecent = mysqli_fetch_assoc($result_searchByRecent);
-				if($num_rows_searchByRecent == 0){
-					print '<script type="text/javascript">';
-					print 'displayNoResults()';
-					print '</script>';
-				}
-				else{
-					for($row_num = 0; $row_num < $num_rows_searchByRecent; $row_num++){
-						$values_searchByRecent = array_values($row_searchByRecent);
-						print '<script type="text/javascript">';
-						print 'displayResults('.json_encode($values_searchByRecent).')';
-						print '</script>';
-						$row_searchByRecent = mysqli_fetch_assoc($result_searchByRecent);
-					}
-				}
+			print '<script type="text/javascript">';
+			print 'deleteResults()';
+			print '</script>';
+			$query_Search = 'SELECT BookImage, BookTitle,  BookISBN, BookAuthor, PostContent FROM tbl_book_post, tbl_user WHERE tbl_book_post.UserID = tbl_user.UserID AND ' . $searchType . ' LIKE "%' . $searchTerm . '%" AND PostVisible = TRUE AND Disabled = False';
+			
+			if($searchBy == 'Recently Posted'){
+				$query_Search = 'SELECT BookImage, BookTitle,  BookISBN, BookAuthor, PostContent, PostedStamp FROM tbl_book_post, tbl_user  WHERE tbl_book_post.UserID = tbl_user.UserID AND ' . $searchType . ' LIKE "%' . $searchTerm . '%" AND PostVisible = TRUE AND Disabled = False ORDER BY PostedStamp ASC';
+			
 			}
 			else if ($searchBy == 'ASCTitle'){
-				print '<script type="text/javascript">';
-				print 'deleteResults()';
-				print '</script>';
-				$query_searchByASC = 'SELECT BookImage, BookTitle,  BookISBN, BookAuthor, PostContent FROM tbl_book_post WHERE ' . $searchType . ' LIKE "%' . $searchTerm . '%" AND PostVisible = TRUE ORDER BY BookTitle DESC';
-				$query_html_searchByASC = htmlspecialchars($query_searchByASC);
-				$result_searchByASC = mysqli_query($db, $query_searchByASC);
-				$num_fields_searchByASC = mysqli_num_fields($result_searchByASC);
-				$num_rows_searchByASC = mysqli_num_rows($result_searchByASC);
-				$row_searchByASC = mysqli_fetch_assoc($result_searchByASC);
-				if($num_rows_searchByASC == 0){
-					print '<script type="text/javascript">';
-					print 'displayNoResults()';
-					print '</script>';
-				}
-				else{
-					for($row_num = 0; $row_num < $num_rows_searchByASC; $row_num++){
-						$values_searchByASC = array_values($row_searchByASC);
-						print '<script type="text/javascript">';
-						print 'displayResults('.json_encode($values_searchByASC).')';
-						print '</script>';
-						$row_searchByASC = mysqli_fetch_assoc($result_searchByASC);
-					}
-				}
+				$query_Search = 'SELECT BookImage, BookTitle,  BookISBN, BookAuthor, PostContent FROM tbl_book_post, tbl_user  WHERE tbl_book_post.UserID = tbl_user.UserID AND ' . $searchType . ' LIKE "%' . $searchTerm . '%" AND PostVisible = TRUE AND Disabled = False ORDER BY BookTitle DESC';
+			
 			}
 			else if ($searchBy == 'ASCAuthor'){
-				print '<script type="text/javascript">';
-				print 'deleteResults()';
-				print '</script>';
-				$query_searchByASC = 'SELECT BookImage, BookTitle,  BookISBN, BookAuthor, PostContent FROM tbl_book_post WHERE ' . $searchType . ' LIKE "%' . $searchTerm . '%" AND PostVisible = TRUE ORDER BY BookAuthor DESC';
-				$query_html_searchByASC = htmlspecialchars($query_searchByASC);
-				$result_searchByASC = mysqli_query($db, $query_searchByASC);
-				$num_fields_searchByASC = mysqli_num_fields($result_searchByASC);
-				$num_rows_searchByASC = mysqli_num_rows($result_searchByASC);
-				$row_searchByASC = mysqli_fetch_assoc($result_searchByASC);
-				if($num_rows_searchByASC == 0){
-					print '<script type="text/javascript">';
-					print 'displayNoResults()';
-					print '</script>';
-				}
-				else{
-					for($row_num = 0; $row_num < $num_rows_searchByASC; $row_num++){
-						$values_searchByASC = array_values($row_searchByASC);
-						print '<script type="text/javascript">';
-						print 'displayResults('.json_encode($values_searchByASC).')';
-						print '</script>';
-						$row_searchByASC = mysqli_fetch_assoc($result_searchByASC);
-					}
-				}
+				$query_Search = 'SELECT BookImage, BookTitle,  BookISBN, BookAuthor, PostContent FROM tbl_book_post, tbl_user  WHERE tbl_book_post.UserID = tbl_user.UserID AND ' . $searchType . ' LIKE "%' . $searchTerm . '%" AND PostVisible = TRUE AND Disabled = False ORDER BY BookAuthor DESC';
+			
 			}
 			else if($searchBy == 'Oldest'){
+				$query_Search = 'SELECT BookImage, BookTitle,  BookISBN, BookAuthor, PostContent, PostedStamp FROM tbl_book_post, tbl_user  WHERE tbl_book_post.UserID = tbl_user.UserID AND ' . $searchType . ' LIKE "%' . $searchTerm . '%" AND PostVisible = TRUE AND Disabled = False ORDER BY PostedStamp DESC';
+			}
+			$query_html_Search = htmlspecialchars($query_Search);
+			$result_Search = mysqli_query($db, $query_Search);
+			$num_fields_Search = mysqli_num_fields($result_Search);
+			$num_rows_Search = mysqli_num_rows($result_Search);
+			if($num_rows_Search == 0){
 				print '<script type="text/javascript">';
-				print 'deleteResults()';
+				print 'displayNoResults()';
 				print '</script>';
-				$query_searchByASC = 'SELECT BookImage, BookTitle,  BookISBN, BookAuthor, PostContent, PostedStamp FROM tbl_book_post WHERE ' . $searchType . ' LIKE "%' . $searchTerm . '%" AND PostVisible = TRUE ORDER BY PostedStamp DESC';
-				$query_html_searchByASC = htmlspecialchars($query_searchByASC);
-				$result_searchByASC = mysqli_query($db, $query_searchByASC);
-				$num_fields_searchByASC = mysqli_num_fields($result_searchByASC);
-				$num_rows_searchByASC = mysqli_num_rows($result_searchByASC);
-				$row_searchByASC = mysqli_fetch_assoc($result_searchByASC);
-				if($num_rows_searchByASC == 0){
+			}
+			else{
+				$row_Search = mysqli_fetch_assoc($result_Search);
+				for($row_num = 0; $row_num < $num_rows_Search; $row_num++){
+					$values_Search = array_values($row_Search);
 					print '<script type="text/javascript">';
-					print 'displayNoResults()';
+					print 'displayResults('.json_encode($values_Search).')';
 					print '</script>';
-				}
-				else{
-					for($row_num = 0; $row_num < $num_rows_searchByASC; $row_num++){
-						$values_searchByASC = array_values($row_searchByASC);
-						print '<script type="text/javascript">';
-						print 'displayResults('.json_encode($values_searchByASC).')';
-						print '</script>';
-						$row_searchByASC = mysqli_fetch_assoc($result_searchByASC);
-					}
+					$row_Search = mysqli_fetch_assoc($result_Search);
 				}
 			}
 		}

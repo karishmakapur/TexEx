@@ -16,7 +16,7 @@ function displayNoResults(){
 	
 	//add div to document.
 	//append searchResultContainer to end of document.
-	document.getElementById("sortSearchWrapper").insertAdjacentElement('afterend', searchResultContainer);
+	document.getElementById("formElem").insertAdjacentElement('afterend', searchResultContainer);
 }
 
 function displayResults(result){
@@ -106,7 +106,7 @@ function displayResults(result){
 		
 		
 		//append searchResultContainer to end of document.
-		document.getElementById("sortSearchWrapper").insertAdjacentElement('afterend', searchResultContainer);
+		document.getElementById("formElem").insertAdjacentElement('afterend', searchResultContainer);
 	
 }
 

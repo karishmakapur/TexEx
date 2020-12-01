@@ -102,20 +102,21 @@
 		$result_get_saved_searches = mysqli_query($db, $query_get_saved_searches);
 		$num_fields_get_saved_searches = mysqli_num_fields($result_get_saved_searches);
 		$num_rows_get_saved_searches = mysqli_num_rows($result_get_saved_searches);
-		$row_get_saved_searches = mysqli_fetch_assoc($result_get_saved_searches);
-		if($row_get_saved_searches == 0){
+		if($num_rows_get_saved_searches == 0){
 			print '<script type="text/javascript">';
 			print 'noSavedSearches()';
 			print '</script>';
 		}
 		else{
-			for($row_num = 0; $row_num < $num_rows_get_saved_searches; $row_num++){
+			$searches = array();
+			while($row_get_saved_searches = mysqli_fetch_assoc($result_get_saved_searches)){
 				$values_get_saved_searches = array_values($row_get_saved_searches);
-				print '<script type="text/javascript">';
-				print 'displaySavedSearch('.json_encode($values_get_saved_searches).')';
-				print '</script>';
-				$row_get_saved_searches = mysqli_fetch_assoc($result_get_saved_searches);
+				$searches[] = $values_get_saved_searches;
+				
 			}
+			print '<script type="text/javascript">';
+			print 'displaySavedSearch('.json_encode($searches).')';
+			print '</script>';
 		}
 	
 		$key = $_SERVER['QUERY_STRING'];
