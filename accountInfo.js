@@ -10,21 +10,34 @@ function displayAccount (userInfo) {
 	email.setAttribute("value", userInfo[1]);
 	school.setAttribute("value", userInfo[2]);
 }
-
+function forceOpenModal(){
+	var ev = document.createEvent("MouseEvent");
+	ev.initMouseEvent('click', true, true, window, 0,0,0,0,0,false,false,false,false,0,null);
+	document.getElementById("updatePasswordButton").click();
+	
+}
 function openModal (event) {
 	
 	var dom = event.currentTarget;
+	var formElement = document.createElement("form");
+	formElement.setAttribute("method", "post");
 	var closeButton = document.createElement("span");
 	var oldPassword = document.createElement("input");
 	var newPassword = document.createElement("input");
 	var confirmPassword = document.createElement("input");
 	var okButton = document.createElement("input");
+	var submitButton = document.createElement("input");
+	submitButton.setAttribute("type", "submit");
+	submitButton.style.visibility = "hidden";
+	submitButton.setAttribute("id", "submitBttn");
+	submitButton.setAttribute("name", "submitBttn");
 	var innerContent = document.createElement("div");
 	var modal = document.createElement("div");
 	var breakLine1 = document.createElement("br");
 	var breakLine2 = document.createElement("br");
 	var breakLine3 = document.createElement("br");
 	var breakLine4 = document.createElement("br");
+	var breakLine5 = document.createElement("br");
 	
 
 	closeButton.setAttribute("class", "closeButton");
@@ -35,28 +48,32 @@ function openModal (event) {
 	oldPassword.setAttribute("type", "password");
 	oldPassword.setAttribute("placeholder", "Enter old password");
 	oldPassword.setAttribute("id", "oldPassword");
+	oldPassword.setAttribute("name", "oldPassword");
 	oldPassword.setAttribute("class", "modalInput");
 
 
 	newPassword.setAttribute("type", "password");
 	newPassword.setAttribute("placeholder", "Enter new password");
 	newPassword.setAttribute("id", "newPassword");
+	newPassword.setAttribute("name", "newPassword");
 	newPassword.setAttribute("class", "modalInput");
 	newPassword.setAttribute("required", "true");
 
 	confirmPassword.setAttribute("type", "password");
 	confirmPassword.setAttribute("placeholder", "Confirm new password");
 	confirmPassword.setAttribute("id", "confirmPassword");
+	confirmPassword.setAttribute("name", "confirmPassword");
 	confirmPassword.setAttribute("class", "modalInput");
 	confirmPassword.setAttribute("required", "true");
 
 	
 	okButton.setAttribute("type", "button");
 	okButton.setAttribute("id", "changePass");
+	okButton.setAttribute("name", "changePass");
 	okButton.setAttribute("value", "Change Password");
 	okButton.setAttribute("class", "okButton");
 
-	okButton.addEventListener("click", changePassword, false);
+	okButton.addEventListener("click", validateFields, false);
 
 	innerContent.setAttribute("class", "modal-content");
 	innerContent.setAttribute("id", "modalContent");
@@ -70,11 +87,13 @@ function openModal (event) {
 	innerContent.appendChild(breakLine4);
 	innerContent.appendChild(confirmPassword);
 	innerContent.appendChild(okButton);
-
+	innerContent.appendChild(breakLine5);
+	innerContent.appendChild(submitButton);
 	modal.appendChild(innerContent);
 	modal.style.display = "block";
 	modal.setAttribute("class", "modalStyle");
-	document.getElementById("fieldsContainer").insertAdjacentElement('afterend', modal);
+	formElement.appendChild(modal);
+	document.getElementById("fieldsContainer").insertAdjacentElement('afterend', formElement);
 
 }
 
@@ -90,7 +109,7 @@ function closeMsg (event) {
 
 }
 
-function changePassword (event) {
+function validateFields(event) {
 	if(document.body.contains(document.getElementById("errorDiv"))){
 		var child = document.getElementById("errorDiv");
 		child.parentNode.removeChild(child);
@@ -98,41 +117,35 @@ function changePassword (event) {
 	var oldPassword = document.getElementById("oldPassword").value;
 	var newPassword = document.getElementById("newPassword").value;
 	var confirmPassword = document.getElementById("confirmPassword").value;
-	var passwordChange = false;
 	if(oldPassword == "" || newPassword == "" || confirmPassword == ""){
 		passwordErrorMessage("All fields are required!");
 		return false;
 	}
-	var correctPassword = checkPassword(CryptoJS.SHA256(oldPassword.value));
-	if(correctPassword) {
-		var pos = newPassword.search(/(?=^.{8,}$)(?=.*\d)(?=.*[!@#$%^&*]+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/);
-		if (pos != 0) {
-			passwordErrorMessage("Your new password length must be greater than or equal to 8. It must contain one or more uppercase characters. It must contain one or more lowercase characters. It must contain one or more numeric values. It must contain one or more special characters.");
-			return false;
-		}
-		var passwordConfirm = validateConfirmPassword(confirmPassword, newPassword);
-		if (!passwordConfirm) {
-			passwordErrorMessage("Your new password and your confirm password do not match. Try again.");
-			return false;
-		}
-		// TO DO swap value with passwordchange function
-		passwordChange = true;
-	} 
-	else 
-	{
-		passwordErrorMessage("Please make sure your old password is entered correctly.");
+	var encryptedPass = CryptoJS.SHA256(document.getElementById("oldPassword").value);
+	document.getElementById("oldPassword").value = encryptedPass;
+	
+	var pos = newPassword.search(/(?=^.{8,}$)(?=.*\d)(?=.*[!@#$%^&*]+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/);
+	if (pos != 0) {
+		passwordErrorMessage("Your new password length must be greater than or equal to 8. It must contain one or more uppercase characters. It must contain one or more lowercase characters. It must contain one or more numeric values. It must contain one or more special characters.");
 		return false;
 	}
-	if (passwordChange) {
-		var close = document.getElementById("closeButton");
-		close.parentNode.parentNode.style.display = "none";
-		
-		//create a success message
-		notificationMessage("Successmessage", "Success! Your password has been successfully changed!");		
-		
+	var passwordConfirm = validateConfirmPassword(confirmPassword, newPassword);
+	if (!passwordConfirm) {
+		passwordErrorMessage("Your new password and your confirm password do not match. Try again.");
+		return false;
 	}
+	var encryptedNewPass = CryptoJS.SHA256(document.getElementById("newPassword").value);
+	document.getElementById("newPassword").value = encryptedNewPass;	
+	var encryptedConfirmPass = CryptoJS.SHA256(document.getElementById("confirmPassword").value);
+	document.getElementById("confirmPassword").value = encryptedConfirmPass;
+	var ev = document.createEvent("MouseEvent");
+	ev.initMouseEvent('click', true, true, window, 0,0,0,0,0,false,false,false,false,0,null);
+	document.getElementById("submitBttn").click();
+	
 	return true;
+	
 }
+
 
 function validateConfirmPassword(entryTwo, original){
 	if(entryTwo !== original){
@@ -142,11 +155,11 @@ function validateConfirmPassword(entryTwo, original){
 	return true;
 }
 
-function checkPassword (oldPassword) {
+/*function checkPassword (oldPassword) {
 	//TO DO true needs to be swapped with PHP funtion call to determine if old pw is users pw.
 	var correctPassword = true;
 	return correctPassword;
-}
+}*/
 
 function updateAccount (event) {
 
@@ -189,7 +202,7 @@ function updateAccount (event) {
 	name = titleCase(name);
 	school = titleCase(school);
 	
-	// TO DO swap these values with a PHP function to update account
+	/*// TO DO swap these values with a PHP function to update account
 	var updatedAccount = true;
 
 	if(updatedAccount == false) {
@@ -198,15 +211,28 @@ function updateAccount (event) {
 		
 		notificationMessage("Successmessage", "Success! Your account has been successfully updated!");		
 	}
-	return updatedAccount;
+	return updatedAccount;*/
+	
+	var ev = document.createEvent("MouseEvent");
+	ev.initMouseEvent('click', true, true, window, 0,0,0,0,0,false,false,false,false,0,null);
+	document.getElementById("submitButton").click();
+	return true;
 }
 
 function disableAccount (event) {
 	
 	var userAnswer = confirm("Are you sure you want to disable your account?");
 	if(userAnswer == false){
+		event.preventDefault();
 		return false;
 	}
+	
+	
+	var ev = document.createEvent("MouseEvent");
+	ev.initMouseEvent('click', true, true, window, 0,0,0,0,0,false,false,false,false,0,null);
+	document.getElementById("disableButton").click();
+	return true;
+	/*
 	// TO DO swap with PHP function to disable account
 	var disabledAccount = true;
 
@@ -217,7 +243,7 @@ function disableAccount (event) {
 	} else {
 		alert("Account could not be disabled, try again later.");
 		return false;
-	}
+	}*/
 
 }
 function noSavedSearches(){

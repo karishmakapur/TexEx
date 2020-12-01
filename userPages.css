@@ -486,3 +486,9 @@ h1{
 	width: 100%;
 }
 /*end of my posts page*/
+
+/*account info*/
+.submitFormButton{
+	visibility: hidden;
+}
+/*end of account info*/
