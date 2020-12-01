@@ -27,7 +27,7 @@
 			
 			<input type="password" placeholder="Password" class="PasswordField" aria-label="Admin Password" id="passwordField" name="passwordField" required/>
 			
-			<input type="submit" value="Login" class="buttonFields" id="loginButton"/>
+			<input type="submit" value="Login" class="buttonFields" name="loginButton" id="loginButton"/>
 		</div>
 	</form>
 </div>
@@ -45,33 +45,35 @@
 	}
 
 	//first get user inputted email address and password
-	$UserInputEmail = $_POST["emailField"];
-	trim($UserInputEmail);
-	$UserInputEmail = stripslashes($UserInputEmail);
-	$UserInputPassword = $_POST["passwordField"];
-	trim($UserInputPassword);
-	$UserInputPassword = stripslashes($UserInputPassword);
-	
-	//validation query
-	$query_valid = 'SELECT Email, Password FROM tbl_admin WHERE Email LIKE "' . $UserInputEmail . '" and Password LIKE "' . $UserInputPassword . '"';
-	$query_html_valid = htmlspecialchars($query_valid);
-	$result_valid = mysqli_query($db, $query_valid);
-	$num_fields_valid = mysqli_num_fields($result_valid);
-	$num_rows_valid = mysqli_num_rows($result_valid);
-	if($num_rows_valid == 0){
-		print '<script type="text/javascript">';
-		print 'LoginErrorMessage("An account with that email address and password does not exist. Try again.")';
-		print '</script>';
-		exit();
+	if(isset($_POST['loginButton'])){
+		$UserInputEmail = $_POST["emailField"];
+		trim($UserInputEmail);
+		$UserInputEmail = stripslashes($UserInputEmail);
+		$UserInputPassword = $_POST["passwordField"];
+		trim($UserInputPassword);
+		$UserInputPassword = stripslashes($UserInputPassword);
+		
+		//validation query
+		$query_valid = 'SELECT Email, Password FROM tbl_admin WHERE Email LIKE "' . $UserInputEmail . '" and Password LIKE "' . $UserInputPassword . '"';
+		$query_html_valid = htmlspecialchars($query_valid);
+		$result_valid = mysqli_query($db, $query_valid);
+		$num_fields_valid = mysqli_num_fields($result_valid);
+		$num_rows_valid = mysqli_num_rows($result_valid);
+		if($num_rows_valid == 0){
+			print '<script type="text/javascript">';
+			print 'LoginErrorMessage("An account with that email address and password does not exist. Try again.")';
+			print '</script>';
+			exit();
+		}
+		else{
+			$_SESSION['adminsid'] = $UserInputEmail;
+			print '<script type="text/javascript">';
+			print 'redirectToManageUsers()';
+			print '</script>';
+			exit();
+		}
+		mysqli_close($db);
 	}
-	else{
-		$_SESSION['sid'] = $UserInputEmail;
-		print '<script type="text/javascript">';
-		print 'redirectToManageUsers()';
-		print '</script>';
-		exit();
-	}
-	mysqli_close($db);
 ?>
 </body>
 </html>

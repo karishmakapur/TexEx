@@ -34,5 +34,5 @@ function LoginErrorMessage(message){
 	document.getElementById("passwordField").insertAdjacentElement("afterend", errorDiv);
 }
 function redirectToManageUsers(){
-	window.location.href="manageUsers.html";
+	window.location.href="manageUsers.php";
 }

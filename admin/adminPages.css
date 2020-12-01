@@ -318,4 +318,26 @@ body, html {
 	text-align: center;
 	vertical-align: middle;
 }
+.submitBttn{
+	visibility: hidden;
+}
+.sortSearchWrapper{
+	border-radius: 25px;
+	display: inline;
+	margin: 0 auto;
+	max-width: 900px;
+	padding-bottom: 10px;
+	padding-top: 10px;
+	text-align: center;
+	top: 20px;
+}
+.sortSearchBox{
+	background-color: #B2DFEE;
+	border: none;
+	border-radius: 25px;
+	box-shadow: 1px 4px 6px rgba(0, 0, 0, 0.15);
+	color: #FFFFFF;
+	padding: 10px;
+	
+}
 /*end of css for manageUsers*/

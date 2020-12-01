@@ -1,33 +1,28 @@
 function searchUser(event){
+	
 	if(event.keyCode === 13){
+		
 		var searchTerm = document.getElementById("searchBox").value;
 		
-		while(document.getElementById("searchField").nextSibling){
+		
+		if(searchTerm == ''){
+			return false;
+		}
+		else{
+			
+			var ev = document.createEvent("MouseEvent");
+			ev.initMouseEvent('click', true, true, window, 0,0,0,0,0,false,false,false,false,0,null);
+			document.getElementById("searchButton").click();
+		}
+			
+	}
+}
+function clearResults(){
+	while(document.getElementById("searchField").nextSibling){
 			var child = document.getElementById("searchField").nextSibling;
 			child.parentNode.removeChild(child);
 		}
-		if(searchTerm != ''){
-			
-			//send the search term to the PHP function.
-			//PHP function should search regex for all posts that include letters provided.
-			var searched = new Array(new Array());
-			searched = [
-			["9038","kapur004@cougars.csusm.edu", "Karishma Kapur", 0]
-			];
-			
-			if(!isEmpty(searched)){
-				showUsers(searched);
-			}
-			else{
-				showNoUsers();
-			}
-		}
-		else{
-			displayUsers();
-		}
-	}
 }
-
 function lockUser(event){
 	var id = this.id;
 	var pos = id.search(/\d+/);
@@ -44,27 +39,7 @@ function lockUser(event){
 }
 
 
-function displayUsers(){
-	//users array will be filled with PHP function that finds all users in the system and returns a 2d array with their primary
-	//key and their name. PHP will also be responsible for sorting the array on the primary key value
-	
-	var users = new Array(new Array());
-	users = [["1", "lopez816@cougars.csusm.edu", "Marcos Lopez", 0],
-	["9038","kapur004@cougars.csusm.edu", "Karishma Kapur", 0]];
-
-	if (!isEmpty(users)) {
-		showUsers(users);
-	}	
-	else {
-		showNoUsers();
-	}
-}  
-function showUsers(users){
-//if there are results
-	for(var i = users.length-1; i >= 0; i--){
-			
-		var result = users[i];
-		
+function showUsers(result){
 		var searchResultContainer = document.createElement("div");
 		var bookImage = document.createElement("img");
 		var subDiv = document.createElement("div");
@@ -127,7 +102,7 @@ function showUsers(users){
 		//append searchResultContainer to end of document.
 		document.getElementById("searchField").insertAdjacentElement('afterend', searchResultContainer);
 			
-	}
+	
 }
 function showNoUsers(){
 	//create elements
@@ -155,5 +130,10 @@ function showNoUsers(){
 }
 function isEmpty(array) {
 	return Array.isArray(array) && (array.length == 0 || array.every(isEmpty));
+}
+function submitSort(){
+	var ev = document.createEvent("MouseEvent");
+	ev.initMouseEvent('click', true, true, window, 0,0,0,0,0,false,false,false,false,0,null);
+	document.getElementById("searchButton").click();
 }
 
