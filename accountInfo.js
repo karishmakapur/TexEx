@@ -232,18 +232,7 @@ function disableAccount (event) {
 	ev.initMouseEvent('click', true, true, window, 0,0,0,0,0,false,false,false,false,0,null);
 	document.getElementById("disableButton").click();
 	return true;
-	/*
-	// TO DO swap with PHP function to disable account
-	var disabledAccount = true;
-
-	if (disabledAccount) {
-		alert("Your account has been successfully disabled.");
-		window.location.href="index.html";
-		return true;
-	} else {
-		alert("Account could not be disabled, try again later.");
-		return false;
-	}*/
+	
 
 }
 function noSavedSearches(){
