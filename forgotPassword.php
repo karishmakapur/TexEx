@@ -5,7 +5,7 @@
 	<meta charset="utf-8"/>
 	<link rel="stylesheet" type="text/css" href="welcomeRegisterLogin.css"/>
 	<link rel="icon" href="Images/Logo.svg" type="image/x-icon" />
-	<script type="text/javascript" src="resetEmail.js"></script>
+	<script type="text/javascript" src="forgotPassword.js"></script>
 	
 	<!--This script is an encryption method script-->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
