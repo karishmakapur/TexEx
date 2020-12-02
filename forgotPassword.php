@@ -19,8 +19,10 @@
 		<h1 class="text">Forgot Password</h1>
 		<div class="fieldsContainerLogin">
 			<input type="email" placeholder="Email Address" class="EmailField" id="emailField" name="emailField" aria-label="Your Email Address" required/>
-
-			<input type="submit" value="Send Forgot Password Email" class="buttonFields" name="submitButton" id="loginButton"/>
+			<input type="hidden" id="pass" name="pass" />
+			<input type="hidden" id="encryptpass" name="encryptpass" />
+			<input type="button" value="Send Forgot Password Email" class="buttonFields" name="sendButton" id="sendButton" onclick="generate_pass(8)"/>
+			<input type="submit" value="Send Forgot Password Email" class="passButton" name="submitButton" id="loginButton"/>
 		</div>
 		<div class="linkContainer">
 			<a class="redirectLink" href="login.php">Go back to Login</a>
@@ -60,7 +62,7 @@
 		}
 		
 		//generate password
-		$temporaryPass = generate_password(8);
+		$temporaryPass = $_POST['pass'];
 		
 		$emailSubject = "TexEx: Forgot Password";
 			
@@ -86,8 +88,9 @@
 		$emailStatus = mail($recipientEmail, $emailSubject, $message, $headers);
 		if($emailStatus) {
 			
-			
-			$query_change = 'UPDATE tbl_user SET Password = "' . $temporaryPass . '" WHERE UserID = (SELECT x.UserID FROM (SELECT UserID FROM tbl_user WHERE Email LIKE "' . $recipientEmail . '") as x)';
+		
+			$encrypt = $_POST['encryptpass'];
+			$query_change = 'UPDATE tbl_user SET Password = "' . $encrypt . '" WHERE UserID = (SELECT x.UserID FROM (SELECT UserID FROM tbl_user WHERE Email LIKE "' . $recipientEmail . '") as x)';
 			$query_html_change = htmlspecialchars($query_change);
 			$result_change = mysqli_query($db, $query_change);
 			if(!result_change){
@@ -108,10 +111,6 @@
 		}
 	}
 
-function generate_password($chars) {
-	$data = '1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcefghijklmnopqrstuvwxyz';
-	return substr(str_shuffle($data), 0, $chars);
-}
 ?>
 </html>
 
