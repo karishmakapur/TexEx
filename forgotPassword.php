@@ -21,7 +21,7 @@
 			<input type="email" placeholder="Email Address" class="EmailField" id="emailField" name="emailField" aria-label="Your Email Address" required/>
 			<input type="hidden" id="pass" name="pass" />
 			<input type="hidden" id="encryptpass" name="encryptpass" />
-			<input type="button" value="Send Forgot Password Email" class="buttonFields" name="sendButton" id="sendButton" onclick="generate_pass(8)"/>
+			<input type="button" value="Send Forgot Password Email" class="buttonFields" name="sendButton" id="sendButton" onclick="generate_password(8)"/>
 			<input type="submit" value="Send Forgot Password Email" class="passButton" name="submitButton" id="loginButton"/>
 		</div>
 		<div class="linkContainer">
