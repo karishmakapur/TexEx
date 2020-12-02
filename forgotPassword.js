@@ -1,5 +1,5 @@
 function message(message){
-	if(document.contains(document.getElementById("errorDiv"))){
+	if(document.body.contains(document.getElementById("errorDiv"))){
 		document.getElementById("errorDiv").remove();
 	}
 	var errorDiv = document.createElement("div");

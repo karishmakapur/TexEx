@@ -1,6 +1,6 @@
 //login.js
 function encryptPass(){
-	if(document.contains(document.getElementById("errorDiv"))){
+	if(document.body.contains(document.getElementById("errorDiv"))){
 		document.getElementById("errorDiv").remove();
 	}
 	//getting the values of the email and password fields
@@ -18,7 +18,7 @@ function encryptPass(){
 }
 
 function LoginErrorMessage(message){
-	if(document.contains(document.getElementById("errorDiv"))){
+	if(document.body.contains(document.getElementById("errorDiv"))){
 		document.getElementById("errorDiv").remove();
 	}
 	var errorDiv = document.createElement("div");
