@@ -1,7 +1,7 @@
 /*query for getting all posts sorted by most recently posted*/
 SELECT BookImage, BookTitle, BookISBN, BookAuthor, PostContent
-FROM tbl_book_post
-WHERE PostVisible = TRUE
+FROM tbl_book_post, tbl_user
+WHERE tbl_book_post.UserID = tbl_user.ID AND PostVisible = TRUE AND Disabled = False
 ORDER BY PostedStamp DESC;
 
 /*query for making a post*/

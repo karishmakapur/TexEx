@@ -17,7 +17,7 @@ WHERE UserID = (SELECT x.UserID FROM (SELECT UserID FROM tbl_user WHERE Email LI
 /*get user's current password for password change validation*/
 SELECT Password 
 FROM tbl_user
-WHERE UserID = (SELECT UserID FROM tbl_user WHERE Email LIKE 'lopez811@csu.fullerton.edu') AND Disabled = FALSE;
+WHERE UserID = (SELECT UserID FROM tbl_user WHERE Email LIKE 'lopez811@csu.fullerton.edu') AND Disabled = FALSE AND Password LIKE "P@ssword1";
 
 /* if user entered in the correct old password, then we can update password */
 UPDATE tbl_user 
