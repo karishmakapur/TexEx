@@ -86,10 +86,11 @@
 			print "removeQueryString();";
 			print '</script>';
 		}
-		$host =  'db';
-		$userid =  'user';
-		$password = 'test';
-		$schema = 'myDb';
+		$host =  'localhost';
+		$userid =  'group2';
+		$password = 'veZB9mEPGifk';
+		$schema = 'group2';
+
 
 		$db = new mysqli($host, $userid,  $password, $schema);
 		
@@ -129,18 +130,18 @@
 			$sortBy = $_POST['sortSearch'];
 			
 			$query_string = 'SELECT PostID, Email, BookImage, BookTitle, BookISBN, BookAuthor, PostContent FROM tbl_book_post, tbl_user
-							WHERE tbl_book_post.UserID = tbl_user.UserID AND PostVisible = TRUE AND Disabled = FALSE AND ' . $search . ' LIKE "%' . $searchBy .'%"';
+							WHERE tbl_book_post.UserID = tbl_user.UserID AND PostVisible = TRUE AND Disabled = FALSE AND ' . $search . ' LIKE "' . $searchBy .'%"';
 			if($sortBy == 'Recently Posted'){
 				$query_string = 'SELECT PostID, Email, BookImage, BookTitle, BookISBN, BookAuthor, PostContent FROM tbl_book_post, tbl_user
-							WHERE tbl_book_post.UserID = tbl_user.UserID AND PostVisible = TRUE AND Disabled = FALSE AND ' . $search . ' LIKE "%' . $searchBy .'%" ORDER BY PostedStamp ASC';			
+							WHERE tbl_book_post.UserID = tbl_user.UserID AND PostVisible = TRUE AND Disabled = FALSE AND ' . $search . ' LIKE "' . $searchBy .'%" ORDER BY PostedStamp ASC';			
 			}
 			else if ($sortBy == 'ASCTitle'){
 				$query_string = 'SELECT PostID, Email, BookImage, BookTitle, BookISBN, BookAuthor, PostContent FROM tbl_book_post, tbl_user
-							WHERE tbl_book_post.UserID = tbl_user.UserID AND PostVisible = TRUE AND Disabled = FALSE AND ' . $search . ' LIKE "%' . $searchBy .'%" ORDER BY BookTitle DESC';			
+							WHERE tbl_book_post.UserID = tbl_user.UserID AND PostVisible = TRUE AND Disabled = FALSE AND ' . $search . ' LIKE "' . $searchBy .'%" ORDER BY BookTitle DESC';			
 			}
 			else if ($sortBy == 'ASCAuthor'){
 				$query_string = 'SELECT PostID, Email, BookImage, BookTitle, BookISBN, BookAuthor, PostContent FROM tbl_book_post, tbl_user
-							WHERE tbl_book_post.UserID = tbl_user.UserID AND PostVisible = TRUE AND Disabled = FALSE AND ' . $search . ' LIKE "%' . $searchBy .'%" ORDER BY BookAuthor DESC';			
+							WHERE tbl_book_post.UserID = tbl_user.UserID AND PostVisible = TRUE AND Disabled = FALSE AND ' . $search . ' LIKE "' . $searchBy .'%" ORDER BY BookAuthor DESC';			
 			}
 			else if($sortBy == 'Oldest'){
 				$query_string = 'SELECT PostID, Email, BookImage, BookTitle, BookISBN, BookAuthor, PostContent FROM tbl_book_post, tbl_user

@@ -40,7 +40,7 @@
 			</div>
 			<form method="post">
 				<div class="fieldsContainer" id="fieldsContainer">
-					<input type="text" placeholder="Your Name..." class="NameField" id="nameField" name="nameField" aria-label="Your Name" pattern="^[A-Z]{1}[a-z]+( [A-Z]{1}[a-z]+)*$" value="<?php if(isset($_POST['nameField'])) echo htmlspecialchars($_POST['nameField']); ?>"/>
+					<input type="text" placeholder="Your Name..." class="NameField" id="nameField" name="nameField" aria-label="Your Name" pattern="^[A-Za-z]+( [A-Za-z]+)+$" value="<?php if(isset($_POST['nameField'])) echo htmlspecialchars($_POST['nameField']); ?>"/>
 					<input type="email" placeholder="Your Email..." class="EmailField" id="emailField" name="emailField" aria-label="Your Email" value="<?php if(isset($_POST['emailField'])) echo htmlspecialchars($_POST['emailField']); ?>"/>
 					<input type="text" placeholder="Your School..." class="SchoolField" id="schoolField" name="schoolField" aria-label="Your School" pattern="^[A-Z]{1}[a-z]+( [A-Z]{1}[a-z]+)*$" value="<?php if(isset($_POST['schoolField'])) echo htmlspecialchars($_POST['schoolField']); ?>"/>
 
@@ -70,10 +70,11 @@
 
 	<?php
 		
-		$host =  'db';
-		$userid =  'user';
-		$password = 'test';
-		$schema = 'myDb';
+		$host =  'localhost';
+		$userid =  'group2';
+		$password = 'veZB9mEPGifk';
+		$schema = 'group2';
+
 
 		$db = new mysqli($host, $userid,  $password, $schema);
 		
@@ -127,32 +128,43 @@
 		}
 		else if($key == "Successmessage=changedPass"){
 			print '<script type="text/javascript">';
+			print 'clearMessage();';
 			print "notificationMessage('Successmessage', 'Success! Your password has been successfully changed!');";
 			print "removeQueryString();";
 			print '</script>';
 		}
-		else if($key == "Errormessage=queryIssue"){
+		else if($key == "Errormessage=passQueryIssue"){
 			print '<script type="text/javascript">';
 			print "forceOpenModal();";
 			print "notificationMessage('Errormessage', 'Error! Could not update your password. Please try again later.');";
 			print "removeQueryString();";
 			print '</script>';
 		}
-		else if($key == "Errormessage=updatePass"){
+		else if($key == "Errormessage=updateAcct"){
 			print '<script type="text/javascript">';
+			print 'clearMessage();';
 			print "notificationMessage('Errormessage', 'Error! Couldn't update account. Try again later.');";
 			print "removeQueryString();";
 			print '</script>';
 		}
-		else if($key == "Successmessage=updatePass"){
+		else if($key == "Successmessage=updateAcct"){
 			print '<script type="text/javascript">';
+			print 'clearMessage();';
 			print "notificationMessage('Successmessage', 'Success! Your account has been successfully updated!');";
-			print "removeQueryString()";
+			print "removeQueryString();";
 			print '</script>';
 		}
-		else if($key == "Errormessage=updateAcc"){
+		else if($key == "Errormessage=disableAcct"){
 			print '<script type="text/javascript">';
+			print 'clearMessage();';
 			print "notificationMessage('Errormessage', 'Error! Your account could not be disabled. Try again later.');";
+			print "removeQueryString();";
+			print '</script>';
+		}
+		else if($key == "Errormessage=emailExists"){
+			print '<script type="text/javascript">';
+			print 'clearMessage();';
+			print "notificationMessage('Errormessage', 'Error! The email address you entered already has an account Try again.');";
 			print "removeQueryString();";
 			print '</script>';
 		}
@@ -180,35 +192,50 @@
 					$refreshQueryString = $refreshQueryString . "?Successmessage=changedPass";
 				}
 				else{
-					$refreshQueryString = $refreshQueryString . "?Errormessage=queryIssue";
+					$refreshQueryString = $refreshQueryString . "?Errormessage=passQueryIssue";
 				}
 				
 			}
 			print "<script type='text/javascript'>";
 			print "window.open('" . $refreshQueryString . "', '_self');";
 			print "</script>";
+			exit();
 		
 		}
 		
 		if(isset($_POST['submitUpdateButton'])){
-			print "here";
 			$name = trim($_POST['nameField']);
 			$email = trim($_POST['emailField']);
 			$school = trim($_POST['schoolField']);
-			
+			//first check if email is already on file
+			$query_exists = 'SELECT Email FROM tbl_user WHERE Email LIKE "' . $email . '" AND UserID != (SELECT x.UserID FROM (SELECT UserID FROM tbl_user WHERE Email LIKE "' . $_SESSION['sid' ] . '") as x)';
+			$query_html_exists = htmlspecialchars($query_exists);
+			$result_exists = mysqli_query($db, $query_exists);
+			$num_fields_exists = mysqli_num_fields($result_exists);
+			$num_rows_exists = mysqli_num_rows($result_exists);
+			$refreshQueryString = 'accountInfo.php';
+			if($num_rows_exists > 0){
+				$refreshQueryString = $refreshQueryString . "?Errormessage=emailExists";
+				print "<script type='text/javascript'>";
+				print "window.open('" . $refreshQueryString . "', '_self');";
+				print "</script>";
+				exit();
+			}
 			$query_update_account = 'UPDATE tbl_user SET Name = "' . $name . '", Email = "' . $email . '", School = "' . $school . '", UpdatedDate = now() WHERE UserID = (SELECT x.UserID FROM (SELECT UserID FROM tbl_user WHERE Email LIKE "' . $_SESSION['sid' ] . '") as x) AND Disabled = FALSE';
 			$query_html_update_account = htmlspecialchars($query_update_account);
 			$result_update_account = mysqli_query($db, $query_update_account);
 			$refreshQueryString = 'accountInfo.php';
 			if(!$result_update_account){
-				$refreshQueryString = $refreshQueryString . "?Errormessage=updatePass";
+				$refreshQueryString = $refreshQueryString . "?Errormessage=updateAcct";
 			}
 			else{
-				$refreshQueryString = $refreshQueryString . "?Successmessage=updatePass";
+				$refreshQueryString = $refreshQueryString . "?Successmessage=updateAcct";
+				$_SESSION['sid'] = $email;
 			}
 			print "<script type='text/javascript'>";
 			print "window.open('" . $refreshQueryString . "', '_self');";
 			print "</script>";
+			exit();
 		}
 		
 		if(isset($_POST['disableButton'])){
@@ -218,16 +245,20 @@
 			$refreshQueryString = 'accountInfo.php';
 			
 			if(!$result_disable){
-				$refreshQueryString = $refreshQueryString . "?Errormessage=updateAcc";
+				$refreshQueryString = $refreshQueryString . "?Errormessage=disableAcct";
 				print "<script type='text/javascript'>";
 				print "window.open('" . $refreshQueryString . "', '_self');";
 				print "</script>";
+				exit();
 			}
 			else{
 				print '<script type="text/javascript">';
-				print "alert('Success! Your account has been successfully updated!');";
+				print "alert('Success! Your account has been successfully disabled!');";
 				print '</script>';
-				header("location:index.html");
+				$_SESSION['sid'] = 'disabled';
+				print "<script type='text/javascript'>";
+				print "window.open('logout.php', '_self');";
+				print "</script>";
 			}
 			
 		}

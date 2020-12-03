@@ -19,13 +19,13 @@
 <div class="formBackground">
 	<form action="login.php" method="post" id="loginForm" onsubmit="return encryptPass();">
 		<div class="logoContainer">
-			<img id="Logo" class="Logo" src="Images/Logo.svg" alt="TexEx Logo">
+			<img id="Logo" class="Logo" src="Images/Logo.svg" alt="TexEx Logo"/>
 		</div>
 		<h1 class="text">Login</h1>
 		<div class="fieldsContainerLogin">
-			<input type="email" placeholder="Email Address" class="EmailField" id="emailField" name="emailField" aria-label="Your Email Address" value="<?php if(isset($_POST['emailField'])) echo htmlspecialchars($_POST['emailField']); ?>"required/>
+			<input type="email" placeholder="Email Address" class="EmailField" id="emailField" name="emailField" aria-label="Your Email Address" value="<?php if(isset($_POST['emailField'])) echo htmlspecialchars($_POST['emailField']);?>" required/>
 			
-			<input type="password" placeholder="Password" class="PasswordField" id="passwordField"  name="passwordField" aria-label="Your Password" value="<?php if(isset($_POST['passwordField'])) echo htmlspecialchars($_POST['passwordField']); ?>" required/>
+			<input type="password" placeholder="Password" class="PasswordField" id="passwordField" name="passwordField" aria-label="Your Password" required/>
 			
 			<input type="submit" value="Login" class="buttonFields" name="submitButton" id="loginButton"/>
 		</div>
@@ -37,10 +37,11 @@
 	</form>
 </div>
 <?php
-	$host =  'db';
-	$userid =  'user';
-	$password = 'test';
-	$schema = 'myDb';
+	$host =  'localhost';
+	$userid =  'group2';
+	$password = 'veZB9mEPGifk';
+	$schema = 'group2';
+
 
 	$db = new mysqli($host, $userid,  $password, $schema);
 	

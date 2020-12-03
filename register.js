@@ -1,7 +1,7 @@
 //register.js
 
 function invalidName(event){
-	event.currentTarget.setCustomValidity("Please enter a correct name!"); 
+	event.currentTarget.setCustomValidity("Please enter your full name!"); 
 }
 function enteringName(event){
 	event.currentTarget.setCustomValidity(""); 

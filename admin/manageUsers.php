@@ -78,10 +78,11 @@
 			print "removeQueryString();";
 			print '</script>';
 		}
-		$host =  'db';
-		$userid =  'user';
-		$password = 'test';
-		$schema = 'myDb';
+		$host =  'localhost';
+		$userid =  'group2';
+		$password = 'veZB9mEPGifk';
+		$schema = 'group2';
+
 
 		$db = new mysqli($host, $userid,  $password, $schema);
 		
@@ -118,18 +119,15 @@
 			print "</script>";
 			$searchBy = trim($_POST['searchBox']);
 			$sortBy = $_POST['sortSearch'];
-			$query_search = 'SELECT UserID, Email, Name, Locked FROM tbl_user WHERE Name LIKE "' . $searchBy .'%"';
-			print "<script type='text/javascript'>";
-			print "console.log('" . $query_search . "');";
-			print "</script>";
+			$query_search = 'SELECT UserID, Email, Name, Locked FROM tbl_user WHERE Name LIKE "' . $searchBy .'%" AND Disabled = FALSE';
 			if($sortBy == "First Name Alphabetically"){
-				$query_search = 'SELECT UserID, Email, Name, Locked FROM tbl_user WHERE Name LIKE "' . $searchBy .'%" ORDER BY Name DESC';
+				$query_search = 'SELECT UserID, Email, Name, Locked FROM tbl_user WHERE Name LIKE "' . $searchBy .'%" AND Disabled = FALSE ORDER BY Name DESC';
 			}
 			else if($sortBy == "Recent Creation Date"){
-				$query_search = 'SELECT UserID, Email, Name, Locked, CreationDate FROM tbl_user WHERE Name LIKE "' . $searchBy .'%" ORDER BY CreationDate ASC';
+				$query_search = 'SELECT UserID, Email, Name, Locked, CreationDate FROM tbl_user WHERE Name LIKE "' . $searchBy .'%" AND Disabled = FALSE ORDER BY CreationDate ASC';
 			}
 			else if($sortBy == "Oldest Creation Date"){
-				$query_search = 'SELECT UserID, Email, Name, Locked, CreationDate FROM tbl_user WHERE Name LIKE "' . $searchBy .'%" ORDER BY CreationDate DESC';
+				$query_search = 'SELECT UserID, Email, Name, Locked, CreationDate FROM tbl_user WHERE Name LIKE "' . $searchBy .'%" AND Disabled = FALSE ORDER BY CreationDate DESC';
 			}
 			
 			
@@ -145,11 +143,11 @@
 			else{
 				$row_search = mysqli_fetch_assoc($result_search);
 				for($row_num = 0; $row_num < $num_rows_search; $row_num++){
-				$values_search = array_values($row_search);
-				print "<script type='text/javascript'>";
-				print "showUsers(" . json_encode($values_search) . ");";
-				print "</script>";
-				$row_search = mysqli_fetch_assoc($result_search);
+					$values_search = array_values($row_search);
+					print "<script type='text/javascript'>";
+					print "showUsers(" . json_encode($values_search) . ");";
+					print "</script>";
+					$row_search = mysqli_fetch_assoc($result_search);
 				}
 			}
 		}

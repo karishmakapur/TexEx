@@ -36,27 +36,32 @@
 		if($key == "Errormessage=edit"){
 			print '<script type="text/javascript">';
 			print "notificationMessage('Errormessage', 'Error! Could not update post. Please try again later.');";
+			print "removeQueryString();";
 			print '</script>';
 		}
 		else if($key == "Successmessage=edit"){
 			print '<script type="text/javascript">';
 			print "notificationMessage('Successmessage', 'Success! Your post has been updated.');";
+			print "removeQueryString();";
 			print '</script>';
 		}
 		else if($key == "Errormessage=delete"){
 			print '<script type="text/javascript">';
 			print "notificationMessage('Errormessage', 'Error! Could not delete post. Please try again later.');";
+			print "removeQueryString();";
 			print '</script>';
 		}
 		else if($key == "Successmessage=delete"){
 			print '<script type="text/javascript">';
 			print "notificationMessage('Successmessage', 'Success! Your post has been deleted.');";
+			print "removeQueryString();";
 			print '</script>';
 		}
-		$host =  'db';
-		$userid =  'user';
-		$password = 'test';
-		$schema = 'myDb';
+		$host =  'localhost';
+		$userid =  'group2';
+		$password = 'veZB9mEPGifk';
+		$schema = 'group2';
+
 
 		$db = new mysqli($host, $userid,  $password, $schema);
 		

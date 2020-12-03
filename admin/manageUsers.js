@@ -166,7 +166,7 @@ function showNoUsers(){
 	
 	//add div to document.
 	//append searchResultContainer to end of document.
-	resultContainer.append(searchResultContainer);
+	resultContainer.appendChild(searchResultContainer);
 	document.getElementById("formElem").insertAdjacentElement("afterend", resultContainer);
 }
 function isEmpty(array) {

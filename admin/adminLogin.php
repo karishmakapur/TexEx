@@ -25,17 +25,18 @@
 		<div class="fieldsContainerAdminLogin">
 			<input type="email" placeholder="Email" class="EmailField" aria-label="Admin Email" id="emailField" name="emailField" value="<?php if(isset($_POST['emailField'])) echo htmlspecialchars($_POST['emailField']); ?>" required/>
 			
-			<input type="password" placeholder="Password" class="PasswordField" aria-label="Admin Password" id="passwordField" name="passwordField" value="<?php if(isset($_POST['passwordField'])) echo htmlspecialchars($_POST['passwordField']); ?>" required/>
+			<input type="password" placeholder="Password" class="PasswordField" aria-label="Admin Password" id="passwordField" name="passwordField" required/>
 			
 			<input type="submit" value="Login" class="buttonFields" name="loginButton" id="loginButton"/>
 		</div>
 	</form>
 </div>
 <?php
-	$host =  'db';
-	$userid =  'user';
-	$password = 'test';
-	$schema = 'myDb';
+	$host =  'localhost';
+	$userid =  'group2';
+	$password = 'veZB9mEPGifk';
+	$schema = 'group2';
+
 
 	$db = new mysqli($host, $userid,  $password, $schema);
 	

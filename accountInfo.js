@@ -121,8 +121,6 @@ function validateFields(event) {
 		passwordErrorMessage("All fields are required!");
 		return false;
 	}
-	var encryptedPass = CryptoJS.SHA256(document.getElementById("oldPassword").value);
-	document.getElementById("oldPassword").value = encryptedPass;
 	
 	var pos = newPassword.search(/(?=^.{8,}$)(?=.*\d)(?=.*[!@#$%^&*]+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/);
 	if (pos != 0) {
@@ -134,6 +132,9 @@ function validateFields(event) {
 		passwordErrorMessage("Your new password and your confirm password do not match. Try again.");
 		return false;
 	}
+	
+	var encryptedPass = CryptoJS.SHA256(document.getElementById("oldPassword").value);
+	document.getElementById("oldPassword").value = encryptedPass;
 	var encryptedNewPass = CryptoJS.SHA256(document.getElementById("newPassword").value);
 	document.getElementById("newPassword").value = encryptedNewPass;	
 	var encryptedConfirmPass = CryptoJS.SHA256(document.getElementById("confirmPassword").value);
@@ -146,20 +147,12 @@ function validateFields(event) {
 	
 }
 
-
 function validateConfirmPassword(entryTwo, original){
 	if(entryTwo !== original){
-		//alert("The passwords do not match. Please reenter your password.");
 		return false;
 	}
 	return true;
 }
-
-/*function checkPassword (oldPassword) {
-	//TO DO true needs to be swapped with PHP funtion call to determine if old pw is users pw.
-	var correctPassword = true;
-	return correctPassword;
-}*/
 
 function updateAccount (event) {
 
@@ -169,18 +162,21 @@ function updateAccount (event) {
 	
 	if(name == "" || email == "" || school == ""){
 		//create a error message
+		clearMessage();
 		notificationMessage("Errormessage", "Error! You must fill in all fields before updating your account.");
 		return false;
 	}
 
 	var emailForm = validEmailForm(document.getElementById("emailField"));
 	if(!emailForm){
+		clearMessage();
 		notificationMessage("Errormessage", "Error! Please enter a valid email address.");
 		return false;
 	}
 	
 	var emailExists = validateEmail(document.getElementById("emailField"));
 	if(emailExists){
+		clearMessage();
 		notificationMessage("Errormessage", "Error! The email you are trying to use already has an account.");
 		return false;
 	}
@@ -188,30 +184,21 @@ function updateAccount (event) {
 	
 	var nameValidate = validateName(name);
 	if(!nameValidate){
-		notificationMessage("Errormessage", "Error! Please enter a correct name!");
+		clearMessage();
+		notificationMessage("Errormessage", "Error! Please enter your full name!");
 		return false;
 	}
 	
 	
 	var schoolValidate = validateSchool(school);
 	if(!schoolValidate){
+		clearMessage();
 		notificationMessage("Errormessage", "Error! Please enter a valid school! It must be completely spelled out with either University or College attached to the name.");
 		return false;
 	}
 	
 	name = titleCase(name);
 	school = titleCase(school);
-	
-	/*// TO DO swap these values with a PHP function to update account
-	var updatedAccount = true;
-
-	if(updatedAccount == false) {
-		notificationMessage("Errormessage", "Error! Couldn't update account. Try again later.");
-	} else {
-		
-		notificationMessage("Successmessage", "Success! Your account has been successfully updated!");		
-	}
-	return updatedAccount;*/
 	
 	var ev = document.createEvent("MouseEvent");
 	ev.initMouseEvent('click', true, true, window, 0,0,0,0,0,false,false,false,false,0,null);
@@ -299,9 +286,15 @@ function notificationMessage(cssClass, message){
 		alertDiv.textContent = message;
 		
 		alertDiv.appendChild(closebtn);
+		alertDiv.setAttribute("id", "message");
 		document.getElementById("nav").insertAdjacentElement('afterend',alertDiv);
 }
-
+function clearMessage(){
+	if(document.body.contains(document.getElementById("message"))){
+		var child = document.getElementById("message");
+		child.parentNode.removeChild(child);
+	}
+}
 function passwordErrorMessage(message){
 	
 	var errorDiv = document.createElement("div");

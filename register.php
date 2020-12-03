@@ -22,7 +22,7 @@
 			</div>
 			<h1 class="text">Register</h1>
 			<div class="fieldsContainerRegister">
-				<input type="text" placeholder="Name" class="NameField" id="nameField" name="nameField" aria-label="Your Name" pattern="^[A-Za-z]+( [A-Za-z]+)*$" required/>
+				<input type="text" placeholder="Name" class="NameField" id="nameField" name="nameField" aria-label="Your Name" pattern="^[A-Za-z]+( [A-Za-z]+)+$" required/>
 				<input type="email" placeholder="Email" class="EmailField" id="emailField" name="emailField" aria-label="Your Email" required/>
 				<input type="text" placeholder="School" class="SchoolField" id="schoolField" name="schoolField" aria-label="Your School" pattern="[A-Za-z, ]*([Uu]niversity|[Cc]ollege)([A-Za-z]*,? ?)*" required/>
 				<input type="password" placeholder="Password" class="UnlockPasswordField" name="passwordField" id="passwordField" aria-label="Your Password" pattern="(?=^.{8,}$)(?=.*\d)(?=.*[!@#$%^&*]+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required/>
@@ -38,10 +38,11 @@
 	<noscript>Your browser does not support JavaScript</noscript>
 	</div>
 	<?php
-	$host =  'db';
-	$userid =  'user';
-	$password = 'test';
-	$schema = 'myDb';
+	$host =  'localhost';
+	$userid =  'group2';
+	$password = 'veZB9mEPGifk';
+	$schema = 'group2';
+
 
 	$db = new mysqli($host, $userid,  $password, $schema);
 	

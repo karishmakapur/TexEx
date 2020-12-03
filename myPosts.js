@@ -280,3 +280,7 @@ function closeMsg (event) {
 	close.parentNode.style.display = "none";
 
 }
+function removeQueryString(){
+	var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+    window.history.pushState({path:newurl},'',newurl);
+}

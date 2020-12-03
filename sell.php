@@ -50,10 +50,11 @@
 		</form>
 	
     <?php 
-		$host =  'db';
-		$userid =  'user';
-		$password = 'test';
-		$schema = 'myDb';
+		$host =  'localhost';
+		$userid =  'group2';
+		$password = 'veZB9mEPGifk';
+		$schema = 'group2';
+
 
 		$db = new mysqli($host, $userid,  $password, $schema);
 		

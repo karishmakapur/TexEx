@@ -12,29 +12,29 @@
 </head>
 <body>
 	<div class="formBackground">
-	<form method="post" id="resetForm">
-		<div class="logoContainer">
-			<img id="Logo" class="Logo" src="Images/Logo.svg" alt="TexEx Logo">
-		</div>
-		<h1 class="text">Forgot Password</h1>
-		<div class="fieldsContainerLogin">
-			<input type="email" placeholder="Email Address" class="EmailField" id="emailField" name="emailField" aria-label="Your Email Address" value="<?php if(isset($_POST['emailField'])) echo htmlspecialchars($_POST['emailField']); ?>" required/>
-			<input type="hidden" id="pass" name="pass" />
-			<input type="hidden" id="encryptpass" name="encryptpass" />
-			<input type="button" value="Send Forgot Password Email" class="buttonFields" name="sendButton" id="sendButton" onclick="generate_password(8)"/>
-			<input type="submit" value="Send Forgot Password Email" class="passButton" name="submitButton" id="loginButton"/>
-		</div>
-		<div class="linkContainer">
-			<a class="redirectLink" href="login.php">Go back to Login</a>
-		</div>
-	</form>
-</div>
-</body>
-<?php
-	$host =  'db';
-	$userid =  'user';
-	$password = 'test';
-	$schema = 'myDb';
+		<form method="post" id="resetForm">
+			<div class="logoContainer">
+				<img id="Logo" class="Logo" src="Images/Logo.svg" alt="TexEx Logo">
+			</div>
+			<h1 class="text">Forgot Password</h1>
+			<div class="fieldsContainerLogin">
+				<input type="email" placeholder="Email Address" class="EmailField" id="emailField" name="emailField" aria-label="Your Email Address" value="<?php if(isset($_POST['emailField'])) echo htmlspecialchars($_POST['emailField']); ?>" required/>
+				<input type="hidden" id="pass" name="pass" />
+				<input type="hidden" id="encryptpass" name="encryptpass" />
+				<input type="button" value="Send Forgot Password Email" class="buttonFields" name="sendButton" id="sendButton" onclick="generate_password(8)"/>
+				<input type="submit" value="Send Forgot Password Email" class="passButton" name="submitButton" id="loginButton"/>
+			</div>
+			<div class="linkContainer">
+				<a class="redirectLink" href="login.php">Go back to Login</a>
+			</div>
+		</form>
+	</div>
+	<?php
+	$host =  'localhost';
+	$userid =  'group2';
+	$password = 'veZB9mEPGifk';
+	$schema = 'group2';
+
 
 	$db = new mysqli($host, $userid,  $password, $schema);
 	
@@ -112,5 +112,6 @@
 	}
 
 ?>
+</body>
 </html>
 
