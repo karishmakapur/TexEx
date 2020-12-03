@@ -62,8 +62,6 @@
             <div>
                 <h2>My Saved Searches</h2>
              </div>
-            <!--script type="text/javascript">displaySavedSearch();</script>
-            <noscript>Your browser does not support JavaScript</noscript>-->
         </div>
         <!-- End of saved searches -->	
         
@@ -93,7 +91,7 @@
 		if($num_rows_get_user_info == 1){
 			$row_get_user_info = array_values($row_get_user_info);
 			print '<script type="text/javascript">';
-			print 'displayAccount(' . json_encode($row_get_user_info) . ')';
+			print 'displayAccount(' . json_encode($row_get_user_info) . ');';
 			print '</script>';
 		}
 		
@@ -104,7 +102,7 @@
 		$num_rows_get_saved_searches = mysqli_num_rows($result_get_saved_searches);
 		if($num_rows_get_saved_searches == 0){
 			print '<script type="text/javascript">';
-			print 'noSavedSearches()';
+			print 'noSavedSearches();';
 			print '</script>';
 		}
 		else{
@@ -115,7 +113,7 @@
 				
 			}
 			print '<script type="text/javascript">';
-			print 'displaySavedSearch('.json_encode($searches).')';
+			print 'displaySavedSearch('.json_encode($searches).');';
 			print '</script>';
 		}
 	
@@ -124,32 +122,38 @@
 			print '<script type="text/javascript">';
 			print "forceOpenModal();";
 			print "passwordErrorMessage('Please make sure your old password is entered correctly.');";
+			print "removeQueryString();";
 			print '</script>';
 		}
 		else if($key == "Successmessage=changedPass"){
 			print '<script type="text/javascript">';
 			print "notificationMessage('Successmessage', 'Success! Your password has been successfully changed!');";
+			print "removeQueryString();";
 			print '</script>';
 		}
 		else if($key == "Errormessage=queryIssue"){
 			print '<script type="text/javascript">';
 			print "forceOpenModal();";
 			print "notificationMessage('Errormessage', 'Error! Could not update your password. Please try again later.');";
+			print "removeQueryString();";
 			print '</script>';
 		}
 		else if($key == "Errormessage=updatePass"){
 			print '<script type="text/javascript">';
 			print "notificationMessage('Errormessage', 'Error! Couldn't update account. Try again later.');";
+			print "removeQueryString();";
 			print '</script>';
 		}
 		else if($key == "Successmessage=updatePass"){
 			print '<script type="text/javascript">';
 			print "notificationMessage('Successmessage', 'Success! Your account has been successfully updated!');";
+			print "removeQueryString()";
 			print '</script>';
 		}
 		else if($key == "Errormessage=updateAcc"){
 			print '<script type="text/javascript">';
 			print "notificationMessage('Errormessage', 'Error! Your account could not be disabled. Try again later.');";
+			print "removeQueryString();";
 			print '</script>';
 		}
 		
@@ -180,15 +184,17 @@
 				}
 				
 			}
-			print "<script>window.open('" . $refreshQueryString . "', '_self') </script>";
+			print "<script type='text/javascript'>";
+			print "window.open('" . $refreshQueryString . "', '_self');";
+			print "</script>";
 		
 		}
 		
 		if(isset($_POST['submitUpdateButton'])){
 			print "here";
-			$name = $_POST['nameField'];
-			$email = $_POST['emailField'];
-			$school = $_POST['schoolField'];
+			$name = trim($_POST['nameField']);
+			$email = trim($_POST['emailField']);
+			$school = trim($_POST['schoolField']);
 			
 			$query_update_account = 'UPDATE tbl_user SET Name = "' . $name . '", Email = "' . $email . '", School = "' . $school . '", UpdatedDate = now() WHERE UserID = (SELECT x.UserID FROM (SELECT UserID FROM tbl_user WHERE Email LIKE "' . $_SESSION['sid' ] . '") as x) AND Disabled = FALSE';
 			$query_html_update_account = htmlspecialchars($query_update_account);
@@ -200,7 +206,9 @@
 			else{
 				$refreshQueryString = $refreshQueryString . "?Successmessage=updatePass";
 			}
-			print "<script>window.open('" . $refreshQueryString . "', '_self') </script>";
+			print "<script type='text/javascript'>";
+			print "window.open('" . $refreshQueryString . "', '_self');";
+			print "</script>";
 		}
 		
 		if(isset($_POST['disableButton'])){
@@ -211,13 +219,15 @@
 			
 			if(!$result_disable){
 				$refreshQueryString = $refreshQueryString . "?Errormessage=updateAcc";
-				print "<script>window.open('" . $refreshQueryString . "', '_self') </script>";
+				print "<script type='text/javascript'>";
+				print "window.open('" . $refreshQueryString . "', '_self');";
+				print "</script>";
 			}
 			else{
 				print '<script type="text/javascript">';
 				print "alert('Success! Your account has been successfully updated!');";
 				print '</script>';
-				header("location:index.php");
+				header("location:index.html");
 			}
 			
 		}

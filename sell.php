@@ -71,14 +71,14 @@
 		$row_get_posts = mysqli_fetch_assoc($result_get_posts);
 		if($num_rows_get_posts == 0){
 			print '<script type="text/javascript">';
-			print 'displayNoResults()';
+			print 'displayNoResults();';
 			print '</script>';
 		}
 		else{
 			for($row_num = 0; $row_num < $num_rows_get_posts; $row_num++){
 				$values_get_posts = array_values($row_get_posts);
 				print '<script type="text/javascript">';
-				print 'displayResults('.json_encode($values_get_posts).')';
+				print 'displayResults('.json_encode($values_get_posts).');';
 				print '</script>';
 				$row_get_posts = mysqli_fetch_assoc($result_get_posts);
 			}
@@ -86,11 +86,11 @@
 		}
 		
 		if(isset($_POST["postButton"])){
-			$BookTitle = $_POST["bookTitle"];
-			$BookAuthor = $_POST["bookAuthor"];
-			$BookISBN = $_POST["bookISBN"];
-			$BookDesc = $_POST["postArea"];
-			$BookImage = $_POST["uploadImageButton"];
+			$BookTitle = trim($_POST["bookTitle"]);
+			$BookAuthor = trim($_POST["bookAuthor"]);
+			$BookISBN = trim($_POST["bookISBN"]);
+			$BookDesc = trim($_POST["postArea"]);
+			$BookImage = trim($_POST["uploadImageButton"]);
 			if(!isset($_FILES["uploadImageButton"]) || $_FILES['uploadImageButton']['error'] == 4){
 					$target_file = "Images/no-image-icon.png";
 				
@@ -116,8 +116,9 @@
 				}
 				else{
 					print '<script type="text/javascript">';
-					print 'alert("Sorry, there was an error uploading your file. Please try again later.")';
+					print 'alert("Sorry, there was an error uploading your file. Please try again later.");';
 					print '</script>';
+					$target_file = "Images/no-image-icon.png";
 					
 				}
 			}
@@ -128,11 +129,14 @@
 			$result_make_post = mysqli_query($db, $query_make_post);
 			if(!$result_make_post){
 				print '<script type="text/javascript">';
-				print 'alert("Sorry, there was an error making your post. Please try again.")';
+				print 'alert("Sorry, there was an error making your post. Please try again.");';
 				print '</script>';
 			}
 			else{
-				print "<script>window.open('sell.php','_self') </script>";
+				print "<script type='text/javascript'>";
+				print "window.open('sell.php','_self');";
+				print "</script>";
+				
 			}
 
 		}//end of isset

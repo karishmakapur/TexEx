@@ -18,7 +18,7 @@
 		</div>
 		<h1 class="text">Forgot Password</h1>
 		<div class="fieldsContainerLogin">
-			<input type="email" placeholder="Email Address" class="EmailField" id="emailField" name="emailField" aria-label="Your Email Address" required/>
+			<input type="email" placeholder="Email Address" class="EmailField" id="emailField" name="emailField" aria-label="Your Email Address" value="<?php if(isset($_POST['emailField'])) echo htmlspecialchars($_POST['emailField']); ?>" required/>
 			<input type="hidden" id="pass" name="pass" />
 			<input type="hidden" id="encryptpass" name="encryptpass" />
 			<input type="button" value="Send Forgot Password Email" class="buttonFields" name="sendButton" id="sendButton" onclick="generate_password(8)"/>
@@ -43,7 +43,7 @@
 			exit();
 	}
 	if(isset($_POST['submitButton'])){
-		$recipientEmail = $_POST['emailField'];
+		$recipientEmail = trim($_POST['emailField']);
 		
 		//check if email address exists
 		$query_exists = 'SELECT Email FROM tbl_user WHERE Email LIKE "' . $recipientEmail . '"';
@@ -56,7 +56,7 @@
 		$num_rows_exists = mysqli_num_rows($result_exists);
 		if($num_rows_exists == 0){
 			print "<script type=text/javascript>";
-			print "message('The entered email address does not have an account!')";
+			print "message('The entered email address does not have an account!');";
 			print "</script>";
 			exit();
 		}
@@ -95,18 +95,18 @@
 			$result_change = mysqli_query($db, $query_change);
 			if(!result_change){
 				print "<script type=text/javascript>";
-				print "message('Temporary Password was not able to be generated. Please try again later.')";
+				print "message('Temporary Password was not able to be generated. Please try again later.');";
 				print "</script>";
 			}
 			else{
 				print "<script type=text/javascript>";
-				print "message('The temporary password was successfully sent to your email.')";
+				print "message('The temporary password was successfully sent to your email.');";
 				print "</script>";
 			}
 		} 
 		else {
 			print "<script type=text/javascript>";
-			print "message('Email was not able to be sent! Please try again later.')";
+			print "message('Email was not able to be sent! Please try again later.');";
 			print "</script>";
 		}
 	}

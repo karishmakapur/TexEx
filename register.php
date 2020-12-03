@@ -52,9 +52,9 @@
 
 	//first get user inputted fields
 	if(isset($_POST['registerButton'])){
-		$UserInputName = $_POST["nameField"];
-		$UserInputEmail = $_POST["emailField"];
-		$UserInputSchool = $_POST["schoolField"];
+		$UserInputName = trim($_POST["nameField"]);
+		$UserInputEmail = trim($_POST["emailField"]);
+		$UserInputSchool = trim($_POST["schoolField"]);
 		$UserInputPassword = $_POST["passwordField"];
 		
 		trim($UserInputName);
@@ -74,7 +74,7 @@
 		$num_rows_exists = mysqli_num_rows($result_exists);
 		if($num_rows_exists != 0){
 			print '<script type="text/javascript">';
-			print 'AccountErrorMessage("This email already has an account.")';
+			print 'AccountErrorMessage("This email already has an account.");';
 			print '</script>';
 			exit();
 		}
@@ -86,13 +86,13 @@
 			if($result_register){
 				$_SESSION['sid'] = $UserInputEmail;
 				print '<script type="text/javascript">';
-				print 'redirectToSearch()';
+				print 'redirectToSearch();';
 				print '</script>';
 				exit();
 			}
 			else{
 				print '<script type="text/javascript">';
-				print 'AccountErrorMessage("Unable to create account. Please try again later.")';
+				print 'AccountErrorMessage("Unable to create account. Please try again later.");';
 				print '</script>';
 				exit();
 			}

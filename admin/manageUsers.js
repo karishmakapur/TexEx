@@ -18,11 +18,8 @@ function closeMsg (event) {
 
 }
 function searchUser(event){
-	
-	if(event.keyCode === 13){
-		
+	if(event.keyCode == 13 || event.type == "click"){
 		var searchTerm = document.getElementById("searchBox").value;
-		
 		
 		if(searchTerm == ''){
 			return false;
@@ -33,15 +30,15 @@ function searchUser(event){
 			ev.initMouseEvent('click', true, true, window, 0,0,0,0,0,false,false,false,false,0,null);
 			document.getElementById("searchButton").click();
 		}
-			
+	
 	}
 }
-function clearResults(){
-	while(document.getElementById("formElem").nextSibling){
-			var child = document.getElementById("formElem").nextSibling;
-			child.parentNode.removeChild(child);
-		}
-}
+function clearResults() { 
+		while(document.body.contains(document.getElementById("formElem").nextSibling)) {
+				var child = document.getElementById("formElem").nextSibling;
+				child.parentNode.removeChild(child);
+		} 
+ }
 function lockUser(event){
 	var id = this.id;
 	var pos = id.search(/\d+/);
@@ -144,7 +141,7 @@ function showUsers(result){
 		searchResultContainer.appendChild(submitBttn);
 		formElem.appendChild(searchResultContainer);
 		//append searchResultContainer to end of document.
-		document.getElementById("searchField").insertAdjacentElement('afterend', formElem);
+		document.getElementById("formElem").insertAdjacentElement('afterend', formElem);
 			
 	
 }
@@ -170,7 +167,7 @@ function showNoUsers(){
 	//add div to document.
 	//append searchResultContainer to end of document.
 	resultContainer.append(searchResultContainer);
-	document.getElementById("searchField").insertAdjacentElement("afterend", resultContainer);
+	document.getElementById("formElem").insertAdjacentElement("afterend", resultContainer);
 }
 function isEmpty(array) {
 	return Array.isArray(array) && (array.length == 0 || array.every(isEmpty));
@@ -180,4 +177,7 @@ function submitSort(){
 	ev.initMouseEvent('click', true, true, window, 0,0,0,0,0,false,false,false,false,0,null);
 	document.getElementById("searchButton").click();
 }
-
+function removeQueryString(){
+	var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+    window.history.pushState({path:newurl},'',newurl);
+}

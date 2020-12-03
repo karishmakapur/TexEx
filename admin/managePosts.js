@@ -326,3 +326,7 @@ function submitSort(){
 	ev.initMouseEvent('click', true, true, window, 0,0,0,0,0,false,false,false,false,0,null);
 	document.getElementById("searchButton").click();
 }
+function removeQueryString(){
+	var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+    window.history.pushState({path:newurl},'',newurl);
+}

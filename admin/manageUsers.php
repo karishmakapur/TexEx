@@ -30,7 +30,7 @@
 	<h1 class="searchMssg" id="searchMessage"><span class="headings">Narrow your search here!</span></h1>
 	<form method="post" id="formElem">
 		<div id="searchField" class="searchField">
-			<input type="search" name="searchBox" id="searchBox" placeholder="Search for a user by name" class="searchBar" aria-label="Admin Search Box" value="<?php if(isset($_POST['searchBox'])) echo htmlspecialchars($_POST['searchBox']); ?>"/>
+			<input type="text" name="searchBox" id="searchBox" placeholder="Search for a user by name" class="searchBar" aria-label="Admin Search Box" value="<?php if(isset($_POST['searchBox'])) echo htmlspecialchars($_POST['searchBox']); ?>"/>
 			<div class="bar">
 			<input type="submit" value="Search" aria-label="Search Button" name="searchButton" id="searchButton" class="searchButton"/>
 			</div>
@@ -52,28 +52,30 @@
 	<script type="text/javascript" src="manageUsersr.js"></script>
 	<noscript>Your browser does not support Javascript</noscript>
 	<br /><br /><br /><br /><br /><br />
-    <div class="tableContainer" id="tableCon">
-		
 	<?php
 		$key = $_SERVER['QUERY_STRING'];
 		if($key == "Errormessage=lock"){
 			print '<script type="text/javascript">';
 			print "notificationMessage('Errormessage', 'Error! Could not lock user. Please try again later.');";
+			print "removeQueryString();";
 			print '</script>';
 		}
 		else if($key == "Errormessage=unlock"){
 			print '<script type="text/javascript">';
 			print "notificationMessage('Errormessage', 'Error! Could not unlock user. Please try again later.');";
+			print "removeQueryString();";
 			print '</script>';
 		}
 		else if($key == "Successmessage=lock"){
 			print '<script type="text/javascript">';
 			print "notificationMessage('Successmessage', 'Success! The user\'s account has been locked.');";
+			print "removeQueryString();";
 			print '</script>';
 		}
 		else if($key == "Successmessage=unlock"){
 			print '<script type="text/javascript">';
 			print "notificationMessage('Successmessage', 'Success! The user\'s account has been unlocked.');";
+			print "removeQueryString();";
 			print '</script>';
 		}
 		$host =  'db';
@@ -114,11 +116,12 @@
 			print "<script type='text/javascript'>";
 			print "clearResults();";
 			print "</script>";
-			$searchBy = $_POST['searchBox'];
+			$searchBy = trim($_POST['searchBox']);
 			$sortBy = $_POST['sortSearch'];
-			
-			
 			$query_search = 'SELECT UserID, Email, Name, Locked FROM tbl_user WHERE Name LIKE "' . $searchBy .'%"';
+			print "<script type='text/javascript'>";
+			print "console.log('" . $query_search . "');";
+			print "</script>";
 			if($sortBy == "First Name Alphabetically"){
 				$query_search = 'SELECT UserID, Email, Name, Locked FROM tbl_user WHERE Name LIKE "' . $searchBy .'%" ORDER BY Name DESC';
 			}
@@ -191,7 +194,9 @@
 						$refreshQueryString = $refreshQueryString . "?Errormessage=lock";
 					}
 				}
-				print "<script>window.open('" . $refreshQueryString . "', '_self') </script>";
+				print "<script type='text/javascript'>";
+				print "window.open('" . $refreshQueryString . "', '_self');";
+				print "</script>";
 			}
 			else if($lockedVal == "off"){
 				$query_lock = 'UPDATE tbl_user SET Locked = FALSE WHERE UserID = ' . $key;
@@ -231,12 +236,13 @@
 						$refreshQueryString = $refreshQueryString . "?Errormessage=unlock";
 					}
 				}
-				print "<script>window.open('" . $refreshQueryString . "', '_self') </script>";
+				print "<script type='text/javascript'>";
+				print "window.open('" . $refreshQueryString . "', '_self');";
+				print "</script>";
 			}
 		}
 		mysqli_close($db);
 	?>
-    </div>
   </body>
   
 </html>

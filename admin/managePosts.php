@@ -64,22 +64,26 @@
 		$key = $_SERVER['QUERY_STRING'];
 		if($key == "Errormessage=edit"){
 			print '<script type="text/javascript">';
-			print "notificationMessage('Errormessage', 'Error! Could not update post. Please try again later.')";
+			print "notificationMessage('Errormessage', 'Error! Could not update post. Please try again later.');";
+			print "removeQueryString();";
 			print '</script>';
 		}
 		else if($key == "Errormessage=delete"){
 			print '<script type="text/javascript">';
-			print "notificationMessage('Errormessage', 'Error! Could not delete post. Please try again later.')";
+			print "notificationMessage('Errormessage', 'Error! Could not delete post. Please try again later.');";
+			print "removeQueryString();";
 			print '</script>';
 		}
 		else if($key == "Successmessage=edit"){
-				print '<script type="text/javascript">';
-			print "notificationMessage('Successmessage', 'Success! Your post has been updated.')";
+			print '<script type="text/javascript">';
+			print "notificationMessage('Successmessage', 'Success! Your post has been updated.');";
+			print "removeQueryString();";
 			print '</script>';
 		}
 		else if($key == "Successmessage=delete"){
 			print '<script type="text/javascript">';
-			print "notificationMessage('Successmessage', 'Success! Your post has been deleted.')";
+			print "notificationMessage('Successmessage', 'Success! Your post has been deleted.');";
+			print "removeQueryString();";
 			print '</script>';
 		}
 		$host =  'db';
@@ -121,7 +125,7 @@
 			print "deleteResults();";
 			print "</script>";
 			$search = $_POST['searchType'];
-			$searchBy = $_POST['searchBar'];
+			$searchBy = trim($_POST['searchBar']);
 			$sortBy = $_POST['sortSearch'];
 			
 			$query_string = 'SELECT PostID, Email, BookImage, BookTitle, BookISBN, BookAuthor, PostContent FROM tbl_book_post, tbl_user
@@ -148,7 +152,7 @@
 			$num_rows_string = mysqli_num_rows($result_string);
 			if($num_rows_string == 0){
 				print '<script type="text/javascript">';
-				print 'showNoPosts()';
+				print 'showNoPosts();';
 				print '</script>';
 			}
 			else{
@@ -157,7 +161,7 @@
 				for($row_num = 0; $row_num < $num_rows_string; $row_num++){
 					$values_string = array_values($row_string);
 					print '<script type="text/javascript">';
-					print 'showPosts('.json_encode($values_string).')';
+					print 'showPosts('.json_encode($values_string).');';
 					print '</script>';
 					$row_string = mysqli_fetch_assoc($result_string);
 				}
@@ -166,10 +170,10 @@
 		$key = $_GET['key'];
 		$email = $_GET['email'];
 		if(isset($_POST['savePostBttn' . $key])){
-			$title = $_POST['titleInput'. $key];
-			$author = $_POST['authorInput'. $key];
-			$isbn = $_POST['isbnInput'. $key];
-			$desc = $_POST['descInput'. $key];
+			$title = trim($_POST['titleInput'. $key]);
+			$author = trim($_POST['authorInput'. $key]);
+			$isbn = trim($_POST['isbnInput'. $key]);
+			$desc = trim($_POST['descInput'. $key]);
 			
 			$query_save_post = 'UPDATE tbl_book_post SET BookTitle = "' . $title .'", BookAuthor = "'. $author .'", BookISBN = "' . $isbn . '", PostContent = "' . $desc . '"
 								WHERE UserID = (SELECT UserID FROM tbl_user WHERE tbl_user.Email LIKE "' . $email . '") AND PostID = ' . $key;
@@ -209,7 +213,9 @@
 					$refreshQueryString = $refreshQueryString . "?Errormessage=edit";
 				}
 			}
-			print "<script>window.open('" . $refreshQueryString . "', '_self') </script>";
+			print "<script type='text/javascript'>";
+			print "window.open('" . $refreshQueryString . "', '_self');";
+			print "</script>";
 								
 		}
 		
@@ -252,7 +258,9 @@
 					$refreshQueryString = $refreshQueryString . "?Errormessage=delete";
 				}
 			}
-			print "<script>window.open('" . $refreshQueryString . "', '_self') </script>";
+			print "<script type='text/javascript'>";
+			print "window.open('" . $refreshQueryString . "', '_self');";
+			print "</script>";
 								
 		}
 		mysqli_close($db);

@@ -23,9 +23,9 @@
 		</div>
 		<h1 class="text">Login</h1>
 		<div class="fieldsContainerLogin">
-			<input type="email" placeholder="Email Address" class="EmailField" id="emailField" name="emailField" aria-label="Your Email Address" required/>
+			<input type="email" placeholder="Email Address" class="EmailField" id="emailField" name="emailField" aria-label="Your Email Address" value="<?php if(isset($_POST['emailField'])) echo htmlspecialchars($_POST['emailField']); ?>"required/>
 			
-			<input type="password" placeholder="Password" class="PasswordField" id="passwordField"  name="passwordField" aria-label="Your Password" required/>
+			<input type="password" placeholder="Password" class="PasswordField" id="passwordField"  name="passwordField" aria-label="Your Password" value="<?php if(isset($_POST['passwordField'])) echo htmlspecialchars($_POST['passwordField']); ?>" required/>
 			
 			<input type="submit" value="Login" class="buttonFields" name="submitButton" id="loginButton"/>
 		</div>
@@ -51,11 +51,9 @@
 
 	//first get user inputted email address and password
 	if(isset($_POST['submitButton'])){
-		$UserInputEmail = $_POST["emailField"];
-		trim($UserInputEmail);
+		$UserInputEmail = trim($_POST["emailField"]);
 		$UserInputEmail = stripslashes($UserInputEmail);
 		$UserInputPassword = $_POST["passwordField"];
-		trim($UserInputPassword);
 		$UserInputPassword = stripslashes($UserInputPassword);
 		
 		//validation query
@@ -66,7 +64,7 @@
 		$num_rows_valid = mysqli_num_rows($result_valid);
 		if($num_rows_valid == 0){
 			print '<script type="text/javascript">';
-			print 'LoginErrorMessage("An account with that email address and password does not exist. Try again.")';
+			print 'LoginErrorMessage("An account with that email address and password does not exist. Try again.");';
 			print '</script>';
 			exit();
 		}
@@ -82,7 +80,7 @@
 				$values_disabled = array_values($row_disabled);
 				if($values_disabled[0] == 1){
 					print '<script type="text/javascript">';
-					print 'LoginErrorMessage("Your account has been disabled. You are no longer able to access it.")';
+					print 'LoginErrorMessage("Your account has been disabled. You are no longer able to access it.");';
 					print '</script>';
 					exit();
 				}
@@ -98,7 +96,7 @@
 						$values_locked = array_values($row_locked);
 						if($values_locked[0] == 1){
 							print '<script type="text/javascript">';
-							print 'LoginErrorMessage("Your account has been locked. Contact TexEx at (760)000-0000 for further assistance.")';
+							print 'LoginErrorMessage("Your account has been locked. Contact TexEx at (760)000-0000 for further assistance.");';
 							print '</script>';
 							exit();
 						}
@@ -109,7 +107,7 @@
 			//if account exists, and it's not disabled or locked, then allow them into the site.
 			$_SESSION['sid'] = $UserInputEmail;
 			print '<script type="text/javascript">';
-			print 'redirectToSearch()';
+			print 'redirectToSearch();';
 			print '</script>';
 			exit();
 		}

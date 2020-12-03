@@ -23,9 +23,9 @@
 		</div>
 		<h1 class="text">Administrative Login</h1>
 		<div class="fieldsContainerAdminLogin">
-			<input type="email" placeholder="Email" class="EmailField" aria-label="Admin Email" id="emailField" name="emailField" required/>
+			<input type="email" placeholder="Email" class="EmailField" aria-label="Admin Email" id="emailField" name="emailField" value="<?php if(isset($_POST['emailField'])) echo htmlspecialchars($_POST['emailField']); ?>" required/>
 			
-			<input type="password" placeholder="Password" class="PasswordField" aria-label="Admin Password" id="passwordField" name="passwordField" required/>
+			<input type="password" placeholder="Password" class="PasswordField" aria-label="Admin Password" id="passwordField" name="passwordField" value="<?php if(isset($_POST['passwordField'])) echo htmlspecialchars($_POST['passwordField']); ?>" required/>
 			
 			<input type="submit" value="Login" class="buttonFields" name="loginButton" id="loginButton"/>
 		</div>
@@ -46,11 +46,9 @@
 
 	//first get user inputted email address and password
 	if(isset($_POST['loginButton'])){
-		$UserInputEmail = $_POST["emailField"];
-		trim($UserInputEmail);
+		$UserInputEmail = trim($_POST["emailField"]);
 		$UserInputEmail = stripslashes($UserInputEmail);
 		$UserInputPassword = $_POST["passwordField"];
-		trim($UserInputPassword);
 		$UserInputPassword = stripslashes($UserInputPassword);
 		
 		//validation query
@@ -61,14 +59,14 @@
 		$num_rows_valid = mysqli_num_rows($result_valid);
 		if($num_rows_valid == 0){
 			print '<script type="text/javascript">';
-			print 'LoginErrorMessage("An account with that email address and password does not exist. Try again.")';
+			print 'LoginErrorMessage("An account with that email address and password does not exist. Try again.");';
 			print '</script>';
 			exit();
 		}
 		else{
 			$_SESSION['adminsid'] = $UserInputEmail;
 			print '<script type="text/javascript">';
-			print 'redirectToManageUsers()';
+			print 'redirectToManageUsers();';
 			print '</script>';
 			exit();
 		}

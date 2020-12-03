@@ -35,22 +35,22 @@
 		$key = $_SERVER['QUERY_STRING'];
 		if($key == "Errormessage=edit"){
 			print '<script type="text/javascript">';
-			print "notificationMessage('Errormessage', 'Error! Could not update post. Please try again later.')";
+			print "notificationMessage('Errormessage', 'Error! Could not update post. Please try again later.');";
 			print '</script>';
 		}
 		else if($key == "Successmessage=edit"){
 			print '<script type="text/javascript">';
-			print "notificationMessage('Successmessage', 'Success! Your post has been updated.')";
+			print "notificationMessage('Successmessage', 'Success! Your post has been updated.');";
 			print '</script>';
 		}
 		else if($key == "Errormessage=delete"){
 			print '<script type="text/javascript">';
-			print "notificationMessage('Errormessage', 'Error! Could not delete post. Please try again later.')";
+			print "notificationMessage('Errormessage', 'Error! Could not delete post. Please try again later.');";
 			print '</script>';
 		}
 		else if($key == "Successmessage=delete"){
 			print '<script type="text/javascript">';
-			print "notificationMessage('Successmessage', 'Success! Your post has been deleted.')";
+			print "notificationMessage('Successmessage', 'Success! Your post has been deleted.');";
 			print '</script>';
 		}
 		$host =  'db';
@@ -66,7 +66,7 @@
 		}
 		
 		//get all posts sorted by most recently posted
-		$query_get_posts = 'SELECT PostID, BookImage, BookTitle, BookISBN, BookAuthor, PostContent FROM tbl_book_post, tbl_user WHERE tbl_book_post.UserID = tbl_user.UserID AND tbl_user.Email LIKE "' .$_SESSION['sid'] . '"AND PostVisible = TRUE ORDER BY PostedStamp DESC';
+		$query_get_posts = 'SELECT PostID, BookImage, BookTitle, BookISBN, BookAuthor, PostContent FROM tbl_book_post, tbl_user WHERE tbl_book_post.UserID = tbl_user.UserID AND tbl_user.Email LIKE "' .$_SESSION['sid'] . '"AND PostVisible = TRUE ORDER BY PostedStamp ASC';
 
 		$query_html_get_posts = htmlspecialchars($query_get_posts);
 		$result_get_posts = mysqli_query($db, $query_get_posts);
@@ -75,14 +75,14 @@
 		$row_get_posts = mysqli_fetch_assoc($result_get_posts);
 		if($num_rows_get_posts == 0){
 			print '<script type="text/javascript">';
-			print 'displayNoResults()';
+			print 'displayNoResults();';
 			print '</script>';
 		}
 		else{
 			for($row_num = 0; $row_num < $num_rows_get_posts; $row_num++){
 				$values_get_posts = array_values($row_get_posts);
 				print '<script type="text/javascript">';
-				print 'displayResults('.json_encode($values_get_posts).')';
+				print 'displayResults('.json_encode($values_get_posts).');';
 				print '</script>';
 				$row_get_posts = mysqli_fetch_assoc($result_get_posts);
 			}
@@ -92,10 +92,10 @@
 		$key = $_SERVER['QUERY_STRING'];
 		$primaryKey = substr($key, 4);
 		if(isset($_POST['savePostBttn' . $primaryKey])){
-			$title = $_POST['titleInput'. $primaryKey];
-			$author = $_POST['authorInput'. $primaryKey];
-			$isbn = $_POST['isbnInput'. $primaryKey];
-			$desc = $_POST['descInput'. $primaryKey];
+			$title = trim($_POST['titleInput'. $primaryKey]);
+			$author = trim($_POST['authorInput'. $primaryKey]);
+			$isbn = trim($_POST['isbnInput'. $primaryKey]);
+			$desc = trim($_POST['descInput'. $primaryKey]);
 			
 			$query_save_post = 'UPDATE tbl_book_post SET BookTitle = "' . $title .'", BookAuthor = "'. $author .'", BookISBN = "' . $isbn . '", PostContent = "' . $desc . '", LastUpdatedByUser = now()
 								WHERE UserID = (SELECT UserID FROM tbl_user WHERE tbl_user.Email LIKE "' . $_SESSION['sid'] . '") AND PostID = ' . $primaryKey;
@@ -111,7 +111,9 @@
 				
 			}
 			
-			print "<script>window.open('" . $refreshQueryString . "', '_self') </script>";
+			print "<script type='text/javascript'>";
+			print "window.open('" . $refreshQueryString . "', '_self');";
+			print "</script>";
 								
 		}
 		
@@ -130,7 +132,9 @@
 				
 			}
 			
-			print "<script>window.open('" . $refreshQueryString . "', '_self') </script>";
+			print "<script type='text/javascript'>";
+			print "window.open('" . $refreshQueryString . "', '_self');";
+			print "</script>";
 								
 		}
 		mysqli_close($db);

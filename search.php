@@ -70,7 +70,7 @@
 					</select>
 				</div>
 			</div>
-			</form>
+		</form>
 			
 	<?php
 		$key = $_SERVER['QUERY_STRING'];
@@ -95,7 +95,7 @@
 			print '<script type="text/javascript">';
 			print 'deleteResults()';
 			print '</script>';
-			$searchTerm = $_POST["searchBar"];
+			$searchTerm = trim($_POST["searchBar"]);
 			$searchType = $_POST["searchType"];
 			$savedSearch = $_POST["saveSearch"];
 			$unsavedSearch = $_POST["unsaveSearch"];
