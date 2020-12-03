@@ -40,9 +40,9 @@
 			</div>
 			<form method="post">
 				<div class="fieldsContainer" id="fieldsContainer">
-					<input type="text" placeholder="Your Name..." class="NameField" id="nameField" name="nameField" aria-label="Your Name" pattern="^[A-Za-z]+( [A-Za-z]+)+$" value="<?php if(isset($_POST['nameField'])) echo htmlspecialchars($_POST['nameField']); ?>"/>
+					<input type="text" placeholder="Your Name..." class="NameField" id="nameField" name="nameField" aria-label="Your Name" value="<?php if(isset($_POST['nameField'])) echo htmlspecialchars($_POST['nameField']); ?>"/>
 					<input type="email" placeholder="Your Email..." class="EmailField" id="emailField" name="emailField" aria-label="Your Email" value="<?php if(isset($_POST['emailField'])) echo htmlspecialchars($_POST['emailField']); ?>"/>
-					<input type="text" placeholder="Your School..." class="SchoolField" id="schoolField" name="schoolField" aria-label="Your School" pattern="^[A-Z]{1}[a-z]+( [A-Z]{1}[a-z]+)*$" value="<?php if(isset($_POST['schoolField'])) echo htmlspecialchars($_POST['schoolField']); ?>"/>
+					<input type="text" placeholder="Your School..." class="SchoolField" id="schoolField" name="schoolField" aria-label="Your School" value="<?php if(isset($_POST['schoolField'])) echo htmlspecialchars($_POST['schoolField']); ?>"/>
 
 					<input type="button" value="Update Password" class="buttonFields" id="updatePasswordButton"/>
 					<input type="button" value="Update Account" class="buttonFields" name="updateAccountButton" id="updateAccountButton"/>
@@ -70,11 +70,10 @@
 
 	<?php
 		
-		$host =  'localhost';
-		$userid =  'group2';
-		$password = 'veZB9mEPGifk';
-		$schema = 'group2';
-
+	$host =  'localhost';
+	$userid =  'group2';
+	$password = 'veZB9mEPGifk';
+	$schema = 'group2';
 
 		$db = new mysqli($host, $userid,  $password, $schema);
 		

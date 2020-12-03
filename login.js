@@ -2,7 +2,7 @@
 function encryptPass(){
 	if(document.body.contains(document.getElementById("errorDiv"))){
 		var node = document.getElementById("errorDiv");
-		node.pareNode.removeChild(node);
+		node.parentNode.removeChild(node);
 	}
 	//getting the values of the email and password fields
 	var email = document.getElementById("emailField").value;

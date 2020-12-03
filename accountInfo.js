@@ -264,7 +264,10 @@ function redirectSearch(event){
 	var values = dom.value;
 	var Stype = values.match(/[A-Za-z]+/);
 	var term = values.search(/: ([A-Za-z0-9]+)/);
-	var subStr = values.substring(term+2);
+	var subStr = "";
+    if(term != -1){
+		subStr = values.substring(term+2);
+	}
 	var queryString = "searchType=" + Stype + "&searchTerm=" + subStr;
 	window.location.href="search.php"+ "?" + queryString;
 	
@@ -339,7 +342,7 @@ function validateEmail(el){
 }
 
 function validateName(name){
-	var pos = name.search(/^[A-Za-z]+( [A-Za-z]+)*$/);
+	var pos = name.search(/^[A-Za-z]+( [A-Za-z]+)+$/);
 	if(pos != 0){
 		return false;
 	}
