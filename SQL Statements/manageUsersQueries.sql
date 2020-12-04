@@ -1,7 +1,8 @@
 /*Get all users whose account is not disabled*/
 SELECT UserID, Email, Name, Locked
 FROM tbl_user
-WHERE Disabled = FALSE;
+WHERE Disabled = FALSE
+ORDER BY UserID DESC;
 
 /*search by name*/
 SELECT UserID, Email, Name, Locked 
@@ -12,21 +13,20 @@ AND Disabled = FALSE;
 /*sort search by first name alphabetically*/
 SELECT UserID, Email, Name, Locked 
 FROM tbl_user 
-WHERE Name LIKE '%Karishma Kapur%'
+WHERE Name LIKE '%K%'
 AND Disabled = FALSE ORDER BY Name ASC;
 
 /*sort search by most recent creation date*/
 SELECT UserID, Email, Name, Locked 
 FROM tbl_user 
-WHERE Name LIKE '%Karishma Kapur%'
+WHERE Name LIKE '%K%'
 AND Disabled = FALSE ORDER BY CreationDate DESC;
 
 /*sort search by oldest creation date*/
 SELECT UserID, Email, Name, Locked 
 FROM tbl_user 
-WHERE Name LIKE '%Karishma Kapur%'
+WHERE Name LIKE '%K%'
 AND Disabled = FALSE ORDER BY CreationDate ASC;
-
 
 /*Lock a user account*/
 UPDATE tbl_user

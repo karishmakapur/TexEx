@@ -27,28 +27,28 @@ WHERE tbl_book_post.UserID = tbl_user.UserID AND PostVisible = TRUE AND Disabled
 SELECT PostID, Email, BookImage, BookTitle, BookISBN, BookAuthor, PostContent 
 FROM tbl_book_post, tbl_user
 WHERE tbl_book_post.UserID = tbl_user.UserID AND PostVisible = TRUE 
-AND Disabled = FALSE AND BookAuthor LIKE '%Michael Geringer%'
+AND Disabled = FALSE AND BookAuthor LIKE '%M%'
 ORDER BY PostedStamp DESC;			
 
 /*sort a query ascending title*/
 SELECT PostID, Email, BookImage, BookTitle, BookISBN, BookAuthor, PostContent 
 FROM tbl_book_post, tbl_user
 WHERE tbl_book_post.UserID = tbl_user.UserID AND PostVisible = TRUE 
-AND Disabled = FALSE AND BookAuthor LIKE '%Michael Geringer%'
+AND Disabled = FALSE AND BookAuthor LIKE '%M%'
 ORDER BY BookTitle ASC;
 
 /*sort a query by ascending author*/
 SELECT PostID, Email, BookImage, BookTitle, BookISBN, BookAuthor, PostContent 
 FROM tbl_book_post, tbl_user
 WHERE tbl_book_post.UserID = tbl_user.UserID AND PostVisible = TRUE 
-AND Disabled = FALSE AND AND BookAuthor LIKE '%Michael Geringer%'
+AND Disabled = FALSE AND BookAuthor LIKE '%M%'
 ORDER BY BookAuthor ASC;		
 
 /*sort a query by oldest post*/
 SELECT PostID, Email, BookImage, BookTitle, BookISBN, BookAuthor, PostContent 
 FROM tbl_book_post, tbl_user
 WHERE tbl_book_post.UserID = tbl_user.UserID AND PostVisible = TRUE 
-AND Disabled = FALSE AND AND BookAuthor LIKE '%Michael Geringer%'
+AND Disabled = FALSE AND BookAuthor LIKE '%M%'
 ORDER BY PostedStamp ASC;	
 			
 

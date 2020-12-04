@@ -4,11 +4,21 @@ FROM tbl_user
 WHERE UserID = (SELECT UserID FROM tbl_user WHERE Email LIKE 'lopez816@cougars.csusm.edu') 
 AND Disabled = FALSE;
 
-
 /* display all saved searches in the account page */
 SELECT SearchID, SearchType, SearchTerm 
 FROM tbl_saved_search
 WHERE UserID = (SELECT x.UserID FROM (SELECT UserID FROM tbl_user WHERE Email LIKE 'lopez816@cougars.csusm.edu' AND Disabled = FALSE) as x);
+
+/*before updating a user's account, we first check if the email they are trying to change to already has an account*/
+SELECT Email 
+FROM tbl_user 
+WHERE Email LIKE 'lopez811@csu.fullerton.edu'
+AND UserID != (SELECT x.UserID FROM (SELECT UserID FROM tbl_user WHERE Email LIKE 'lopez816@cougars.csusm.edu') as x);
+
+/* update user information */
+UPDATE tbl_user 
+SET Name = 'Marco Lopez', Email = 'lopez811@csu.fullerton.edu', School = 'California State University Fullerton', UpdatedDate = now()
+WHERE UserID = (SELECT x.UserID FROM (SELECT UserID FROM tbl_user WHERE Email LIKE 'lopez816@cougars.csusm.edu') as x) AND Disabled = FALSE;
 
 /*get user's current password for password change validation*/
 SELECT Password 
@@ -19,19 +29,6 @@ WHERE UserID = (SELECT UserID FROM tbl_user WHERE Email LIKE 'lopez811@csu.fulle
 UPDATE tbl_user 
 SET password = 'n3wP@sswordM@rco', UpdatedDate = now()
 WHERE UserID = (SELECT x.UserID FROM (SELECT UserID FROM tbl_user WHERE Email LIKE 'lopez811@csu.fullerton.edu') as x) AND Disabled = FALSE;
-
-/*before updating a user's account, we first check if the email they are trying to change to
-already has an account*/
-SELECT Email 
-FROM tbl_user 
-WHERE Email LIKE 'lopez811@csu.fullerton.edu'
-AND UserID != (SELECT x.UserID FROM (SELECT UserID FROM tbl_user WHERE Email LIKE 'lopez816@cougars.csusm.edu') as x);
-
-/* update user information */
-UPDATE tbl_user 
-SET Name = 'Marco', Email = 'lopez811@csu.fullerton.edu', School = 'California State University Fullerton', UpdatedDate = now()
-WHERE UserID = (SELECT x.UserID FROM (SELECT UserID FROM tbl_user WHERE Email LIKE 'lopez816@cougars.csusm.edu') as x) AND Disabled = FALSE;
-
 
 /* update account status to disabled */
 UPDATE tbl_user 

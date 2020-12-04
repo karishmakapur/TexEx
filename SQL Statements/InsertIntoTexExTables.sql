@@ -134,31 +134,31 @@ VALUES ((SELECT x.UserID FROM (SELECT UserID FROM tbl_user WHERE Email LIKE 'gon
 
 /*inserting 10 rows into tbl_saved_search*/
 INSERT INTO tbl_saved_search (UserID, SearchType, SearchTerm)
-VALUES ((SELECT x.UserID FROM (SELECT UserID FROM tbl_user WHERE Email LIKE 'sharp032@cougars.csusm.edu') as x), 'Author', 'N. Gregory Mankiw');
+VALUES ((SELECT x.UserID FROM (SELECT UserID FROM tbl_user WHERE Email LIKE 'sharp032@cougars.csusm.edu') as x), 'BookAuthor', 'N. Gregory Mankiw');
 
 INSERT INTO tbl_saved_search (UserID, SearchType, SearchTerm)
-VALUES ((SELECT x.UserID FROM (SELECT UserID FROM tbl_user WHERE Email LIKE 'sebas004@cougars.csusm.edu') as x), 'ISBN', '978-1305585126');
+VALUES ((SELECT x.UserID FROM (SELECT UserID FROM tbl_user WHERE Email LIKE 'sebas004@cougars.csusm.edu') as x), 'BookISBN', '978-1305585126');
 
 INSERT INTO tbl_saved_search (UserID, SearchType, SearchTerm)
-VALUES ((SELECT x.UserID FROM (SELECT UserID FROM tbl_user WHERE Email LIKE 'lopez816@cougars.csusm.edu') as x), 'Title', 'Programming the World Wide Web');
+VALUES ((SELECT x.UserID FROM (SELECT UserID FROM tbl_user WHERE Email LIKE 'lopez816@cougars.csusm.edu') as x), 'BookTitle', 'Programming the World Wide Web');
 
 INSERT INTO tbl_saved_search (UserID, SearchType, SearchTerm)
-VALUES ((SELECT x.UserID FROM (SELECT UserID FROM tbl_user WHERE Email LIKE 'kapur004@cougars.csusm.edu') as x), 'ISBN', '978-1259685224');
+VALUES ((SELECT x.UserID FROM (SELECT UserID FROM tbl_user WHERE Email LIKE 'kapur004@cougars.csusm.edu') as x), 'BookISBN', '978-1259685224');
 
 INSERT INTO tbl_saved_search (UserID, SearchType, SearchTerm)
-VALUES ((SELECT x.UserID FROM (SELECT UserID FROM tbl_user WHERE Email LIKE 'gonza593@cougars.csusm.edu') as x), 'Title', 'International Business');
+VALUES ((SELECT x.UserID FROM (SELECT UserID FROM tbl_user WHERE Email LIKE 'gonza593@cougars.csusm.edu') as x), 'BookTitle', 'International Business');
 
 INSERT INTO tbl_saved_search (UserID, SearchType, SearchTerm)
-VALUES ((SELECT x.UserID FROM (SELECT UserID FROM tbl_user WHERE Email LIKE 'knight2112@csu.fullerton.edu') as x), 'ISBN', '978-0470012703');
+VALUES ((SELECT x.UserID FROM (SELECT UserID FROM tbl_user WHERE Email LIKE 'knight2112@csu.fullerton.edu') as x), 'BookISBN', '978-0470012703');
 
 INSERT INTO tbl_saved_search (UserID, SearchType, SearchTerm)
-VALUES ((SELECT x.UserID FROM (SELECT UserID FROM tbl_user WHERE Email LIKE 'camin003@cougars.csusm.edu') as x), 'Author', 'Mary Warner Marien');
+VALUES ((SELECT x.UserID FROM (SELECT UserID FROM tbl_user WHERE Email LIKE 'camin003@cougars.csusm.edu') as x), 'BookAuthor', 'Mary Warner Marien');
 
 INSERT INTO tbl_saved_search (UserID, SearchType, SearchTerm)
-VALUES ((SELECT x.UserID FROM (SELECT UserID FROM tbl_user WHERE Email LIKE 'trani001@cougars.csusm.edu') as x), 'Author', 'Michael Geringer');
+VALUES ((SELECT x.UserID FROM (SELECT UserID FROM tbl_user WHERE Email LIKE 'trani001@cougars.csusm.edu') as x), 'BookAuthor', 'Michael Geringer');
 
 INSERT INTO tbl_saved_search (UserID, SearchType, SearchTerm)
-VALUES ((SELECT x.UserID FROM (SELECT UserID FROM tbl_user WHERE Email LIKE 'star.patrick@student.csulb.edu') as x), 'Title', 'Human Anatomy');
+VALUES ((SELECT x.UserID FROM (SELECT UserID FROM tbl_user WHERE Email LIKE 'star.patrick@student.csulb.edu') as x), 'BookTitle', 'Human Anatomy');
 
 INSERT INTO tbl_saved_search (UserID, SearchType, SearchTerm)
-VALUES ((SELECT x.UserID FROM (SELECT UserID FROM tbl_user WHERE Email LIKE 'jonesy987@cougars.csusm.edu') as x), 'ISBN', '978-0205988945');
+VALUES ((SELECT x.UserID FROM (SELECT UserID FROM tbl_user WHERE Email LIKE 'jonesy987@cougars.csusm.edu') as x), 'BookISBN', '978-0205988945');
