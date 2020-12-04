@@ -17,7 +17,7 @@ function invalidSchool(event){
 }
 
 function invalidPass(event){
-	event.currentTarget.setCustomValidity("Please enter a correct password! The password length must be greater than or equal to 8. The password must contain one or more uppercase characters. The password must contain one or more lowercase characters. The password must contain one or more numeric values. The password must contain one or more special characters.");
+	event.currentTarget.setCustomValidity("Please enter a correct password! The password length must be greater than or equal to 8. The password must contain one or more uppercase letters. The password must contain one or more lowercase letters. The password must contain one or more numeric values. The password must contain one or more special characters.");
 }
 function validateEmail(el){
 	var dom = el;
