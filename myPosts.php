@@ -96,7 +96,7 @@
 		$key = $_SERVER['QUERY_STRING'];
 		$primaryKey = substr($key, 4);
 		if(isset($_POST['savePostBttn' . $primaryKey])){
-			$title = trim($_POST['titleInput'. $primaryKey]);
+			$title = addslashes(trim($_POST['titleInput'. $primaryKey]));
 			$author = trim($_POST['authorInput'. $primaryKey]);
 			$isbn = trim($_POST['isbnInput'. $primaryKey]);
 			$desc = addslashes(trim($_POST['descInput'. $primaryKey]));

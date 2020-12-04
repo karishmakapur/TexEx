@@ -86,7 +86,7 @@
 		}
 		
 		if(isset($_POST["postButton"])){
-			$BookTitle = trim($_POST["bookTitle"]);
+			$BookTitle = addslashes(trim($_POST["bookTitle"]));
 			$BookAuthor = trim($_POST["bookAuthor"]);
 			$BookISBN = trim($_POST["bookISBN"]);
 			$BookDesc = addslashes(trim($_POST["postArea"]));

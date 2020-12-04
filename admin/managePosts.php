@@ -90,7 +90,7 @@
 		$userid =  'group2';
 		$password = 'veZB9mEPGifk';
 		$schema = 'group2';
-		
+
 		$db = new mysqli($host, $userid,  $password, $schema);
 		
 		if(mysqli_connect_errno()){
@@ -170,7 +170,7 @@
 		$key = $_GET['key'];
 		$email = $_GET['email'];
 		if(isset($_POST['savePostBttn' . $key])){
-			$title = trim($_POST['titleInput'. $key]);
+			$title = addslashes(trim($_POST['titleInput'. $key]));
 			$author = trim($_POST['authorInput'. $key]);
 			$isbn = trim($_POST['isbnInput'. $key]);
 			$desc = addslashes(trim($_POST['descInput'. $key]));
