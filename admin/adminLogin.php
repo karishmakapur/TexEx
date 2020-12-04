@@ -32,11 +32,10 @@
 	</form>
 </div>
 <?php
-	$host =  'localhost';
-	$userid =  'group2';
-	$password = 'veZB9mEPGifk';
-	$schema = 'group2';
-
+		$host =  'localhost';
+		$userid =  'group2';
+		$password = 'veZB9mEPGifk';
+		$schema = 'group2';
 
 	$db = new mysqli($host, $userid,  $password, $schema);
 	

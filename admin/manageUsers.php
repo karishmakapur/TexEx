@@ -83,7 +83,6 @@
 		$password = 'veZB9mEPGifk';
 		$schema = 'group2';
 
-
 		$db = new mysqli($host, $userid,  $password, $schema);
 		
 		if(mysqli_connect_errno()){
@@ -91,7 +90,7 @@
 				exit();
 		}
 		
-		$query_get_users = 'SELECT UserID, Email, Name, Locked FROM tbl_user WHERE Disabled = FALSE';
+		$query_get_users = 'SELECT UserID, Email, Name, Locked FROM tbl_user WHERE Disabled = FALSE ORDER BY UserID DESC';
 		$query_html_get_users = htmlspecialchars($query_get_users);
 		$result_get_users = mysqli_query($db, $query_get_users);
 		$num_fields_get_users = mysqli_num_fields($result_get_users);

@@ -84,7 +84,6 @@
 		$password = 'veZB9mEPGifk';
 		$schema = 'group2';
 
-
 		$db = new mysqli($host, $userid,  $password, $schema);
 		
 		if(mysqli_connect_errno()){

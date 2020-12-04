@@ -90,8 +90,7 @@
 		$userid =  'group2';
 		$password = 'veZB9mEPGifk';
 		$schema = 'group2';
-
-
+		
 		$db = new mysqli($host, $userid,  $password, $schema);
 		
 		if(mysqli_connect_errno()){
@@ -174,7 +173,7 @@
 			$title = trim($_POST['titleInput'. $key]);
 			$author = trim($_POST['authorInput'. $key]);
 			$isbn = trim($_POST['isbnInput'. $key]);
-			$desc = trim($_POST['descInput'. $key]);
+			$desc = addslashes(trim($_POST['descInput'. $key]));
 			
 			$query_save_post = 'UPDATE tbl_book_post SET BookTitle = "' . $title .'", BookAuthor = "'. $author .'", BookISBN = "' . $isbn . '", PostContent = "' . $desc . '"
 								WHERE UserID = (SELECT UserID FROM tbl_user WHERE tbl_user.Email LIKE "' . $email . '") AND PostID = ' . $key;
