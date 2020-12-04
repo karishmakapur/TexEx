@@ -1,5 +1,6 @@
 <?php
 	session_start();
+	ini_set('session.cookie_secure', 1);
 	if(!isset($_SESSION["sid"])){
 		header("location:login.php");
 		exit();

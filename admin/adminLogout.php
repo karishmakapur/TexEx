@@ -1,5 +1,6 @@
 <?php
 	session_start();
+	ini_set('session.cookie_secure', 1);
 	$_SESSION['adminsid'] = NULL;
 	if($_SESSION['adminsid'] == NULL){
 		header("location:adminLogin.php");
