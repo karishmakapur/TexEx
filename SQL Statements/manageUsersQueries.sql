@@ -4,9 +4,29 @@ FROM tbl_user
 WHERE Disabled = FALSE;
 
 /*search by name*/
-SELECT UserID, Email, Name, Locked
-FROM tbl_user
-WHERE Name LIKE 'Karishma Kapur';
+SELECT UserID, Email, Name, Locked 
+FROM tbl_user 
+WHERE Name LIKE '%Karishma Kapur%'
+AND Disabled = FALSE;
+
+/*sort search by first name alphabetically*/
+SELECT UserID, Email, Name, Locked 
+FROM tbl_user 
+WHERE Name LIKE '%Karishma Kapur%'
+AND Disabled = FALSE ORDER BY Name ASC;
+
+/*sort search by most recent creation date*/
+SELECT UserID, Email, Name, Locked 
+FROM tbl_user 
+WHERE Name LIKE '%Karishma Kapur%'
+AND Disabled = FALSE ORDER BY CreationDate DESC;
+
+/*sort search by oldest creation date*/
+SELECT UserID, Email, Name, Locked 
+FROM tbl_user 
+WHERE Name LIKE '%Karishma Kapur%'
+AND Disabled = FALSE ORDER BY CreationDate ASC;
+
 
 /*Lock a user account*/
 UPDATE tbl_user

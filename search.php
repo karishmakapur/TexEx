@@ -137,22 +137,22 @@
 			print '<script type="text/javascript">';
 			print 'deleteResults()';
 			print '</script>';
-			$query_Search = 'SELECT BookImage, BookTitle,  BookISBN, BookAuthor, PostContent FROM tbl_book_post, tbl_user WHERE tbl_book_post.UserID = tbl_user.UserID AND ' . $searchType . ' LIKE "' . $searchTerm . '%" AND PostVisible = TRUE AND Disabled = False';
+			$query_Search = 'SELECT BookImage, BookTitle,  BookISBN, BookAuthor, PostContent FROM tbl_book_post, tbl_user WHERE tbl_book_post.UserID = tbl_user.UserID AND ' . $searchType . ' LIKE "%' . $searchTerm . '%" AND PostVisible = TRUE AND Disabled = False';
 			
 			if($searchBy == 'Recently Posted'){
-				$query_Search = 'SELECT BookImage, BookTitle,  BookISBN, BookAuthor, PostContent, PostedStamp FROM tbl_book_post, tbl_user  WHERE tbl_book_post.UserID = tbl_user.UserID AND ' . $searchType . ' LIKE "' . $searchTerm . '%" AND PostVisible = TRUE AND Disabled = False ORDER BY PostedStamp ASC';
+				$query_Search = 'SELECT BookImage, BookTitle,  BookISBN, BookAuthor, PostContent, PostedStamp FROM tbl_book_post, tbl_user  WHERE tbl_book_post.UserID = tbl_user.UserID AND ' . $searchType . ' LIKE "%' . $searchTerm . '%" AND PostVisible = TRUE AND Disabled = False ORDER BY PostedStamp ASC';
 			
 			}
 			else if ($searchBy == 'ASCTitle'){
-				$query_Search = 'SELECT BookImage, BookTitle,  BookISBN, BookAuthor, PostContent FROM tbl_book_post, tbl_user  WHERE tbl_book_post.UserID = tbl_user.UserID AND ' . $searchType . ' LIKE "' . $searchTerm . '%" AND PostVisible = TRUE AND Disabled = False ORDER BY BookTitle DESC';
+				$query_Search = 'SELECT BookImage, BookTitle,  BookISBN, BookAuthor, PostContent FROM tbl_book_post, tbl_user  WHERE tbl_book_post.UserID = tbl_user.UserID AND ' . $searchType . ' LIKE "%' . $searchTerm . '%" AND PostVisible = TRUE AND Disabled = False ORDER BY BookTitle DESC';
 			
 			}
 			else if ($searchBy == 'ASCAuthor'){
-				$query_Search = 'SELECT BookImage, BookTitle,  BookISBN, BookAuthor, PostContent FROM tbl_book_post, tbl_user  WHERE tbl_book_post.UserID = tbl_user.UserID AND ' . $searchType . ' LIKE "' . $searchTerm . '%" AND PostVisible = TRUE AND Disabled = False ORDER BY BookAuthor DESC';
+				$query_Search = 'SELECT BookImage, BookTitle,  BookISBN, BookAuthor, PostContent FROM tbl_book_post, tbl_user  WHERE tbl_book_post.UserID = tbl_user.UserID AND ' . $searchType . ' LIKE "%' . $searchTerm . '%" AND PostVisible = TRUE AND Disabled = False ORDER BY BookAuthor DESC';
 			
 			}
 			else if($searchBy == 'Oldest'){
-				$query_Search = 'SELECT BookImage, BookTitle,  BookISBN, BookAuthor, PostContent, PostedStamp FROM tbl_book_post, tbl_user  WHERE tbl_book_post.UserID = tbl_user.UserID AND ' . $searchType . ' LIKE "' . $searchTerm . '%" AND PostVisible = TRUE AND Disabled = False ORDER BY PostedStamp DESC';
+				$query_Search = 'SELECT BookImage, BookTitle,  BookISBN, BookAuthor, PostContent, PostedStamp FROM tbl_book_post, tbl_user  WHERE tbl_book_post.UserID = tbl_user.UserID AND ' . $searchType . ' LIKE "%' . $searchTerm . '%" AND PostVisible = TRUE AND Disabled = False ORDER BY PostedStamp DESC';
 			}
 			$query_html_Search = htmlspecialchars($query_Search);
 			$result_Search = mysqli_query($db, $query_Search);

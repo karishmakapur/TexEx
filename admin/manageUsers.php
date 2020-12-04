@@ -119,15 +119,15 @@
 			print "</script>";
 			$searchBy = trim($_POST['searchBox']);
 			$sortBy = $_POST['sortSearch'];
-			$query_search = 'SELECT UserID, Email, Name, Locked FROM tbl_user WHERE Name LIKE "' . $searchBy .'%" AND Disabled = FALSE';
+			$query_search = 'SELECT UserID, Email, Name, Locked FROM tbl_user WHERE Name LIKE "%' . $searchBy .'%" AND Disabled = FALSE';
 			if($sortBy == "First Name Alphabetically"){
-				$query_search = 'SELECT UserID, Email, Name, Locked FROM tbl_user WHERE Name LIKE "' . $searchBy .'%" AND Disabled = FALSE ORDER BY Name DESC';
+				$query_search = 'SELECT UserID, Email, Name, Locked FROM tbl_user WHERE Name LIKE "%' . $searchBy .'%" AND Disabled = FALSE ORDER BY Name DESC';
 			}
 			else if($sortBy == "Recent Creation Date"){
-				$query_search = 'SELECT UserID, Email, Name, Locked, CreationDate FROM tbl_user WHERE Name LIKE "' . $searchBy .'%" AND Disabled = FALSE ORDER BY CreationDate ASC';
+				$query_search = 'SELECT UserID, Email, Name, Locked, CreationDate FROM tbl_user WHERE Name LIKE "%' . $searchBy .'%" AND Disabled = FALSE ORDER BY CreationDate ASC';
 			}
 			else if($sortBy == "Oldest Creation Date"){
-				$query_search = 'SELECT UserID, Email, Name, Locked, CreationDate FROM tbl_user WHERE Name LIKE "' . $searchBy .'%" AND Disabled = FALSE ORDER BY CreationDate DESC';
+				$query_search = 'SELECT UserID, Email, Name, Locked, CreationDate FROM tbl_user WHERE Name LIKE "%' . $searchBy .'%" AND Disabled = FALSE ORDER BY CreationDate DESC';
 			}
 			
 			
