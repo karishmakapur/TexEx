@@ -55,7 +55,6 @@
 		$password = 'veZB9mEPGifk';
 		$schema = 'group2';
 
-
 		$db = new mysqli($host, $userid,  $password, $schema);
 		
 		if(mysqli_connect_errno()){
@@ -90,7 +89,7 @@
 			$BookTitle = trim($_POST["bookTitle"]);
 			$BookAuthor = trim($_POST["bookAuthor"]);
 			$BookISBN = trim($_POST["bookISBN"]);
-			$BookDesc = trim($_POST["postArea"]);
+			$BookDesc = addslashes(trim($_POST["postArea"]));
 			$BookImage = trim($_POST["uploadImageButton"]);
 			if(!isset($_FILES["uploadImageButton"]) || $_FILES['uploadImageButton']['error'] == 4){
 					$target_file = "Images/no-image-icon.png";

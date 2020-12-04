@@ -53,8 +53,8 @@ function validateCreateAccount(){
 	var domPasswordField = document.getElementById("passwordField");
 	var domConfirmPasswordField = document.getElementById("confirmpasswordField");
 
-	var name = titleCase(domNameField.value);
-	var school = titleCase(domSchoolField.value);
+	document.getElementById("nameField").value = titleCase(domNameField.value);
+	document.getElementById("schoolField").value = titleCase(domSchoolField.value);
 	
 	var emailValidated = validateEmail(domEmailField);
 	if(emailValidated == false){

@@ -197,8 +197,8 @@ function updateAccount (event) {
 		return false;
 	}
 	
-	name = titleCase(name);
-	school = titleCase(school);
+	document.getElementById("nameField").value = titleCase(name);
+	document.getElementById("schoolField").value = titleCase(school);
 	
 	var ev = document.createEvent("MouseEvent");
 	ev.initMouseEvent('click', true, true, window, 0,0,0,0,0,false,false,false,false,0,null);
